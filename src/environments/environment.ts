@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    apiUrl: 'http://34.95.92.127/api/raservice/v1/',
+    apiUrl: 'http://ras.scaleablecloud.com/api/raservice/v1/',
     production: false,
     hmr       : false,
     secure : false

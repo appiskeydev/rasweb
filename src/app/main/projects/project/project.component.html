@@ -111,8 +111,7 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="Client" formControlName="projectClient" name="projectClient"
-                  [compareWith]="compareFn" >
+                  <mat-select placeholder="Client" formControlName="projectClient" name="projectClient">
                       <mat-option>-- Select Client --</mat-option>
                       <mat-option *ngFor="let client of clients"  [value]="client" >
                           {{client.name}}
