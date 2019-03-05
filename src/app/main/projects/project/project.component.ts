@@ -13,9 +13,9 @@ import { Client } from 'app/main/clients/client.model';
 import { Feature } from 'app/main/features/feature.model';
 import { Resource } from 'app/main/resources/resource.model';
 import { Milestone } from 'app/main/milestones/milestone.model';
-import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
 import { MilestoneComponent } from 'app/main/milestones/milestone/milestone.component';
 import { MilestoneService } from 'app/main/milestones/milestone.service';
+import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
 
 
 @Component({
