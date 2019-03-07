@@ -59,7 +59,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Client Name</mat-label>
                 <input matInput  placeholder="First Name" name="name" formControlName="name"
-                  required>
+                  #clientname= "matInput">
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
@@ -98,10 +98,19 @@
 
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field appearance="outline"  fxFlex="100">
+                  <mat-label>Company Name</mat-label>
+                  <input matInput placeholder="Company Name" name="clientCompanyName" formControlName="clientCompanyName"
+                    required>
+                  <mat-error>Company Name must be valid!</mat-error>
+                </mat-form-field>
+              </div>
+   
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                    <mat-select placeholder="Company" formControlName="parent" name="parent.clientName"
+                    <mat-select placeholder="Reference" formControlName="parent" name="parent.clientName"
                     [compareWith]="compareFn" >
-                        <mat-option>-- Select Company --</mat-option>
+                        <mat-option>-- Select Reference --</mat-option>
                         <mat-option *ngFor="let client of clients"  [value]="client" >
                             {{client?.name}}
                         </mat-option>
@@ -116,7 +125,7 @@
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-client-button" [disabled]="clientForm.invalid || clientForm.pristine"
+            <button mat-raised-button class="save-client-button" [disabled]="clientForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveClient()">
               <span>SAVE</span>
             </button>

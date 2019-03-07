@@ -26,7 +26,7 @@ export class Department {
         this.id = department.id || '';
         this.name = department.name || '';
         this.departmentHod= department.departmentHod || null;
-        this.departmentBench= department.departmentBench || '';
+        this.departmentBench= department.departmentBench || 0;
         this.updatedAt = department.updatedAt || '';
         this.createdAt = department.createdAt || '';
     

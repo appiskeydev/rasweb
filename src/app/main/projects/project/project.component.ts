@@ -1,9 +1,9 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { Project } from '../project.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ProjectService } from '../project.service';
-import { MatSnackBar, MatDialogModule } from '@angular/material';
+import { MatSnackBar, MatDialogModule, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
@@ -16,6 +16,8 @@ import { Milestone } from 'app/main/milestones/milestone.model';
 import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
 import { MilestoneComponent } from 'app/main/milestones/milestone/milestone.component';
 import { MilestoneService } from 'app/main/milestones/milestone.service';
+import { namespaceHTML } from '@angular/core/src/render3';
+import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -26,7 +28,8 @@ import { MilestoneService } from 'app/main/milestones/milestone.service';
   animations: fuseAnimations
 })
 export class ProjectComponent implements OnInit {
-
+@ViewChild('projectname')
+nameInput: MatInput;
 
   dialogRef: any;
 
@@ -87,6 +90,7 @@ export class ProjectComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+  this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._projectService.onItemChanged

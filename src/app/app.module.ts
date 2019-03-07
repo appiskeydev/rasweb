@@ -18,6 +18,9 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { HttpModule } from '@angular/http';
 
+import { CompanyListComponent } from './main/companies/company-list/company-list.component';
+import { CompanyComponent } from './main/companies/company/company.component';
+
 
 const appRoutes: Routes = [
     
@@ -74,12 +77,26 @@ const appRoutes: Routes = [
         loadChildren: './main/skills/skills.module#SkillsModule',
         // canActivate: [AuthGuard]
 
+    },
+    {
+        path        : '',
+        loadChildren: '.src/app/main/companies/company.module#CompaniesModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+        path        : '',
+        loadChildren: '.src/app/main/designations/designation.module#DesignationsModule',
+        // canActivate: [AuthGuard]
+
     }
 ];
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        CompanyListComponent,
+        CompanyComponent
     ],
     imports     : [
         BrowserModule,

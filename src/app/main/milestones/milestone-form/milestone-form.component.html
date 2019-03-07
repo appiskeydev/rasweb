@@ -28,12 +28,12 @@
               </div>
 
 
-
+              <!-- pattern="[a-zA-Z ]*" -->
             <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex>
                   <mat-label>Milestone Name</mat-label>
-                  <input matInput type="text" pattern="[a-zA-Z ]*" minlength="3" maxlength="100" placeholder="MilestoneName" name="name" formControlName="name"
-                     required>
+                  <input matInput type="text" placeholder="MilestoneName" name="name" formControlName="name"
+                     #milestonename="matInput">
                  <mat-error>Milestone Name must have a valid input!</mat-error>
                  
                 </mat-form-field>
@@ -69,8 +69,8 @@
   
               <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                  <mat-label>Expected Payment</mat-label>
-                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Expected Payment" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
+                  <mat-label>Expected Payment $</mat-label>
+                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Expected Payment ($)" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
@@ -79,8 +79,8 @@
   
               <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                  <mat-label>Payment Amount</mat-label>
-                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Payment Amount" name="milestonePaymentAmount" formControlName="milestonePaymentAmount"
+                  <mat-label>Payment Amount ($)</mat-label>
+                  <input matInput placeholder="Milestone Payment Amount ($)" name="milestonePaymentAmount" formControlName="milestonePaymentAmount"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
@@ -89,8 +89,8 @@
   
               <div fxLayout="row" fxLayoutAlign="start start"  >
                 <mat-form-field appearance="outline"  fxFlex>
-                  <mat-label> Cost</mat-label>
-                  <input matInput  minlength="3" maxlength="100" placeholder="Milestone Cost" name="milestoneCost" formControlName="milestoneCost"
+                  <mat-label> Cost ($)</mat-label>
+                  <input matInput placeholder="Milestone Cost ($)" name="milestoneCost" formControlName="milestoneCost"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
@@ -100,7 +100,7 @@
               <div fxLayout="row" fxLayoutAlign="start start">
                 <mat-form-field appearance="outline"  fxFlex >
                   <mat-label>Milestone Payment Method</mat-label>
-                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Payment Method" name="milestonePaymentMethod" formControlName="milestonePaymentMethod"
+                  <input matInput  placeholder="Milestone Payment Method" name="milestonePaymentMethod" formControlName="milestonePaymentMethod"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
