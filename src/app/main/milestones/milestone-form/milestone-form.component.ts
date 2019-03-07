@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject, Injectable, NgModule, Input } from '@angular/core';
+import { Component, OnInit, Inject, Injectable, NgModule, Input, ViewChild } from '@angular/core';
 import { Milestone } from '../milestone.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { MAT_DIALOG_DATA,MatDialogRef, MatDialog, MatDialogModule } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA,MatDialogRef, MatDialog, MatDialogModule, MatInput } from '@angular/material';
 import { MilestoneService } from '../milestone.service';
 import { Router } from '@angular/router';
 import { ViewEncapsulation } from '@angular/core';
@@ -14,6 +14,8 @@ import { ViewEncapsulation } from '@angular/core';
 })
 
 export class MilestoneFormComponent{
+ @ViewChild('milestonename')
+ nameInput: MatInput;
   action: string;
     milestone: Milestone;
     milestoneForm: FormGroup;
@@ -51,7 +53,10 @@ export class MilestoneFormComponent{
             this.milestone = new Milestone({});
         }
 
+
+       
         this.milestoneForm = this.createContactForm();
+   
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -65,17 +70,18 @@ export class MilestoneFormComponent{
      */
     createContactForm(): FormGroup
     {
+   
         return this._formBuilder.group({
           id: [this.milestone.id],
-          name: [this.milestone.name],
+          name: [this.milestone.name ,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
           handle: [this.milestone.handle],
           milestoneStartDate: [this.milestone.milestoneStartDate],
           milestoneDelieveryDate: [this.milestone.milestoneDelieveryDate],
           milestoneDevelopmentDate: [this.milestone.milestoneDevelopmentDate],
-          milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment],
-          milestonePaymentAmount: [this.milestone.milestonePaymentAmount],
-          milestoneCost: [this.milestone.milestoneCost],
-          milestonePaymentMethod: [this.milestone.milestonePaymentMethod],
+          milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          milestonePaymentAmount: [this.milestone.milestonePaymentAmount,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          milestoneCost: [this.milestone.milestoneCost,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          milestonePaymentMethod: [this.milestone.milestonePaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
         });
     }
 

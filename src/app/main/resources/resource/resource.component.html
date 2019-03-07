@@ -58,7 +58,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Resource Name</mat-label>
                 <input matInput placeholder="First Name" name="name" formControlName="name"
-                  >
+                  #resourcename = "matInput">
                 <mat-error>Name must be valid!</mat-error>
               </mat-form-field>
             </div>
@@ -109,7 +109,7 @@
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                   <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                    <mat-select placeholder="Resources"  name="resourceSkills" formControlName="resourceSkills" multiple  [compareWith]="comparerSkill">
+                    <mat-select placeholder="Skills"  name="resourceSkills" formControlName="resourceSkills" multiple  [compareWith]="comparerSkill">
                             <mat-option *ngFor="let skill of resourceSkillsList" [value]="skill">{{skill.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -140,7 +140,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Benefits</mat-label>
-                <input matInput type="number"  placeholder="Benefits" name="resourceBenefits" formControlName="resourceBenefits"
+                <input matInput  placeholder="Benefits" name="resourceBenefits" formControlName="resourceBenefits"
                   >
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
@@ -155,13 +155,23 @@
               </mat-form-field>
             </div>
 
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p"> 
+                <!-- <mat-label>Employee Type</mat-label>  -->
+                <mat-radio-group class="example-radio-group"name="resourceContractType" formControlName="resourceContractType">
+                  <mat-radio-button class="example-radio-button" *ngFor="let employee of employeeTypes" [value]="employee">
+                    {{employee}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              
+            </div> 
+
 
             <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid" *ngIf="pageType ==='new'"
               (click)="addResource()">
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid || resourceForm.pristine"
+            <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveResource()">
               <span>SAVE</span>
             </button>

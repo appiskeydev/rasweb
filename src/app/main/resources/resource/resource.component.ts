@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Resource } from '../resource.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ResourceService } from '../resource.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
@@ -18,12 +18,15 @@ import { Skill } from 'app/main/skills/skill.model';
   animations: fuseAnimations
 })
 export class ResourceComponent implements OnInit {
+  @ViewChild('resourcename')
+  nameInput: MatInput;
   resourceDepartments:Department[];
   resourceReporters:Resource[];
   resourceSkillsList:Skill[];
   resource: Resource;
   pageType: string;
   resourceForm: FormGroup;
+  employeeTypes: string[] = ['Intern', 'Permanent', 'Part Time', 'Full Time','Contract Based'];
   
   // myControl = new FormControl();
   package_id: string;
@@ -61,6 +64,7 @@ export class ResourceComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._resourceService.onItemChanged
@@ -129,7 +133,7 @@ export class ResourceComponent implements OnInit {
         resourceDOB : [this.resource.resourceDOB,[ Validators.minLength(2), Validators.maxLength(50)]],
         resourceEmail : [this.resource.resourceEmail,[Validators.required,Validators.email, Validators.minLength(2), Validators.maxLength(50)]],
         resourceAddress : [this.resource.resourceAddress],
-        resourcePhone : [this.resource.resourcePhone,[Validators.minLength(5), Validators.maxLength(11)]],
+        resourcePhone : [this.resource.resourcePhone,[Validators.required,Validators.minLength(5), Validators.maxLength(11)]],
         resourceReligion :[this.resource.resourceReligion,[Validators.minLength(2), Validators.maxLength(50)]],
         resourceBloodGroup :[this.resource.resourceBloodGroup,[ Validators.minLength(2), Validators.maxLength(5)]], 
         resourceNationality :[this.resource.resourceNationality,[ Validators.minLength(2), Validators.maxLength(50)]],

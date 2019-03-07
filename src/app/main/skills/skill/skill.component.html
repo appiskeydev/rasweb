@@ -58,7 +58,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Skill Name</mat-label>
                 <input matInput placeholder="First Name" name="name" formControlName="name"
-                  >
+                  #skillname ="matInput">
                 <mat-error>Name must be valid!</mat-error>
               </mat-form-field>
             </div>
@@ -83,7 +83,7 @@
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-skill-button" [disabled]="skillForm.invalid || skillForm.pristine"
+            <button mat-raised-button class="save-skill-button" [disabled]="skillForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveSkill()">
               <span>SAVE</span>
             </button>
