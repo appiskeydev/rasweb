@@ -5,7 +5,10 @@ export class Company {
     id:string;
     handle:string;
     name:string;
+    updatedAt: string;
+    createdAt: string;
 
+   
       /**
      * Constructor
      *
@@ -20,5 +23,7 @@ export class Company {
         }
         this.id = company.id || '';
         this.name = company.name || '';
+        this.updatedAt = company.updatedAt || '';
+        this.createdAt = company.createdAt || '';
 }
 }

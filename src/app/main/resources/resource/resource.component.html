@@ -75,6 +75,19 @@
                 </mat-form-field>
               </div>
 
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-select placeholder="Designation" formControlName="resourceDesignation" name="resourceDesignation"
+                  [compareWith]="compareFn" >
+                      <mat-option>-- Select Designation --</mat-option>
+                      <mat-option *ngFor="let designation of resourceDesignations"  [value]="designation" >
+                          {{designation.name}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Email</mat-label>
@@ -86,13 +99,119 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="DOB"  name="resourceDOB" formControlName="resourceDOB">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Address" name="resourceAddress" formControlName="resourceAddress"
+                  >
+                <mat-error>Address must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>CNIC</mat-label>
+                <input matInput placeholder="CNIC" name="resourceCNIC" formControlName="resourceCNIC"
+                  >
+                <mat-error>CNIC must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Religion</mat-label>
+                <input matInput placeholder="Religion" name="resourceReligion" formControlName="resourceReligion"
+                  >
+                <mat-error>Religion must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>BloodGroup</mat-label>
+                <input matInput placeholder="BloodGroup" name="resourceBloodGroup" formControlName="resourceBloodGroup"
+                  >
+                <mat-error>Blood Group must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Nationality</mat-label>
+                <input matInput placeholder="Nationality" name="resourceNationality" formControlName="resourceNationality"
+                  >
+                <mat-error>Nationality must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Emergency ContactNo.</mat-label>
+                <input matInput placeholder="Emergency ContactNo" name="resourceEmergencyContactNo" formControlName="resourceEmergencyContactNo"
+                  >
+                <mat-error>Emergency ContactNo must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Marital Status</mat-label>
+                <input matInput placeholder="Marital Status" name="resourceMaritalStatus" formControlName="resourceMaritalStatus"
+                  >
+                <mat-error>Marital Status must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Resume</mat-label>
+                <input matInput placeholder="Resume" name="resourceResume" formControlName="resourceResume"
+                  >
+                <mat-error>Marital Status must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Phone Number</mat-label>
                 <input matInput type="number"  placeholder="Phone Number" name="resourcePhone" formControlName="resourcePhone"
                   >
                 <mat-error>Phone number must be valid!</mat-error>
               </mat-form-field>
             </div>
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" placeholder="Date Of Joining"  name="resourceDateOfJoining" formControlName="resourceDateOfJoining">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            </div>
 
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Experience (year)</mat-label>
+                <input matInput type="number"  placeholder="Experience in years" name="resourceExperience" formControlName="resourceExperience"
+                  >
+                <mat-error>Experience must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Salary Per Month</mat-label>
+                <input matInput type="number"  placeholder="Salary Per Month" name="resourceSalaryPerMonth" formControlName="resourceSalaryPerMonth"
+                  >
+                <mat-error>Salary Per Month must be valid!</mat-error>
+              </mat-form-field>
+            </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
@@ -106,6 +225,8 @@
                 </mat-form-field>
               </div>
              
+           
+               
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                   <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">

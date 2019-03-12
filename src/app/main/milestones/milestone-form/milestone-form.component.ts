@@ -77,11 +77,9 @@ export class MilestoneFormComponent{
           handle: [this.milestone.handle],
           milestoneStartDate: [this.milestone.milestoneStartDate],
           milestoneDelieveryDate: [this.milestone.milestoneDelieveryDate],
-          milestoneDevelopmentDate: [this.milestone.milestoneDevelopmentDate],
           milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          milestonePaymentAmount: [this.milestone.milestonePaymentAmount,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
           milestoneCost: [this.milestone.milestoneCost,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          milestonePaymentMethod: [this.milestone.milestonePaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+          milestoneNoOfDays: [this.milestone.milestoneNoOfDays,[Validators.minLength(1), Validators.maxLength(50)]]
         });
     }
 

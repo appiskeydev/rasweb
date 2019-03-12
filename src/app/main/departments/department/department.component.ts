@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Department } from '../department.model';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl, CheckboxControlValueAccessor } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { DepartmentService } from '../department.service';
 import { MatSnackBar, MatInput } from '@angular/material';
@@ -24,6 +24,10 @@ export class DepartmentComponent implements OnInit {
   pageType: string;
   departmentForm: FormGroup;
   
+  resourceControl = new FormControl();
+
+  resourceFilteredOptions: Observable<Resource[]>;
+
   // myControl = new FormControl();
   package_id: string;
 
@@ -84,6 +88,12 @@ export class DepartmentComponent implements OnInit {
         this.departmentResources =  departmentResources.map((resource) => new Resource(resource));
     console.log(this.departmentResources);
 
+    this.resourceFilteredOptions = this.departmentForm.controls['departmentHod'].valueChanges
+    .pipe(startWith<string | Resource>(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.departmentResources.slice()));
+
+
     });
   }
   /**
@@ -112,7 +122,7 @@ export class DepartmentComponent implements OnInit {
         name: [this.department.name ,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         handle: [this.department.handle],
         departmentBench: [this.department.departmentBench],
-        departmentHod: [this.department.departmentHod]
+        departmentHod: [this.department.departmentHod, customValidator]
       });
    
   }
@@ -139,12 +149,25 @@ export class DepartmentComponent implements OnInit {
       });
   }
 
+  private _filter(name: string): Resource[] {
+    const filterValue = name.toLowerCase();
+    return this.departmentResources.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFn(item?: Resource): string | undefined {
+
+  return item ? item.name : undefined;
+}
+
   /**
    * Add department
    */
   addDepartment(): void {
     const data = this.departmentForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
+  if(typeof data.departmentHod === "string")
+  {
+   return null;
+  }
   
     this._departmentService.addItem(data)
       .then(() => {
@@ -168,3 +191,24 @@ export class DepartmentComponent implements OnInit {
    }
 
 }
+
+export const customValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  console.log('validate');
+  if ( !control.parent || !control )
+  {
+      return null;
+  }
+
+  const departmentHod = control.parent.get('departmentHod');
+ 
+
+  if ( typeof departmentHod === "string")
+  {
+
+      return null;
+  }
+
+
+
+  return {'departmentHodIsString': true};
+};

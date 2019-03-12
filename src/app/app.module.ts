@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule,MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule,MatDialogModule, MatTableModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -18,8 +18,6 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { HttpModule } from '@angular/http';
 
-import { CompanyListComponent } from './main/companies/company-list/company-list.component';
-import { CompanyComponent } from './main/companies/company/company.component';
 
 
 const appRoutes: Routes = [
@@ -80,26 +78,28 @@ const appRoutes: Routes = [
     },
     {
         path        : '',
-        loadChildren: '.src/app/main/companies/company.module#CompaniesModule',
+        loadChildren: './main/companies/company.module#CompaniesModule',
         // canActivate: [AuthGuard]
 
     },
     {
         path        : '',
-        loadChildren: '.src/app/main/designations/designation.module#DesignationsModule',
+        loadChildren: './main/designations/designation.module#DesignationModule',
         // canActivate: [AuthGuard]
 
     }
+   
+    
+     
 ];
 
 @NgModule({
     declarations: [
-        AppComponent,
-        CompanyListComponent,
-        CompanyComponent
+        AppComponent
     ],
     imports     : [
         BrowserModule,
+        
         BrowserAnimationsModule,
         HttpClientModule,
         HttpModule,
@@ -118,6 +118,7 @@ const appRoutes: Routes = [
         MatRadioModule,
         MatDatepickerModule,
         MatDialogModule,
+        MatTableModule,
         
 
         // Fuse modules

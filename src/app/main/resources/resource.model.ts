@@ -1,6 +1,7 @@
 import { FuseUtils } from "@fuse/utils";
 import { Department } from "../departments/department.model";
 import { Skill } from "../skills/skill.model";
+import { Designation } from "../designations/designation.model";
 
 export class Resource {
 
@@ -16,7 +17,7 @@ export class Resource {
     resourceNationality : string ;
     resourceEmergencyContactNo : string ;
     resourceMaritalStatus : string ;
-    resourceDesignation : string ;
+    resourceDesignation : Designation ;
     resourceReportingTo : Resource ;
     resourceResume : string;
     resourceDateOfJoining : Date;
@@ -59,7 +60,7 @@ export class Resource {
         this.resourceNationality = resource.resourceNationality || '';
         this.resourceEmergencyContactNo = resource.resourceEmergencyContactNo || '';
         this.resourceMaritalStatus = resource.resourceMaritalStatus || '';
-        this.resourceDesignation = resource.resourceDesignation || '';
+        this.resourceDesignation = resource.resourceDesignation || null;
         this.resourceReportingTo = resource.resourceReportingTo || null;
         this.resourceResume = resource.resourceResume || '';
         this.resourceDateOfJoining = resource.resourceDateOfJoining || '';

@@ -37,6 +37,21 @@ export const navigation: FuseNavigation[] = [
                         'url'  : '/clients'
                     },
                     {
+                        'id'   : 'company',
+                        'title': 'Company',
+                        'translate': 'NAV.COMPANY.TITLE',
+                        'type' : 'item',
+                        'url'  : '/companies'
+                    },
+                
+                    {
+                        'id'   : 'designation',
+                        'title': 'Designation',
+                        'translate': 'NAV.DESIGNATION.TITLE',
+                        'type' : 'item',
+                        'url'  : '/designations'
+                    },
+                    {
                         'id'   : 'create_project',
                         'title': 'Create Project',
                         'translate': 'NAV.CREATE_PROJECT.TITLE',
@@ -95,7 +110,6 @@ export const navigation: FuseNavigation[] = [
                         'exactMatch':true
 
                     }
-
                 ]
             },
             {

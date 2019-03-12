@@ -9,6 +9,7 @@ import { Client } from './client.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { Company } from '../companies/company.model';
 
 
 const API_URL = environment.apiUrl;
@@ -20,6 +21,7 @@ const API_URL = environment.apiUrl;
 export class ClientService {
   clients: any[];
   entityNode: string = 'client';
+  entityNodeCompany: string = 'company';
   routeParams: any;
   item: any;
   items: any[];
@@ -175,6 +177,18 @@ export class ClientService {
       .map(response => {
         const clients = response.json();
         return clients.map((client) => new Client(client));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
+  public getClientCompany(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeCompany)
+
+      .map(response => {
+        const companies = response.json();
+        return companies.map((company) => new Company(company));
         // return licenses.map((license) => new licenses(license));
       })
       .catch(this.handleError);

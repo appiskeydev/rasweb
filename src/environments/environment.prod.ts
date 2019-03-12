@@ -1,6 +1,7 @@
 export const environment = {
     production: true,
     hmr       : false,
-    apiUrl: 'http://ras.scaleablecloud.com/api/raservice/v1'
+    dev:false,
+    apiUrl: 'http://rasprod.scaleablecloud.com/api/raservice/v1'
 
 };

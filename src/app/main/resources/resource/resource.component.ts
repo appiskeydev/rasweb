@@ -10,8 +10,11 @@ import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
 import { Department } from 'app/main/departments/department.model';
 import { Skill } from 'app/main/skills/skill.model';
+import { Designation } from 'app/main/designations/designation.model';
+import { DesignationService } from 'app/main/designations/designation.service';
 
 @Component({
+  providers:[DesignationService],
   selector: 'app-resource',
   templateUrl: './resource.component.html',
   styleUrls: ['./resource.component.scss'],
@@ -23,6 +26,7 @@ export class ResourceComponent implements OnInit {
   resourceDepartments:Department[];
   resourceReporters:Resource[];
   resourceSkillsList:Skill[];
+  resourceDesignations : Designation[];
   resource: Resource;
   pageType: string;
   resourceForm: FormGroup;
@@ -30,6 +34,9 @@ export class ResourceComponent implements OnInit {
   
   // myControl = new FormControl();
   package_id: string;
+
+  minDate = new Date(1910, 0, 1);
+  maxDate = new Date(2020, 0, 1);
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -41,14 +48,17 @@ export class ResourceComponent implements OnInit {
    * Constructor
    *
    * @param {ResourceService} _resourceService
+   * @param {DesignationService} _designationService
    * @param {FormBuilder} _formBuilder
    * @param {MatSnackBar} _matSnackBar,
    *
    */
   constructor(
     private _resourceService: ResourceService,
+    private _designationService : DesignationService,
     private _formBuilder: FormBuilder,
     private _matSnackBar: MatSnackBar,
+  
     private _router: Router
   ) {
     // Set the default
@@ -82,6 +92,7 @@ export class ResourceComponent implements OnInit {
         this.resourceForm = this.createResourceForm();
 
 
+
       });
 
       this._resourceService.getAll().subscribe(resourceDepartment => {
@@ -98,6 +109,12 @@ export class ResourceComponent implements OnInit {
 
   this._resourceService.getResourceSkills().subscribe(resourceSkills => {
     this.resourceSkillsList =  resourceSkills.map((skill) => new Skill(skill));
+// console.log(this.resourceSkills);
+
+});
+
+this._resourceService.getResourceDesignations().subscribe(resourceDesignation => {
+  this.resourceDesignations =  resourceDesignation.map((designation) => new Designation(designation));
 // console.log(this.resourceSkills);
 
 });
@@ -139,15 +156,15 @@ export class ResourceComponent implements OnInit {
         resourceNationality :[this.resource.resourceNationality,[ Validators.minLength(2), Validators.maxLength(50)]],
         resourceEmergencyContactNo : [this.resource.resourceEmergencyContactNo,[ Validators.minLength(5), Validators.maxLength(50)]],
         resourceMaritalStatus : [this.resource.resourceMaritalStatus,[ Validators.minLength(2), Validators.maxLength(50)]] ,
-        resourceDesignation : [this.resource.resourceDesignation,[ Validators.minLength(2), Validators.maxLength(50)]], 
+        resourceDesignation : [this.resource.resourceDesignation], 
         resourceReportingTo : [ this.resource.resourceReportingTo],
-        resourceResume : [this.resource.resourceResume,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceResume : [this.resource.resourceResume,[ Validators.minLength(2), Validators.maxLength(100)]],
         resourceDateOfJoining :[this.resource.resourceDateOfJoining],
-        resourceWorkingDays : [this.resource.resourceWorkingDays,[Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-        resourceExperience :  [this.resource.resourceExperience,[ Validators.minLength(2), Validators.maxLength(50)]],
-        resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceWorkingDays : [this.resource.resourceWorkingDays],
+        resourceExperience :  [this.resource.resourceExperience],
+        resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth],
         resourcePerHourRate : [this.resource.resourcePerHourRate],
-        resourceShift: [this.resource.resourceShift,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceShift: [this.resource.resourceShift],
         resourceBenefits : [this.resource.resourceBenefits,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         resourceContractType : [this.resource.resourceContractType],
         resourcePartTime : [ this.resource.resourcePartTime],
@@ -187,7 +204,7 @@ export class ResourceComponent implements OnInit {
   addResource(): void {
     const data = this.resourceForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
-  
+ data.res
     if(data.resourceReportingTo == ""){
       data.resourceReportingTo=null;
     }

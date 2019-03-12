@@ -65,13 +65,16 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="HOD" formControlName="departmentHod" name="departmentHod"
-                  [compareWith]="compareFn" >
-                      <mat-option>-- Select HOD --</mat-option>
-                      <mat-option *ngFor="let resource of departmentResources"  [value]="resource" >
-                          {{resource?.name}}
-                      </mat-option>
-                  </mat-select>
+                <input type="text" placeholder="Select Department HOD" matInput formControlName="departmentHod"  [matAutocomplete]="auto1" >
+                <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" >
+                  <mat-option *ngFor="let option of resourceFilteredOptions | async" [value]="option">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="departmentForm.get('departmentHod').hasError('departmentHodIsString')">
+                  Department is string here!
+              </mat-error>
+           
                 </mat-form-field>
               </div>
 

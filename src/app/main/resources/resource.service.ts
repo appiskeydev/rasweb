@@ -8,6 +8,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Department } from '../departments/department.model';
 import { Resource } from './resource.model';
 import { Skill } from '../skills/skill.model';
+import { Designation } from '../designations/designation.model';
 
 const API_URL = environment.apiUrl;
 
@@ -20,6 +21,7 @@ export class ResourceService {
   entityNode: string = 'resource';
   entityNodeDepartment: string = 'department';
   entityNodeSkill: string = 'skill';
+  entityNodeDesignation: string = 'designation';
   routeParams: any;
   item: any;
   items: any[];
@@ -200,6 +202,17 @@ export class ResourceService {
       .map(response => {
         const skills = response.json();
         return skills.map((skill) => new Skill(skill));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+  public getResourceDesignations(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeDesignation)
+
+      .map(response => {
+        const designations = response.json();
+        return designations.map((designation) => new Designation(designation));
         // return licenses.map((license) => new licenses(license));
       })
       .catch(this.handleError);

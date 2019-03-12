@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from '../client.model';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ClientService } from '../client.service';
 import { MatSnackBar, MatInput } from '@angular/material';
@@ -9,8 +9,11 @@ import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
 import { Subscription } from 'rxjs/Subscription';
+import { Company } from 'app/main/companies/company.model';
+import { CompanyService } from 'app/main/companies/company.service';
 
 @Component({
+  providers:[CompanyService],
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
@@ -20,10 +23,17 @@ export class ClientComponent implements OnInit {
   @ViewChild('clientname')
   nameInput:MatInput
   clients: Client[];
+  companies: Company[];
   client: Client;
   pageType: string;
   clientForm: FormGroup;
-  
+
+  companyControl = new FormControl();
+  referenceControl = new FormControl();
+
+  companyFilteredOptions: Observable<Company[]>;
+  referenceFilteredOptions: Observable<Client[]>;
+
   // myControl = new FormControl();
   package_id: string;
 
@@ -83,9 +93,26 @@ export class ClientComponent implements OnInit {
 
       this._clientService.getAll().subscribe(clients => {
         this.clients =  clients.map((client) => new Client(client));
-    console.log(this.clients);
+   // console.log(this.clients);
+
+ 
+this.referenceFilteredOptions = this.clientForm.controls['parent'].valueChanges
+.pipe(startWith<string | Client>(''),
+    map(value => typeof value === 'string' ? value : value.name),
+    map(name => name ? this._filterReference(name) : this.clients.slice()));
+
 
     });
+
+this._clientService.getClientCompany().subscribe(clientCompany => {
+  this.companies =  clientCompany.map((company) => new Company(company));
+// console.log(this.resourceSkills);
+
+this.companyFilteredOptions = this.clientForm.controls['clientCompanyName'].valueChanges
+                .pipe(startWith<string | Company>(''),
+                    map(value => typeof value === 'string' ? value : value.name),
+                    map(name => name ? this._filter(name) : this.companies.slice()));
+});
 
 
 
@@ -152,9 +179,16 @@ export class ClientComponent implements OnInit {
   addClient(): void {
     const data = this.clientForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
+    console.log(data);
 if(data.parent == ""){
   data.parent=null;
 }
+  
+
+
+if (typeof data.clientCompanyName === "string") {
+  data.clientCompanyName = new Company({'id': '', 'name' : data.clientCompanyName, 'updatedAt' :'', 'createdAt':''});
+} 
     this._clientService.addItem(data)
       .then(() => {
 
@@ -176,6 +210,23 @@ if(data.parent == ""){
   compareFn(c1: Client, c2: Client): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
    }
+   private _filter(name: string): Company[] {
+    const filterValue = name.toLowerCase();
+    return this.companies.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFn(item?: Company): string | undefined {
+
+  return item ? item.name : undefined;
+}
+
+private _filterReference(name: string): Client[] {
+  const filterValue = name.toLowerCase();
+  return this.clients.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFnReferences(item?: Client): string | undefined {
+
+  return item ? item.name : undefined;
+}
 
 
 }
