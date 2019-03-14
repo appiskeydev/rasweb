@@ -30,7 +30,14 @@ export class ResourceComponent implements OnInit {
   resource: Resource;
   pageType: string;
   resourceForm: FormGroup;
-  employeeTypes: string[] = ['Intern', 'Permanent', 'Part Time', 'Full Time','Contract Based'];
+  employeeTypes: string[] = ['Permanent', 'Temporary', 'Consultancy'];
+  jobTypes: string[] = ['Part time', 'Full time'];
+
+  departmentFilteredOptions: Observable<Department[]>;
+  designationFilteredOptions: Observable<Designation[]>;
+  resourceFilteredOptions: Observable<Resource[]>;
+
+
   
   // myControl = new FormControl();
   package_id: string;
@@ -94,16 +101,31 @@ export class ResourceComponent implements OnInit {
 
 
       });
+      this.resourceForm.controls['resourceDepartment'].valueChanges.subscribe(val => this.validateDepartment(val));
+      this.resourceForm.controls['resourceDesignation'].valueChanges.subscribe(val => this.validateDesignation(val));
+      this.resourceForm.controls['resourceReportingTo'].valueChanges.subscribe(val => this.validateResource(val));
+
 
       this._resourceService.getAll().subscribe(resourceDepartment => {
         this.resourceDepartments =  resourceDepartment.map((department) => new Department(department));
     // console.log(this.resourceDepartments);
+
+    this.departmentFilteredOptions = this.resourceForm.controls['resourceDepartment'].valueChanges
+    .pipe(startWith<string | Department>(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filterDepartment(name) : this.resourceDepartments.slice()));
 
     });
 
     this._resourceService.getReportingesource().subscribe(resourceReporter => {
       this.resourceReporters =  resourceReporter.map((resource) => new Resource(resource));
   // console.log(this.resourceReporters);
+
+
+  this.resourceFilteredOptions = this.resourceForm.controls['resourceReportingTo'].valueChanges
+  .pipe(startWith<string | Resource>(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      map(name => name ? this._filterResource(name) : this.resourceReporters.slice()));
 
   });
 
@@ -117,7 +139,13 @@ this._resourceService.getResourceDesignations().subscribe(resourceDesignation =>
   this.resourceDesignations =  resourceDesignation.map((designation) => new Designation(designation));
 // console.log(this.resourceSkills);
 
+this.designationFilteredOptions = this.resourceForm.controls['resourceDesignation'].valueChanges
+.pipe(startWith<string | Designation>(''),
+    map(value => typeof value === 'string' ? value : value.name),
+    map(name => name ? this._filterDesignation(name) : this.resourceDesignations.slice()));
+
 });
+
 
 
   }
@@ -166,7 +194,8 @@ this._resourceService.getResourceDesignations().subscribe(resourceDesignation =>
         resourcePerHourRate : [this.resource.resourcePerHourRate],
         resourceShift: [this.resource.resourceShift],
         resourceBenefits : [this.resource.resourceBenefits,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-        resourceContractType : [this.resource.resourceContractType],
+        resourceEmployeeType : [this.resource.resourceEmployeeType],
+        resourceJobType : [this.resource.resourceJobType],
         resourcePartTime : [ this.resource.resourcePartTime],
         resourceDepartment : [ this.resource.resourceDepartment],
         resourceSkills: [ this.resource.resourceSkills]
@@ -237,4 +266,67 @@ this._resourceService.getResourceDesignations().subscribe(resourceDesignation =>
     // if possible compare by object's name, and not by reference.
     return o1 && o2 ? o1.name === o2.name : o2 === o2;
   }
+  private validateDepartment(val: any) {
+    if(typeof val === "string"){
+     this.resourceForm.controls['resourceDepartment'].setErrors({ error: 'Must select Hod' });
+    }
+    else{
+     this.resourceForm.controls['resourceDepartment'].setErrors(null);
+    }
+ 
+   console.log(val);
+ }
+
+ private _filterDepartment(name: string): Department[] {
+  const filterValue = name.toLowerCase();
+  return this.resourceDepartments.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFnDepartment(item?: Department): string | undefined {
+
+return item ? item.name : undefined;
+}
+
+
+private validateDesignation(val: any) {
+  if(typeof val === "string"){
+   this.resourceForm.controls['resourceDesignation'].setErrors({ error: 'Must select Designation' });
+  }
+  else{
+   this.resourceForm.controls['resourceDesignation'].setErrors(null);
+  }
+
+ console.log(val);
+}
+
+private _filterDesignation(name: string): Designation[] {
+const filterValue = name.toLowerCase();
+return this.resourceDesignations.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFnDesignation(item?: Designation): string | undefined {
+
+return item ? item.name : undefined;
+}
+
+
+
+private validateResource(val: any) {
+  if(typeof val === "string"){
+   this.resourceForm.controls['resourceReportingTo'].setErrors({ error: 'Must select Resource' });
+  }
+  else{
+   this.resourceForm.controls['resourceReportingTo'].setErrors(null);
+  }
+
+ console.log(val);
+}
+
+private _filterResource(name: string): Resource[] {
+const filterValue = name.toLowerCase();
+return this.resourceReporters.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFnResource(item?: Resource): string | undefined {
+
+return item ? item.name : undefined;
+}
+
 }

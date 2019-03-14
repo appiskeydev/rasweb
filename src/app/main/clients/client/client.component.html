@@ -100,7 +100,7 @@
             
             <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="Company" formControlName="clientCompanyName" name="clientCompanyName"
+                  <mat-select placeholder="Company" formControlName="clientCompany" name="clientCompany"
                   [compareWith]="compareFn" >
                       <mat-option>-- Select Company --</mat-option>
                       <mat-option *ngFor="let company of companies"  [value]="company" >
@@ -115,7 +115,7 @@
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
 
-                    <input type="text" placeholder="Select Company" matInput formControlName="clientCompanyName" [matAutocomplete]="auto1"  >
+                    <input type="text" placeholder="Select Company" matInput formControlName="clientCompany" [matAutocomplete]="auto1"  >
                     <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" >
                       <mat-option *ngFor="let option of companyFilteredOptions | async" [value]="option">
                         {{option.name}}
@@ -132,6 +132,9 @@
                       {{option.name}}
                     </mat-option>
                   </mat-autocomplete>
+                  <mat-error *ngIf="clientForm.get('parent').hasError('error')">
+                    Select any Reference from the list!!
+                </mat-error>
                   </mat-form-field>
             
 

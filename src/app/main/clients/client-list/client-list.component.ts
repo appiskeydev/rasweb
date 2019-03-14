@@ -22,7 +22,7 @@ export class ClientListComponent implements OnInit {
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-  displayedColumns = ['name','clientPhoneNumber','clientEmail','clientLocation','parent','clientCompanyName','active'];
+  displayedColumns = ['name','clientPhoneNumber','clientEmail','clientLocation','parent','clientCompany','active'];
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;

@@ -63,30 +63,40 @@
               </mat-form-field>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="Department" formControlName="resourceDepartment" name="resourceDepartment"
-                  [compareWith]="compareFn" >
-                      <mat-option>-- Select Department --</mat-option>
-                      <mat-option *ngFor="let department of resourceDepartments"  [value]="department" >
-                          {{department.name}}
-                      </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+    
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <input type="text" placeholder="Select Department" matInput formControlName="resourceDepartment"  [matAutocomplete]="auto1" >
+                  <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFnDepartment" >
+                    <mat-option *ngFor="let option of departmentFilteredOptions | async" [value]="option">
+                      {{option.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="resourceForm.get('resourceDepartment').hasError('error')">
+                    Select any Department from the list!!
+                </mat-error>
+             
+                  </mat-form-field>
+                </div>
 
 
-            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="Designation" formControlName="resourceDesignation" name="resourceDesignation"
-                  [compareWith]="compareFn" >
-                      <mat-option>-- Select Designation --</mat-option>
-                      <mat-option *ngFor="let designation of resourceDesignations"  [value]="designation" >
-                          {{designation.name}}
+                <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                  <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                    <input type="text" placeholder="Select Designation" matInput formControlName="resourceDesignation"  [matAutocomplete]="auto2" >
+                    <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" [displayWith]="displayFnDesignation" >
+                      <mat-option *ngFor="let option of designationFilteredOptions | async" [value]="option">
+                        {{option.name}}
                       </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="resourceForm.get('resourceDesignation').hasError('error')">
+                      Select any Designation from the list!!
+                  </mat-error>
+               
+                    </mat-form-field>
+                  </div>
+
+       
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
@@ -213,18 +223,22 @@
               </mat-form-field>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="Reporting To" formControlName="resourceReportingTo" name="resourceReportingTo"
-                  [compareWith]="compareFn" >
-                      <mat-option>-- Select Resource Reporter --</mat-option>
-                      <mat-option *ngFor="let resource of resourceReporters"  [value]="resource" >
-                          {{resource?.name}}
-                      </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+         
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <input type="text" placeholder="Select Reporter" matInput formControlName="resourceReportingTo"  [matAutocomplete]="auto3" >
+                  <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" [displayWith]="displayFnResource" >
+                    <mat-option *ngFor="let option of resourceFilteredOptions | async" [value]="option">
+                      {{option.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="resourceForm.get('resourceReportingTo').hasError('error')">
+                    Select any Reporter from the list!!
+                </mat-error>
              
+                  </mat-form-field>
+                </div>
            
                
 
@@ -276,16 +290,35 @@
               </mat-form-field>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p"> 
-                <!-- <mat-label>Employee Type</mat-label>  -->
-                <mat-radio-group class="example-radio-group"name="resourceContractType" formControlName="resourceContractType">
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p"> 
+                 <mat-label>Employee Type</mat-label>  
+                <mat-radio-group class="example-radio-group"name="resourceEmployeeType" formControlName="resourceEmployeeType">
                   <mat-radio-button class="example-radio-button" *ngFor="let employee of employeeTypes" [value]="employee">
                     {{employee}}
                   </mat-radio-button>
                 </mat-radio-group>
               
-            </div> 
+            </div> -->
 
+      
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                <mat-select placeholder="Job Type"  name="resourceEmployeeType" formControlName="resourceEmployeeType">
+                        <mat-option *ngFor="let employee of employeeTypes" [value]="employee">{{employee}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p"> 
+              <!-- <mat-label>Employee Type</mat-label>  -->
+              <mat-radio-group class="example-radio-group"name="resourceJobType" formControlName="resourceJobType">
+                <mat-radio-button class="example-radio-button" *ngFor="let job of jobTypes" [value]="job">
+                  {{job}}
+                </mat-radio-button>
+              </mat-radio-group>
+            
+          </div>
 
             <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid" *ngIf="pageType ==='new'"
               (click)="addResource()">

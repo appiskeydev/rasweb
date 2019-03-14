@@ -21,6 +21,9 @@ export const locale = {
             'CREATE_PROJECT'        : {
                 'TITLE': 'Create Project'
             },
+            'CREATE_PROJECT_WIZARD'        : {
+                'TITLE': 'Create Project Wizard'
+            },
             'PROJECT_LIST'        : {
                 'TITLE': 'Project List'
             },
@@ -53,13 +56,6 @@ export const locale = {
             },
             'MILESTONES'        : {
                 'TITLE': 'Milestones'
-            },
-            'COMPANY'        : {
-                'TITLE': 'Company'
-            },
-            
-            'DESIGNATION': {
-                'TITLE': 'Designation'
             }
         }
     }

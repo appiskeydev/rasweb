@@ -27,7 +27,8 @@ export class Resource {
     resourcePerHourRate :number ;
     resourceShift : string ;
     resourceBenefits: String;
-    resourceContractType : String  ;    //isIntern, isPartTime , isFullTime
+    resourceEmployeeType : String  ;    //Permanent, Temporary, Consultancy
+    resourceJobType : String  ;    //Part time, fulll time
     resourcePartTime : boolean;
     resourceDepartment: Department;
     resourceSkills:Skill[];
@@ -70,7 +71,8 @@ export class Resource {
         this.resourcePerHourRate = resource.resourcePerHourRate || '';
         this.resourceShift = resource.resourceShift || '';
         this.resourceBenefits = resource.resourceBenefits || '';
-        this.resourceContractType = resource.resourceContractType || '';
+        this.resourceEmployeeType = resource.resourceEmployeeType || '';
+        this.resourceJobType = resource.resourceJobType || '';
         this.resourcePartTime = resource.resourcePartTime || '';
         this.resourceDepartment = resource.resourceDepartment || null;
         this.resourceSkills= resource.resourceSkills || null;

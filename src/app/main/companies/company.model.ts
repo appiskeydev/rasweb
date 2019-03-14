@@ -18,7 +18,7 @@ export class Company {
     {
       
         company = company || {};
-        if (company.companyName !== ''){
+        if (company.name !== ''){
             this.handle = FuseUtils.handleize(company.name  + '');
         }
         this.id = company.id || '';

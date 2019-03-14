@@ -82,7 +82,7 @@ export class DepartmentComponent implements OnInit {
 
       });
 
-
+      this.departmentForm.controls['departmentHod'].valueChanges.subscribe(val => this.validateData(val));
 
       this._departmentService.getAll().subscribe(departmentResources => {
         this.departmentResources =  departmentResources.map((resource) => new Resource(resource));
@@ -122,7 +122,7 @@ export class DepartmentComponent implements OnInit {
         name: [this.department.name ,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         handle: [this.department.handle],
         departmentBench: [this.department.departmentBench],
-        departmentHod: [this.department.departmentHod, customValidator]
+        departmentHod: [this.department.departmentHod]
       });
    
   }
@@ -164,11 +164,7 @@ displayFn(item?: Resource): string | undefined {
   addDepartment(): void {
     const data = this.departmentForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
-  if(typeof data.departmentHod === "string")
-  {
-   return null;
-  }
-  
+ 
     this._departmentService.addItem(data)
       .then(() => {
 
@@ -190,25 +186,23 @@ displayFn(item?: Resource): string | undefined {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
    }
 
+   private validateData(val: any) {
+     if(typeof val === "string"){
+      this.departmentForm.controls['departmentHod'].setErrors({ error: 'Must select Hod' });
+     }
+     else{
+      this.departmentForm.controls['departmentHod'].setErrors(null);
+     }
+  
+    console.log(val);
+  }
+
 }
 
-export const customValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  console.log('validate');
-  if ( !control.parent || !control )
-  {
-      return null;
-  }
-
-  const departmentHod = control.parent.get('departmentHod');
- 
-
-  if ( typeof departmentHod === "string")
-  {
-
-      return null;
-  }
 
 
 
-  return {'departmentHodIsString': true};
-};
+
+
+
+

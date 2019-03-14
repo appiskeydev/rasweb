@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Client } from './client.model';
@@ -144,14 +144,51 @@ export class ClientService {
    * @returns {Promise<any>}
    */
   addItem(item): Promise<any> {
+// console.log(item);
+
     return new Promise((resolve, reject) => {
       this._httpClient.post(API_URL + '/' + this.entityNode , item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
+      // resolve
     });
   }
 
+  addItemddd(item): Promise<any> {
+
+
+    return new Promise((resolve, reject) => {
+
+
+      this._httpClient.post(API_URL + '/' + this.entityNode , item)
+      .subscribe(
+        (response: HttpResponse<any>) => {
+          console.log(response.status);
+          if(response.status==200){
+            resolve({'status':true, 'data':response.body,'message':response.statusText});
+          }else{
+            reject({'status':false, 'data':null,'message':response.statusText});
+          }
+        
+        
+      });
+    });
+
+
+
+  return new Promise((resolve, reject) => {
+
+    this._httpClient.post(API_URL + '/' + this.entityNode , item)
+    .subscribe(
+      (response: any) => {
+      resolve({'status':true, 'data':response,'message':'sucessfully'});
+    },  (reject: any) => {
+      reject({'status':false, 'data':null,'message':'server error'});
+    });
+
+  });
+}
 
   /**
    * Get items

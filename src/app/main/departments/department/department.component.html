@@ -71,8 +71,8 @@
                     {{option.name}}
                   </mat-option>
                 </mat-autocomplete>
-                <mat-error *ngIf="departmentForm.get('departmentHod').hasError('departmentHodIsString')">
-                  Department is string here!
+                <mat-error *ngIf="departmentForm.get('departmentHod').hasError('error')">
+                  Select any Department Hod from the list!!
               </mat-error>
            
                 </mat-form-field>

@@ -37,19 +37,26 @@ export const navigation: FuseNavigation[] = [
                         'url'  : '/clients'
                     },
                     {
+                        'id'   : 'company',
+                        'title': 'Company',
+                        'translate': 'NAV.COMPANY.TITLE',
+                        'type' : 'item',
+                        'url'  : '/companies'
+                    },
+                
+                    {
+                        'id'   : 'designation',
+                        'title': 'Designation',
+                        'translate': 'NAV.DESIGNATION.TITLE',
+                        'type' : 'item',
+                        'url'  : '/designations'
+                    },
+                    {
                         'id'   : 'create_project',
                         'title': 'Create Project',
                         'translate': 'NAV.CREATE_PROJECT.TITLE',
                         'type' : 'item',
                         'url'  : '/projects/new',
-                        'exactMatch':true
-                    },
-                    {
-                        'id'   : 'create_project_wizard',
-                        'title': 'Create Project Wizard',
-                        'translate': 'NAV.CREATE_PROJECT_WIZARD.TITLE',
-                        'type' : 'item',
-                        'url'  : '/projects-wizard/new',
                         'exactMatch':true
                     },
                     {
@@ -103,7 +110,6 @@ export const navigation: FuseNavigation[] = [
                         'exactMatch':true
 
                     }
-
                 ]
             },
             {

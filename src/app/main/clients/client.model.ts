@@ -16,7 +16,7 @@ export class Client {
     clientImageUrl:string;
     clientTimeZone:string;
     clientAvailability:string;
-    clientCompanyName:Company;
+    clientCompany:Company;
     isActive:boolean;
     updatedAt: string;
     createdAt: string;
@@ -48,10 +48,24 @@ export class Client {
         this.parent = client.parent || null;
 
         this.clientAvailability = client.clientAvailability || '';
-        this.clientCompanyName = client.clientCompanyName || null;
+        this.clientCompany = client.clientCompany || null;
         this.isActive = client.isActive || '';
 
         this.updatedAt = client.updatedAt || '';
         this.createdAt = client.createdAt || '';
     }
+
+    /**
+     * Constructor
+     *
+     * @param Company
+     */
+    mapCompany(company? )
+    {
+      
+       
+        this.clientCompany = company || null;
+    
+    }
+
 }
