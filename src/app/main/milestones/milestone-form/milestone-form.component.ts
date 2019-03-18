@@ -5,12 +5,15 @@ import { MAT_DIALOG_DATA,MatDialogRef, MatDialog, MatDialogModule, MatInput } fr
 import { MilestoneService } from '../milestone.service';
 import { Router } from '@angular/router';
 import { ViewEncapsulation } from '@angular/core';
+import { fuseAnimations } from '@fuse/animations';
 
 @Component({
   selector: 'app-milestone-form',
   templateUrl: './milestone-form.component.html',
   styleUrls: ['./milestone-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: fuseAnimations
+ 
 })
 
 export class MilestoneFormComponent{
@@ -77,11 +80,9 @@ export class MilestoneFormComponent{
           handle: [this.milestone.handle],
           milestoneStartDate: [this.milestone.milestoneStartDate],
           milestoneDelieveryDate: [this.milestone.milestoneDelieveryDate],
-          milestoneDevelopmentDate: [this.milestone.milestoneDevelopmentDate],
           milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          milestonePaymentAmount: [this.milestone.milestonePaymentAmount,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
           milestoneCost: [this.milestone.milestoneCost,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          milestonePaymentMethod: [this.milestone.milestonePaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+          milestoneNoOfDays: [this.milestone.milestoneNoOfDays,[Validators.minLength(1), Validators.maxLength(50)]]
         });
     }
 

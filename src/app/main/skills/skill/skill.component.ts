@@ -130,14 +130,31 @@ export class SkillComponent implements OnInit {
       });
   }
 
-  /**
+/**
    * Add skill
    */
   addSkill(): void {
     const data = this.skillForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
 
-    this._skillService.addItem(data)
+    let itemList: Skill[] = []; 
+    let splitted = data.name.split(","); 
+    // console.log(splitted);
+
+    for (let key in splitted) {
+      let value = splitted[key];
+      // Use `key` and `value`
+      if(value != ''){
+        itemList.push(new Skill({id: '',
+          name: value,
+          handle: '',
+          skillResources:[],
+          updatedAt: '',
+          createdAt: ''}));
+      }
+  }
+
+    this._skillService.addListItem(itemList)
       .then(() => {
 
         // Trigger the subscription with new data
@@ -153,5 +170,6 @@ export class SkillComponent implements OnInit {
         this._router.navigate(['/skills']);
       });
   }
+
 
 }

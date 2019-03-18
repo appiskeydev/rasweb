@@ -9,6 +9,8 @@ import { Client } from '../clients/client.model';
 import { Feature } from '../features/feature.model';
 import { Milestone } from '../milestones/milestone.model';
 import { Resource } from '../resources/resource.model';
+import 'rxjs/add/operator/map'; 
+import 'rxjs/add/operator/catch';
 
 const API_URL = environment.apiUrl;
 

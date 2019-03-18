@@ -1,0 +1,82 @@
+<mat-table #table [dataSource]="dataSource"
+           [@animateStagger]="{value:'50'}">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let resource">
+            <p class="text-truncate font-weight-600">{{resource.name}} </p>
+        </mat-cell>
+    </ng-container>
+    
+    <!-- Hours Column -->
+    <ng-container matColumnDef="hour">
+        <mat-header-cell *matHeaderCellDef >Hours </mat-header-cell>
+        <mat-cell *matCellDef="let resource"  >
+            <p class="email text-truncate">
+                {{resource.resourceProjectHour}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+      <!-- Allocation Column -->
+      <ng-container matColumnDef="allocation">
+          <mat-header-cell *matHeaderCellDef >Allocation </mat-header-cell>
+          <mat-cell *matCellDef="let resource"  >
+              <p class="email text-truncate">
+                  {{resource.resourceProjectAllocation}}
+              </p>
+          </mat-cell>
+      </ng-container>
+
+    <!-- Project Work Start Column -->
+    <ng-container matColumnDef="start">
+      <mat-header-cell *matHeaderCellDef >Start Date </mat-header-cell>
+      <mat-cell *matCellDef="let resource"  >
+          <p class="email text-truncate">
+              {{resource.resourceProjectWorkStartDate}}
+          </p>
+      </mat-cell>
+    </ng-container> 
+
+     <!-- Project Work End Column -->
+     <ng-container matColumnDef="end">
+        <mat-header-cell *matHeaderCellDef >End Date </mat-header-cell>
+        <mat-cell *matCellDef="let resource"  >
+            <p class="email text-truncate">
+                {{resource.resourceProjectWorkEndDate}}
+            </p>
+        </mat-cell>
+      </ng-container> 
+   
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let resource">
+            <div fxFlex="row" fxLayoutAlign="end center">
+              
+                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                        (click)="$event.stopPropagation();">
+                    <mat-icon class="secondary-text">more_vert</mat-icon>
+                </button>
+
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item aria-label="remove" (click)="deleteResource(resource)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Remove</span>
+                    </button>
+                </mat-menu>
+            </div>
+
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let resource; columns: displayedColumns;"
+             class="resource"
+             (click)="editResource(resource)"
+             matRipple
+             [@animate]="{value:'*',params:{y:'100%'}}">
+    </mat-row>
+</mat-table>
+
+

@@ -10,8 +10,11 @@ import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
 import { Department } from 'app/main/departments/department.model';
 import { Skill } from 'app/main/skills/skill.model';
+import { Designation } from 'app/main/designations/designation.model';
+import { DesignationService } from 'app/main/designations/designation.service';
 
 @Component({
+  providers:[DesignationService],
   selector: 'app-resource',
   templateUrl: './resource.component.html',
   styleUrls: ['./resource.component.scss'],
@@ -23,13 +26,24 @@ export class ResourceComponent implements OnInit {
   resourceDepartments:Department[];
   resourceReporters:Resource[];
   resourceSkillsList:Skill[];
+  resourceDesignations : Designation[];
   resource: Resource;
   pageType: string;
   resourceForm: FormGroup;
-  employeeTypes: string[] = ['Intern', 'Permanent', 'Part Time', 'Full Time','Contract Based'];
+  employeeTypes: string[] = ['Permanent', 'Temporary', 'Consultancy'];
+  jobTypes: string[] = ['Part time', 'Full time'];
+
+  departmentFilteredOptions: Observable<Department[]>;
+  designationFilteredOptions: Observable<Designation[]>;
+  resourceFilteredOptions: Observable<Resource[]>;
+
+
   
   // myControl = new FormControl();
   package_id: string;
+
+  minDate = new Date(1910, 0, 1);
+  maxDate = new Date(2020, 0, 1);
 
   // Private
   private _unsubscribeAll: Subject<any>;
@@ -41,14 +55,17 @@ export class ResourceComponent implements OnInit {
    * Constructor
    *
    * @param {ResourceService} _resourceService
+   * @param {DesignationService} _designationService
    * @param {FormBuilder} _formBuilder
    * @param {MatSnackBar} _matSnackBar,
    *
    */
   constructor(
     private _resourceService: ResourceService,
+    private _designationService : DesignationService,
     private _formBuilder: FormBuilder,
     private _matSnackBar: MatSnackBar,
+  
     private _router: Router
   ) {
     // Set the default
@@ -82,17 +99,33 @@ export class ResourceComponent implements OnInit {
         this.resourceForm = this.createResourceForm();
 
 
+
       });
+      this.resourceForm.controls['resourceDepartment'].valueChanges.subscribe(val => this.validateDepartment(val));
+      this.resourceForm.controls['resourceDesignation'].valueChanges.subscribe(val => this.validateDesignation(val));
+      this.resourceForm.controls['resourceReportingTo'].valueChanges.subscribe(val => this.validateResource(val));
+
 
       this._resourceService.getAll().subscribe(resourceDepartment => {
         this.resourceDepartments =  resourceDepartment.map((department) => new Department(department));
     // console.log(this.resourceDepartments);
+
+    this.departmentFilteredOptions = this.resourceForm.controls['resourceDepartment'].valueChanges
+    .pipe(startWith<string | Department>(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filterDepartment(name) : this.resourceDepartments.slice()));
 
     });
 
     this._resourceService.getReportingesource().subscribe(resourceReporter => {
       this.resourceReporters =  resourceReporter.map((resource) => new Resource(resource));
   // console.log(this.resourceReporters);
+
+
+  this.resourceFilteredOptions = this.resourceForm.controls['resourceReportingTo'].valueChanges
+  .pipe(startWith<string | Resource>(''),
+      map(value => typeof value === 'string' ? value : value.name),
+      map(name => name ? this._filterResource(name) : this.resourceReporters.slice()));
 
   });
 
@@ -101,6 +134,18 @@ export class ResourceComponent implements OnInit {
 // console.log(this.resourceSkills);
 
 });
+
+this._resourceService.getResourceDesignations().subscribe(resourceDesignation => {
+  this.resourceDesignations =  resourceDesignation.map((designation) => new Designation(designation));
+// console.log(this.resourceSkills);
+
+this.designationFilteredOptions = this.resourceForm.controls['resourceDesignation'].valueChanges
+.pipe(startWith<string | Designation>(''),
+    map(value => typeof value === 'string' ? value : value.name),
+    map(name => name ? this._filterDesignation(name) : this.resourceDesignations.slice()));
+
+});
+
 
 
   }
@@ -139,17 +184,18 @@ export class ResourceComponent implements OnInit {
         resourceNationality :[this.resource.resourceNationality,[ Validators.minLength(2), Validators.maxLength(50)]],
         resourceEmergencyContactNo : [this.resource.resourceEmergencyContactNo,[ Validators.minLength(5), Validators.maxLength(50)]],
         resourceMaritalStatus : [this.resource.resourceMaritalStatus,[ Validators.minLength(2), Validators.maxLength(50)]] ,
-        resourceDesignation : [this.resource.resourceDesignation,[ Validators.minLength(2), Validators.maxLength(50)]], 
+        resourceDesignation : [this.resource.resourceDesignation], 
         resourceReportingTo : [ this.resource.resourceReportingTo],
-        resourceResume : [this.resource.resourceResume,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceResume : [this.resource.resourceResume,[ Validators.minLength(2), Validators.maxLength(100)]],
         resourceDateOfJoining :[this.resource.resourceDateOfJoining],
-        resourceWorkingDays : [this.resource.resourceWorkingDays,[Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-        resourceExperience :  [this.resource.resourceExperience,[ Validators.minLength(2), Validators.maxLength(50)]],
-        resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceWorkingDays : [this.resource.resourceWorkingDays],
+        resourceExperience :  [this.resource.resourceExperience],
+        resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth],
         resourcePerHourRate : [this.resource.resourcePerHourRate],
-        resourceShift: [this.resource.resourceShift,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceShift: [this.resource.resourceShift],
         resourceBenefits : [this.resource.resourceBenefits,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-        resourceContractType : [this.resource.resourceContractType],
+        resourceEmployeeType : [this.resource.resourceEmployeeType],
+        resourceJobType : [this.resource.resourceJobType],
         resourcePartTime : [ this.resource.resourcePartTime],
         resourceDepartment : [ this.resource.resourceDepartment],
         resourceSkills: [ this.resource.resourceSkills]
@@ -187,7 +233,7 @@ export class ResourceComponent implements OnInit {
   addResource(): void {
     const data = this.resourceForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
-  
+ data.res
     if(data.resourceReportingTo == ""){
       data.resourceReportingTo=null;
     }
@@ -220,4 +266,67 @@ export class ResourceComponent implements OnInit {
     // if possible compare by object's name, and not by reference.
     return o1 && o2 ? o1.name === o2.name : o2 === o2;
   }
+  private validateDepartment(val: any) {
+    if(typeof val === "string"){
+     this.resourceForm.controls['resourceDepartment'].setErrors({ error: 'Must select Hod' });
+    }
+    else{
+     this.resourceForm.controls['resourceDepartment'].setErrors(null);
+    }
+ 
+   console.log(val);
+ }
+
+ private _filterDepartment(name: string): Department[] {
+  const filterValue = name.toLowerCase();
+  return this.resourceDepartments.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFnDepartment(item?: Department): string | undefined {
+
+return item ? item.name : undefined;
+}
+
+
+private validateDesignation(val: any) {
+  if(typeof val === "string"){
+   this.resourceForm.controls['resourceDesignation'].setErrors({ error: 'Must select Designation' });
+  }
+  else{
+   this.resourceForm.controls['resourceDesignation'].setErrors(null);
+  }
+
+ console.log(val);
+}
+
+private _filterDesignation(name: string): Designation[] {
+const filterValue = name.toLowerCase();
+return this.resourceDesignations.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFnDesignation(item?: Designation): string | undefined {
+
+return item ? item.name : undefined;
+}
+
+
+
+private validateResource(val: any) {
+  if(typeof val === "string"){
+   this.resourceForm.controls['resourceReportingTo'].setErrors({ error: 'Must select Resource' });
+  }
+  else{
+   this.resourceForm.controls['resourceReportingTo'].setErrors(null);
+  }
+
+ console.log(val);
+}
+
+private _filterResource(name: string): Resource[] {
+const filterValue = name.toLowerCase();
+return this.resourceReporters.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFnResource(item?: Resource): string | undefined {
+
+return item ? item.name : undefined;
+}
+
 }

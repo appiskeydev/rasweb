@@ -1,6 +1,7 @@
 import { FuseUtils } from "@fuse/utils";
 import { Department } from "../departments/department.model";
 import { Skill } from "../skills/skill.model";
+import { Designation } from "../designations/designation.model";
 
 export class Resource {
 
@@ -16,7 +17,7 @@ export class Resource {
     resourceNationality : string ;
     resourceEmergencyContactNo : string ;
     resourceMaritalStatus : string ;
-    resourceDesignation : string ;
+    resourceDesignation : Designation ;
     resourceReportingTo : Resource ;
     resourceResume : string;
     resourceDateOfJoining : Date;
@@ -26,13 +27,19 @@ export class Resource {
     resourcePerHourRate :number ;
     resourceShift : string ;
     resourceBenefits: String;
-    resourceContractType : String  ;    //isIntern, isPartTime , isFullTime
+    resourceEmployeeType : String  ;    //Permanent, Temporary, Consultancy
+    resourceJobType : String  ;    //Part time, fulll time
     resourcePartTime : boolean;
     resourceDepartment: Department;
     resourceSkills:Skill[];
     handle: string;
     updatedAt: string;
     createdAt: string;
+
+    resourceProjectHour: string;
+    resourceProjectAllocation : string;
+    resourceProjectWorkStartDate: string;
+    resourceProjectWorkEndDate: string;
 
    
     /**
@@ -59,7 +66,7 @@ export class Resource {
         this.resourceNationality = resource.resourceNationality || '';
         this.resourceEmergencyContactNo = resource.resourceEmergencyContactNo || '';
         this.resourceMaritalStatus = resource.resourceMaritalStatus || '';
-        this.resourceDesignation = resource.resourceDesignation || '';
+        this.resourceDesignation = resource.resourceDesignation || null;
         this.resourceReportingTo = resource.resourceReportingTo || null;
         this.resourceResume = resource.resourceResume || '';
         this.resourceDateOfJoining = resource.resourceDateOfJoining || '';
@@ -69,11 +76,17 @@ export class Resource {
         this.resourcePerHourRate = resource.resourcePerHourRate || '';
         this.resourceShift = resource.resourceShift || '';
         this.resourceBenefits = resource.resourceBenefits || '';
-        this.resourceContractType = resource.resourceContractType || '';
+        this.resourceEmployeeType = resource.resourceEmployeeType || '';
+        this.resourceJobType = resource.resourceJobType || '';
         this.resourcePartTime = resource.resourcePartTime || '';
         this.resourceDepartment = resource.resourceDepartment || null;
         this.resourceSkills= resource.resourceSkills || null;
         this.updatedAt = resource.updatedAt || '';
         this.createdAt = resource.createdAt || '';
+
+        this.resourceProjectHour = resource.resourceProjectHour || '';
+        this.resourceProjectAllocation = resource.resourceProjectAllocation || '';
+        this.resourceProjectWorkStartDate = resource.resourceProjectWorkStartDate || '';
+        this.resourceProjectWorkEndDate = resource.resourceProjectWorkEndDate || '';
     }
 }
