@@ -13,7 +13,8 @@ export const navigation: FuseNavigation[] = [
                 translate: 'NAV.DASHBOARD.TITLE',
                 type     : 'item',
                 icon     : 'dashboard',
-                url      : '/dashboard'               
+                url      : '/'    ,
+                exactMatch : true           
             },
             {
                 'id'       : 'project',

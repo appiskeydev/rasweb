@@ -146,15 +146,15 @@ export class DashboardComponent implements OnInit {
     this.projects = this._projectDashboardService.projects;
     console.log(this.projects);
     this.selectedProject = this.projects[0];
-    console.log(this.selectedProject.name);
+    //console.log(this.selectedProject.name);
     this.widgets = this._projectDashboardService.widgets;
 
     /**
      * Widget 11
      */
-    // this.widget11.onContactsChanged = new BehaviorSubject({});
-    // this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
-    // this.widget11.dataSource = new FilesDataSource(this.widget11);
+     this.widget11.onContactsChanged = new BehaviorSubject({});
+     this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
+     this.widget11.dataSource = new FilesDataSource(this.widget11);
   }
 
   /**

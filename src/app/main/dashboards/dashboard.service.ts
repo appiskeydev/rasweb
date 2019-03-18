@@ -69,11 +69,11 @@ export class DashboardService {
    */
   getWidgets(): Promise<any> {
     return new Promise((resolve, reject) => {
-      // this._httpClient.get('api/project-dashboard-widgets')
-      //   .subscribe((response: any) => {
-      //     this.widgets = response;
-      //     resolve(response);
-      //   }, reject);
+      this._httpClient.get('api/project-dashboard-widgets')
+        .subscribe((response: any) => {
+          this.widgets = response;
+          resolve(response);
+        }, reject);
       resolve();
     });
   }

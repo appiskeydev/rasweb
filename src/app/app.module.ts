@@ -4,10 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule,MatDialogModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule, MatDialogModule, MatTableModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
+import { FakeDbService } from 'app/fakedb/fake-db.service';
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
@@ -21,7 +23,7 @@ import { HttpModule } from '@angular/http';
 
 
 const appRoutes: Routes = [
-    
+
     {
 
         path: '',
@@ -29,93 +31,99 @@ const appRoutes: Routes = [
         // canActivate: [AuthGuard]
 
     },
+   
     {
 
-        path        : '',
+        path: '',
         loadChildren: './main/clients/clients.module#ClientsModule',
         // canActivate: [AuthGuard]
 
     },
+
     {
-        path        : '',
+        path: '',
         loadChildren: './main/departments/departments.module#DepartmentsModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/features/features.module#FeaturesModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/fringebenefits/fringebenefits.module#FringebenefitsModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/milestones/milestones.module#MilestonesModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/opratingcosts/opratingcosts.module#OpratingcostsModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/projects/projects.module#ProjectsModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/resources/resources.module#ResourcesModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/skills/skills.module#SkillsModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/companies/company.module#CompaniesModule',
         // canActivate: [AuthGuard]
 
     },
     {
-        path        : '',
+        path: '',
         loadChildren: './main/designations/designation.module#DesignationModule',
         // canActivate: [AuthGuard]
 
     }
-   
-    
-     
+
+
+
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
-        
+
     ],
-    imports     : [
+    imports: [
         BrowserModule,
-        
+
         BrowserAnimationsModule,
         HttpClientModule,
         HttpModule,
         RouterModule.forRoot(appRoutes),
 
         TranslateModule.forRoot(),
-       
+        InMemoryWebApiModule.forRoot(FakeDbService, {
+            delay: 0,
+            passThruUnknownUrl: true
+        }),
+
 
         // Material moment date module
         MatMomentDateModule,
@@ -128,14 +136,14 @@ const appRoutes: Routes = [
         MatDatepickerModule,
         MatDialogModule,
         MatTableModule,
-        
+
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
         FuseProgressBarModule,
         FuseSharedModule,
         FuseSidebarModule,
-        
+
         // App modules
 
 
@@ -149,10 +157,9 @@ const appRoutes: Routes = [
         // App modules
         LayoutModule,
     ],
-    bootstrap   : [
+    bootstrap: [
         AppComponent
     ]
 })
-export class AppModule
-{
+export class AppModule {
 }

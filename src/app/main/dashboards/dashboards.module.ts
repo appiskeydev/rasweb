@@ -9,7 +9,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 const routes: Routes = [
   {
-    path: '**',
+    path: '',
     component: DashboardComponent,
     resolve: {
       data: DashboardService
