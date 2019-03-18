@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Feature } from './feature.model';
 
 const API_URL = environment.apiUrl;
 
@@ -21,6 +22,11 @@ export class FeatureService {
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
 
+  onFeaturesChanged: BehaviorSubject<any>;
+  onSelectedFeaturesChanged: BehaviorSubject<any>;
+  features: Feature[];
+  featureIndex:any;
+
   /**
    * Constructor
    *
@@ -33,6 +39,10 @@ export class FeatureService {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
+
+    this.onFeaturesChanged = new BehaviorSubject({});
+    this.onSelectedFeaturesChanged = new BehaviorSubject({});
+    
   }
 
   /**
@@ -166,5 +176,49 @@ export class FeatureService {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
+
+
+
+    /**
+     * Update feature
+     *
+     * @param feature
+     * @returns {Promise<any>}
+     */
+    updateFeature(feature): Promise<any>
+    {
+     
+        return new Promise((resolve, reject) => {
+        //   if(feature.id != ''){
+           
+        // this.featureIndex = this.features.indexOf(feature);
+        //     this.features.splice(this.featureIndex, 1);
+        //   }
+        console.log('feature service',feature);
+          this.features.push(feature);
+          this.onFeaturesChanged.next(this.features);
+
+            // this._httpClient.post('api/features-features/' + feature.id, {...feature})
+            //     .subscribe(response => {
+            //         this.getFeatures();
+                    resolve(feature);
+            //     });
+        });
+    }
+
+    
+
+    /**
+     * Delete feature
+     *
+     * @param feature
+     */
+    deleteFeature(feature): void
+    {
+        const featureIndex = this.features.indexOf(feature);
+        this.features.splice(featureIndex, 1);
+        this.onFeaturesChanged.next(this.features);
+    }
+
 
 }

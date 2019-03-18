@@ -18,7 +18,7 @@ export class Project {
     projectStartDate:Date;
     projectDevelopmentDate:Date;
     projectCost:number;
-    projectTimeline:string;
+    projectTimeline:number;
     projectPaymentMethod:string;
     handle: string;
     updatedAt: string;

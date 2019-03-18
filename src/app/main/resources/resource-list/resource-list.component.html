@@ -119,10 +119,17 @@
                     </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="resourceContractType">
+                <ng-container matColumnDef="resourceDesignation">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Designation</mat-header-cell>
+                    <mat-cell *matCellDef="let designation">
+                        <p class="text-truncate">{{designation.resourceDesignation?.name}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="resourceEmployeeType">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Type</mat-header-cell>
                     <mat-cell *matCellDef="let resource">
-                        <p class="text-truncate">{{resource.resourceContractType}}</p>
+                        <p class="text-truncate">{{resource.resourceEmployeeType}}</p>
                     </mat-cell>
                 </ng-container>
 

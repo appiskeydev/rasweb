@@ -1,3 +1,98 @@
-<p>
-  company-list works!
-</p>
+<div id="companies" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+      <!-- HEADER -->
+      <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+          fxLayoutAlign.gt-sm="space-between center">
+
+          <!-- APP TITLE -->
+          <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+
+            <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+              Companies
+          </span>
+          </div>
+          <!-- / APP TITLE -->
+
+          <!-- SEARCH -->
+          <div class="search-wrapper mx-32 mx-md-0">
+              <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                  <mat-icon>search</mat-icon>
+                  <input #filter placeholder="Search for a Company">
+              </div>
+          </div>
+          <!-- / SEARCH -->
+
+          <!-- ADD BUTTON -->
+          <button mat-raised-button [routerLink]="'/companies/new'" class="add-product-button fuse-white mt-24 mt-md-0">
+              <span>ADD NEW</span>
+          </button>
+          <!-- / ADD BUTTON -->
+
+      </div>
+      <!-- / HEADER -->
+
+      <!-- CONTENT CARD -->
+      <div class="content-card">
+
+          <mat-table class="companies-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"
+              fusePerfectScrollbar>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name</mat-header-cell>
+                  <mat-cell *matCellDef="let company">
+                      <p class="text-truncate">{{company.name}}</p>
+                  </mat-cell>
+              </ng-container>
+
+             
+
+              
+
+              <!-- Active Column -->
+              <ng-container matColumnDef="active">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Action</mat-header-cell>
+
+                  <mat-cell *matCellDef="let company" fxHide fxShow.gt-xs>
+
+                      <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation();">
+                          <mat-icon class="secondary-text">more_vert</mat-icon>
+                      </button>
+
+                      <mat-menu #moreMenu="matMenu">
+                          <button mat-menu-item aria-label="edit" [routerLink]="'/companies/'+company.id+'/'+company.handle" >
+                              <mat-icon>edit</mat-icon>
+                              <span>Edit</span>
+                          </button>
+                         
+                          <button mat-menu-item aria-label="remove" (click)="deleteCompany(company)">
+                              <mat-icon>delete</mat-icon>
+                              <span>Remove</span>
+                          </button>
+                      </mat-menu>
+                  </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+              <mat-row *matRowDef="let company; columns: displayedColumns;" class="product" matRipple>
+              </mat-row>
+
+          </mat-table>
+
+          <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator>
+
+      </div>
+      <!-- / CONTENT CARD -->
+  </div>
+  <!-- / CENTER -->
+</div>

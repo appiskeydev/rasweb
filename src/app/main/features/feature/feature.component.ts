@@ -98,7 +98,7 @@ export class FeatureComponent implements OnInit {
         id: [this.feature.id],
         name: [this.feature.name ,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         handle: [this.feature.handle],
-        featureEstimateDuration: [this.feature.featureEstimateDuration,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
+        featureEstimateDuration: [this.feature.featureEstimateDuration]
       });
    
   }

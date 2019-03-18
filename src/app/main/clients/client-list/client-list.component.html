@@ -84,10 +84,10 @@
                     </ng-container>
 
                         <!-- Location Column -->
-                        <ng-container matColumnDef="clientCompanyName">
+                        <ng-container matColumnDef="clientCompany">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Company</mat-header-cell>
                                 <mat-cell *matCellDef="let client">
-                                    <p class="text-truncate">{{client.clientCompanyName}}</p>
+                                    <p class="text-truncate">{{client.clientCompany?.name}}</p>
                                 </mat-cell>
                             </ng-container>
 
