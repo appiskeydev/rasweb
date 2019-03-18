@@ -18,12 +18,12 @@ export const locale = {
             'SKILLS'        : {
                 'TITLE': 'Skills'
             },
-            'CREATE_PROJECT'        : {
-                'TITLE': 'Create Project'
-            },
-            'CREATE_PROJECT_WIZARD'        : {
-                'TITLE': 'Create Project Wizard'
-            },
+            // 'CREATE_PROJECT'        : {
+            //     'TITLE': 'Create Project'
+            // },
+            // 'CREATE_PROJECT_WIZARD'        : {
+            //     'TITLE': 'Create Project Wizard'
+            // },
             'PROJECT_LIST'        : {
                 'TITLE': 'Project List'
             },
