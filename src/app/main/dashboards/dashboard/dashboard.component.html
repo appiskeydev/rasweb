@@ -1,0 +1,42 @@
+<div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
+
+  <!-- CENTER -->
+  <div class="center" fusePerfectScrollbar>
+
+    <!-- HEADER -->
+    <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+
+        <span class="mat-display-1 my-0 my-sm-24 welcome-message" [@animate]="{value:'*',params:{x:'50px'}}">Welcome
+          back, Charlie!
+        </span>
+
+        <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+          (click)="toggleSidebar('project-dashboard-right-sidebar-1')">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div fxLayout="row">
+
+        <div class="selected-project">{{selectedProject.name}}</div>
+
+        <button mat-icon-button class="project-selector" [matMenuTriggerFor]="projectsMenu" aria-label="Select project">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+
+        <mat-menu #projectsMenu="matMenu">
+          <button mat-menu-item *ngFor="let project of projects" (click)="selectedProject = project">
+            <span>{{project.name}}</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <!-- / HEADER -->
+
+
+  <!-- / SIDEBAR -->
+
+</div>
+</div>

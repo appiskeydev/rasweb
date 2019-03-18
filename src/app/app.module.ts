@@ -23,6 +23,14 @@ import { HttpModule } from '@angular/http';
 const appRoutes: Routes = [
     
     {
+
+        path: '',
+        loadChildren: './main/dashboards/dashboards.module#DashboardsModule',
+        // canActivate: [AuthGuard]
+
+    },
+    {
+
         path        : '',
         loadChildren: './main/clients/clients.module#ClientsModule',
         // canActivate: [AuthGuard]
@@ -95,7 +103,8 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        
     ],
     imports     : [
         BrowserModule,

@@ -51,6 +51,7 @@ export const navigation: FuseNavigation[] = [
                         'type' : 'item',
                         'url'  : '/designations'
                     },
+                   
                     {
                         'id'   : 'create_project',
                         'title': 'Create Project',
