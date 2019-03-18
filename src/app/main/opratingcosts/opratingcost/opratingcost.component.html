@@ -45,7 +45,7 @@
       <!-- CONTENT -->
       <div class="content">
 
-        <form name="opratingcostForm" [formGroup]="opratingcostForm" class="opratingcost w-100-p" fxLayout="column" fxFlex>
+        <form name="opratingcostForm" [formGroup]="opratingcostForm" class="opratingcost w-100-p" fxLayout="column" fxFlex novalidate>
 
           <div class=" mat-tab-header header  p-24">
             <h2 class="m-0">Operatingcost Information</h2>
@@ -57,9 +57,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Monthly Operating cost</mat-label>
-                <input matInput placeholder="Monthly Cost" name="monthlyCost" formControlName="monthlyCost"
+                <input matInput type=number placeholder="Monthly Cost" name="monthlyCost" formControlName="monthlyCost"
                   required>
-                <mat-error>Montly Operating Cost is required!</mat-error>
+                <mat-error>Montly Cost should be in numbers!</mat-error>
               </mat-form-field>
             </div>
 

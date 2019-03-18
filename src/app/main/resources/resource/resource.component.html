@@ -45,7 +45,7 @@
       <!-- CONTENT -->
       <div class="content">
 
-        <form name="resourceForm" [formGroup]="resourceForm" class="resource w-100-p" fxLayout="column" fxFlex>
+        <form name="resourceForm" [formGroup]="resourceForm" class="resource w-100-p" fxLayout="column" fxFlex novalidate>
 
           <div class=" mat-tab-header header  p-24">
             <h2 class="m-0">Resource Information</h2>
@@ -57,9 +57,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Resource Name</mat-label>
-                <input matInput type="text" minlength="3" maxlength="100" placeholder="First Name" name="name" formControlName="name"
-                  required>
-                <mat-error>Length must be 3-100!</mat-error>
+                <input matInput placeholder="First Name" name="name" formControlName="name"
+                  #resourcename = "matInput">
+                <mat-error>Name must be valid!</mat-error>
               </mat-form-field>
             </div>
 
@@ -78,18 +78,18 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Email</mat-label>
-                <input matInput type="email" minlength="3" maxlength="100" placeholder="Email Address" name="resourceEmail" formControlName="resourceEmail"
-                  required>
-                <mat-error>Length must be 3-100!</mat-error>
+                <input matInput placeholder="Email Address" name="resourceEmail" formControlName="resourceEmail"
+                  >
+                <mat-error>Email must be valid!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Phone Number</mat-label>
-                <input matInput type="number" minlength="10" maxlength="15" placeholder="Phone Number" name="resourcePhone" formControlName="resourcePhone"
-                  required>
-                <mat-error>Length must be 10-15!</mat-error>
+                <input matInput type="number"  placeholder="Phone Number" name="resourcePhone" formControlName="resourcePhone"
+                  >
+                <mat-error>Phone number must be valid!</mat-error>
               </mat-form-field>
             </div>
 
@@ -105,20 +105,17 @@
                   </mat-select>
                 </mat-form-field>
               </div>
-              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-                <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
              
-                <mat-select placeholder="Toppings"  [formControl]="toppings" multiple>
-                  <mat-select-trigger>
-                    {{toppings.value ? toppings.value[0].name : ''}}
-                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
-                      (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                  </mat-select-trigger>
-                  <mat-option *ngFor="let item of resourceSkills" [value]="item">{{item.name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                  <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                    <mat-select placeholder="Skills"  name="resourceSkills" formControlName="resourceSkills" multiple  [compareWith]="comparerSkill">
+                            <mat-option *ngFor="let skill of resourceSkillsList" [value]="skill">{{skill.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+              
               <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
                     <mat-select placeholder="Skill" formControlName="resourceSkill" name="resourceSkill"
@@ -134,17 +131,17 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Salary/hour</mat-label>
-                <input matInput type= "number" minlength="2" maxlength="50" placeholder="Salary/hour" name="resourcePerHourRate" formControlName="resourcePerHourRate"
-                  required>
-                <mat-error>Length must be 2-50!</mat-error>
+                <input matInput type="number" placeholder="Salary/hour" name="resourcePerHourRate" formControlName="resourcePerHourRate"
+                  >
+                <mat-error>Salary must be in numbers!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Benefits</mat-label>
-                <input matInput type="number" minlength="3" maxlength="100" placeholder="Benefits" name="resourceBenefits" formControlName="resourceBenefits"
-                  required>
+                <input matInput  placeholder="Benefits" name="resourceBenefits" formControlName="resourceBenefits"
+                  >
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
@@ -152,11 +149,21 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Working Days</mat-label>
-                <input matInput type= "number" minlength="1" maxlength="10" placeholder="Working-Days" name="resourceWorkingDays" formControlName="resourceWorkingDays"
-                  required>
-                <mat-error>Length must be 1-10!</mat-error>
+                <input matInput type= "number"  placeholder="Working-Days" name="resourceWorkingDays" formControlName="resourceWorkingDays"
+                  >
+                <mat-error>Days must be in numbers!</mat-error>
               </mat-form-field>
             </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p"> 
+                <!-- <mat-label>Employee Type</mat-label>  -->
+                <mat-radio-group class="example-radio-group"name="resourceContractType" formControlName="resourceContractType">
+                  <mat-radio-button class="example-radio-button" *ngFor="let employee of employeeTypes" [value]="employee">
+                    {{employee}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              
+            </div> 
 
 
             <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid" *ngIf="pageType ==='new'"
@@ -164,7 +171,7 @@
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid || resourceForm.pristine"
+            <button mat-raised-button class="save-resource-button" [disabled]="resourceForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveResource()">
               <span>SAVE</span>
             </button>

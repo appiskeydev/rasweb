@@ -45,7 +45,7 @@
       <!-- CONTENT -->
       <div class="content">
 
-        <form name="skillForm" [formGroup]="skillForm" class="skill w-100-p" fxLayout="column" fxFlex>
+        <form name="skillForm" [formGroup]="skillForm" class="skill w-100-p" fxLayout="column" fxFlex novalidate>
 
           <div class=" mat-tab-header header  p-24">
             <h2 class="m-0">Skill Information</h2>
@@ -57,9 +57,9 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Skill Name</mat-label>
-                <input matInput type="text" minlength="3" maxlength="100"  placeholder="First Name" name="name" formControlName="name"
-                  required>
-                <mat-error>Length must be 3-100!</mat-error>
+                <input matInput placeholder="First Name" name="name" formControlName="name"
+                  #skillname ="matInput">
+                <mat-error>Name must be valid!</mat-error>
               </mat-form-field>
             </div>
 
@@ -83,7 +83,7 @@
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-skill-button" [disabled]="skillForm.invalid || skillForm.pristine"
+            <button mat-raised-button class="save-skill-button" [disabled]="skillForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveSkill()">
               <span>SAVE</span>
             </button>

@@ -17,14 +17,23 @@
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
 
         <form  name="milestoneForm" [formGroup]="milestoneForm">
+          
+            <div  >
+                <mat-form-field >
+    
+                  <input matInput type="text"  name="id" formControlName="id"
+                     >
+                 
+                </mat-form-field>
+              </div>
 
 
-
+              <!-- pattern="[a-zA-Z ]*" -->
             <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex>
                   <mat-label>Milestone Name</mat-label>
-                  <input matInput type="text" pattern="[a-zA-Z ]*" minlength="3" maxlength="100" placeholder="MilestoneName" name="name" formControlName="name"
-                     required>
+                  <input matInput type="text" placeholder="MilestoneName" name="name" formControlName="name"
+                     #milestonename="matInput">
                  <mat-error>Milestone Name must have a valid input!</mat-error>
                  
                 </mat-form-field>
@@ -33,7 +42,7 @@
 
             <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" placeholder="Choose Start Date"  name="milestoneStartDate" formControlName="milestoneStartDate">
+                <input matInput [matDatepicker]="picker1" placeholder="Choose Start Date"  name="milestoneStartDate" formControlName="milestoneStartDate">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
@@ -41,7 +50,7 @@
   
               <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" placeholder="Choose Delievery Date"  name="milestoneDelieveryDate" formControlName="milestoneDelieveryDate">
+                <input matInput  [matDatepicker]="picker2" placeholder="Choose Delievery Date"  name="milestoneDelieveryDate" formControlName="milestoneDelieveryDate">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
@@ -50,7 +59,7 @@
   
               <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker3" placeholder="Choose Development Date"  name="milestoneDevelopmentDate" formControlName="milestoneDevelopmentDate">
+                <input matInput  [matDatepicker]="picker3" placeholder="Choose Development Date"  name="milestoneDevelopmentDate" formControlName="milestoneDevelopmentDate">
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
               </mat-form-field>
@@ -60,8 +69,8 @@
   
               <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                  <mat-label>Expected Payment</mat-label>
-                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Expected Payment" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
+                  <mat-label>Expected Payment $</mat-label>
+                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Expected Payment ($)" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
@@ -70,8 +79,8 @@
   
               <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
-                  <mat-label>Payment Amount</mat-label>
-                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Payment Amount" name="milestonePaymentAmount" formControlName="milestonePaymentAmount"
+                  <mat-label>Payment Amount ($)</mat-label>
+                  <input matInput placeholder="Milestone Payment Amount ($)" name="milestonePaymentAmount" formControlName="milestonePaymentAmount"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
@@ -80,8 +89,8 @@
   
               <div fxLayout="row" fxLayoutAlign="start start"  >
                 <mat-form-field appearance="outline"  fxFlex>
-                  <mat-label> Cost</mat-label>
-                  <input matInput  minlength="3" maxlength="100" placeholder="Milestone Cost" name="milestoneCost" formControlName="milestoneCost"
+                  <mat-label> Cost ($)</mat-label>
+                  <input matInput placeholder="Milestone Cost ($)" name="milestoneCost" formControlName="milestoneCost"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
@@ -91,7 +100,7 @@
               <div fxLayout="row" fxLayoutAlign="start start">
                 <mat-form-field appearance="outline"  fxFlex >
                   <mat-label>Milestone Payment Method</mat-label>
-                  <input matInput minlength="3" maxlength="100" placeholder="Milestone Payment Method" name="milestonePaymentMethod" formControlName="milestonePaymentMethod"
+                  <input matInput  placeholder="Milestone Payment Method" name="milestonePaymentMethod" formControlName="milestonePaymentMethod"
                     required>
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>

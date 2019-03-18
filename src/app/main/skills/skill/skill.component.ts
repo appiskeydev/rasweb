@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Skill } from '../skill.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { SkillService } from '../skill.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-skill',
@@ -16,6 +17,9 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class SkillComponent implements OnInit {
+  @ViewChild('skillname') 
+  nameInput: MatInput;
+
   skill: Skill;
   pageType: string;
   skillForm: FormGroup;
@@ -54,6 +58,7 @@ export class SkillComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._skillService.onItemChanged
@@ -96,7 +101,7 @@ export class SkillComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.skill.id],
-        name: [this.skill.name],
+        name: [this.skill.name,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
         handle: [this.skill.handle],
         skillResources: [this.skill.skillResources]
       });

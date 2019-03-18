@@ -45,7 +45,7 @@
       <!-- CONTENT -->
       <div class="content">
 
-        <form name="featureForm" [formGroup]="featureForm" class="feature w-100-p" fxLayout="column" fxFlex>
+        <form name="featureForm" [formGroup]="featureForm" class="feature w-100-p" fxLayout="column" fxFlex novalidate>
 
           <div class=" mat-tab-header header  p-24">
             <h2 class="m-0">Feature Information</h2>
@@ -58,7 +58,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Feature Name</mat-label>
                 <input matInput placeholder="First Name" name="name" formControlName="name"
-                  required>
+                  >
                 <mat-error>Feature Name is required!</mat-error>
               </mat-form-field>
             </div>
@@ -67,8 +67,8 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Feature Duration</mat-label>
-                <input matInput placeholder="Estimated Duration" name="featureEstimateDuration" formControlName="featureEstimateDuration"
-                  required>
+                <input matInput type ="number" placeholder="Estimated Duration" name="featureEstimateDuration" formControlName="featureEstimateDuration"
+                  >
                 <mat-error>Feature Estimated Duration is required!</mat-error>
               </mat-form-field>
             </div>

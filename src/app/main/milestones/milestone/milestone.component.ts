@@ -107,15 +107,15 @@ export class MilestoneComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.milestone.id],
-        name: [this.milestone.name],
+        name: [this.milestone.name ,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         handle: [this.milestone.handle],
         milestoneStartDate: [this.milestone.milestoneStartDate],
         milestoneDelieveryDate: [this.milestone.milestoneDelieveryDate],
         milestoneDevelopmentDate: [this.milestone.milestoneDevelopmentDate],
-        milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment],
-        milestonePaymentAmount: [this.milestone.milestonePaymentAmount],
-        milestoneCost: [this.milestone.milestoneCost],
-        milestonePaymentMethod: [this.milestone.milestonePaymentMethod],
+        milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+        milestonePaymentAmount: [this.milestone.milestonePaymentAmount,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+        milestoneCost: [this.milestone.milestoneCost,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+        milestonePaymentMethod: [this.milestone.milestonePaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
         project: [this.milestone.project]
       });
    
@@ -150,6 +150,7 @@ export class MilestoneComponent implements OnInit {
     const data = this.milestoneForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
 
+    console.log(data);
     this._milestoneService.addItem(data)
       .then(() => {
 

@@ -96,7 +96,7 @@ export class OpratingcostComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.opratingcost.id],
-        monthlyCost: [this.opratingcost.monthlyCost],
+        monthlyCost: [this.opratingcost.monthlyCost,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         handle: [this.opratingcost.handle]
       });
    

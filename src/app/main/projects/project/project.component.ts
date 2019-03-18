@@ -1,9 +1,9 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { Project } from '../project.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ProjectService } from '../project.service';
-import { MatSnackBar, MatDialogModule } from '@angular/material';
+import { MatSnackBar, MatDialogModule, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
@@ -15,7 +15,12 @@ import { Resource } from 'app/main/resources/resource.model';
 import { Milestone } from 'app/main/milestones/milestone.model';
 import { MilestoneComponent } from 'app/main/milestones/milestone/milestone.component';
 import { MilestoneService } from 'app/main/milestones/milestone.service';
+<<<<<<< HEAD
 import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
+=======
+import { namespaceHTML } from '@angular/core/src/render3';
+import { timingSafeEqual } from 'crypto';
+>>>>>>> 13503f9f695557df519948bd1f6d6dcd6fc3d4d3
 
 
 @Component({
@@ -26,22 +31,27 @@ import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/miles
   animations: fuseAnimations
 })
 export class ProjectComponent implements OnInit {
-
+@ViewChild('projectname')
+nameInput: MatInput;
 
   dialogRef: any;
 
   clients: Client[];
-  projectFeatures: Feature[];
-  projectResources: Resource[];
-  projectMilestones: Milestone[];
+  projectFeaturesList: Feature[];
+  projectResourcesList: Resource[];
+  projectMilestonesList: Milestone[];
   project: Project;
   pageType: string;
   projectForm: FormGroup;
-  resourceToppings = new FormControl();
-  featureToppings = new FormControl();
-  milestoneToppings = new FormControl();
+  // resourceToppings = new FormControl();
+  // featureToppings = new FormControl();
+  // milestoneToppings = new FormControl();
+  
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
+
+  // toppings = new FormControl();
+  // toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   // myControl = new FormControl();
   package_id: string;
@@ -83,6 +93,7 @@ export class ProjectComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+  this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._projectService.onItemChanged
@@ -101,13 +112,10 @@ export class ProjectComponent implements OnInit {
          
         }
         this.projectForm = this.createProjectForm();
-        this._milestoneService.milestones = [new Milestone({id:'1',name:'test',updatedAt:'asdf',
-        createdAt:'asdf','milestoneStartDate':'21-12-2013', milestoneDelieveryDate:'21-12-2013',milestoneDevelopmentDate:'21-12-2013',
-        milestoneExpectedPayment:'30999',
-        milestonePaymentAmount:'4000',
-        milestoneCost:'3221',
-        project:[]
-      })];
+
+
+        this._milestoneService.milestones = this.project.projectMilestones;
+        
       this._milestoneService.onMilestonesChanged.next(this._milestoneService.milestones);
 
       });
@@ -121,19 +129,19 @@ export class ProjectComponent implements OnInit {
 
 
     this._projectService.getAllFeatures().subscribe(projectFeature => {
-      this.projectFeatures = projectFeature.map((feature) => new Feature(feature));
+      this.projectFeaturesList = projectFeature.map((feature) => new Feature(feature));
       // console.log(this.resourceDepartments);
 
     });
 
     this._projectService.getAllResources().subscribe(projectResource => {
-      this.projectResources = projectResource.map((resource) => new Resource(resource));
+      this.projectResourcesList = projectResource.map((resource) => new Resource(resource));
       // console.log(this.resourceDepartments);
 
     });
 
     this._projectService.getAllMilestones().subscribe(projectMilestone => {
-      this.projectMilestones = projectMilestone.map((milestone) => new Milestone(milestone));
+      this.projectMilestonesList = projectMilestone.map((milestone) => new Milestone(milestone));
       // console.log(this.resourceDepartments);
 
     });
@@ -159,20 +167,21 @@ export class ProjectComponent implements OnInit {
    */
   createProjectForm(): FormGroup {
 
-    return this._formBuilder.group({
-      id: [this.project.id],
-      name: [this.project.name],
-      handle: [this.project.handle],
-      projectClient: [this.project.projectClient],
-      projectFeatures: [this.project.projectFeatures],
-      projectResources: [this.project.projectResources],
-      projectMilestones: [this.project.projectMilestones],
-      projectStartDate: [this.project.projectStartDate],
-      projectDevelopmentDate: [this.project.projectDevelopmentDate],
-      projectCost: [this.project.projectCost],
-      projectTimeline: [this.project.projectTimeline],
-      projectPaymentMethod: [this.project.projectPaymentMethod]
-    });
+    
+      return this._formBuilder.group({
+        id: [this.project.id],
+        name: [this.project.name,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+        handle: [this.project.handle],
+        projectClient:[this.project.projectClient],
+        projectFeatures:[this.project.projectFeatures], 
+        projectResources:[this.project.projectResources], 
+        projectMilestones:[this.project.projectMilestones], 
+        projectStartDate:[this.project.projectStartDate], 
+        projectDevelopmentDate: [this.project.projectDevelopmentDate], 
+        projectCost:[this.project.projectCost ,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]], 
+        projectTimeline:[this.project.projectTimeline,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]], 
+        projectPaymentMethod:[this.project.projectPaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
+      });
 
   }
 
@@ -182,6 +191,7 @@ export class ProjectComponent implements OnInit {
   saveProject(): void {
     const data = this.projectForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
+    
 
     this._projectService.saveItem(data)
       .then(() => {
@@ -207,10 +217,10 @@ export class ProjectComponent implements OnInit {
   addProject(): void {
     const data = this.projectForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
-    data.projectFeatures = this.featureToppings.value;
-    data.projectResources = this.resourceToppings.value;
-    data.projectMilestones = this.milestoneToppings.value;
-
+    // data.projectFeatures = this.featureToppings.value;
+    // data.projectResources = this.resourceToppings.value;
+    data.projectMilestones = this._milestoneService.milestones;
+    
     this._projectService.addItem(data)
       .then(() => {
 
@@ -231,7 +241,14 @@ export class ProjectComponent implements OnInit {
   compareFn(c1: Project, c2: Project): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
-
+  comparerResource(o1: Resource, o2: Resource): boolean {
+    // if possible compare by object's name, and not by reference.
+    return o1 && o2 ? o1.name === o2.name : o2 === o2;
+  }
+  comparerFeature(o1: Feature, o2: Feature): boolean {
+    // if possible compare by object's name, and not by reference.
+    return o1 && o2 ? o1.name === o2.name : o2 === o2;
+  }
     /**
      * New contact
      */
@@ -240,7 +257,8 @@ export class ProjectComponent implements OnInit {
         this.dialogRef = this._matDialog.open(MilestoneFormComponent, {
             panelClass: 'milestone-form-dialog',
             data      : {
-                action: 'new'
+                action: 'new',
+               
             }
         });
 
@@ -250,7 +268,30 @@ export class ProjectComponent implements OnInit {
                 {
                     return;
                 }
-console.log(response.getRawValue());
+                this.projectMilestonesList= response.getRawValue();
+      console.log(this.projectMilestonesList);
+
+
+//       if(this.createProjectForm){
+//         this._milestoneService.addItem(data)
+//      .then(() => {
+
+//   // Trigger the subscription with new data
+//   this._milestoneService.onItemChanged.next(data);
+
+//   // Show the success message
+//   this._matSnackBar.open('Record added', 'OK', {
+//     verticalPosition: 'top',
+//     duration: 2000
+//   });
+
+//   // Change the location with new one
+
+// });
+
+//       }
+   
+
 
                 this._milestoneService.updateMilestone(response.getRawValue());
             });

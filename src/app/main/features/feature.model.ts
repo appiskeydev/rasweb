@@ -19,8 +19,8 @@ export class Feature {
     {
       
         feature = feature || {};
-        if (feature.featureName !== ''){
-            this.handle = FuseUtils.handleize(feature.featureName  + '');
+        if (feature.name !== ''){
+            this.handle = FuseUtils.handleize(feature.name  + '');
         }
         this.id = feature.id || '';
         this.name = feature.name || '';

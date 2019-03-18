@@ -41,14 +41,17 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Create Project',
                         'translate': 'NAV.CREATE_PROJECT.TITLE',
                         'type' : 'item',
-                        'url'  : '/projects/new'
+                        'url'  : '/projects/new',
+                        'exactMatch':true
                     },
                     {
                         'id'   : 'project_list',
                         'title': 'Project List',
                         'translate': 'NAV.PROJECT_LIST.TITLE',
                         'type' : 'item',
-                        'url'  : '/projects'
+                        'url'  : '/projects',
+                        'exactMatch':true
+
                     },
                     {
                         'id'   : 'feature',
@@ -57,13 +60,7 @@ export const navigation: FuseNavigation[] = [
                         'type' : 'item',
                         'url'  : '/features'
                     },
-                    {
-                        'id'   : 'milestone',
-                        'title': 'Milestones',
-                        'translate': 'NAV.MILESTONES.TITLE',
-                        'type' : 'item',
-                        'url'  : '/milestones'
-                    }
+               
 
                 ]
             },
@@ -86,14 +83,17 @@ export const navigation: FuseNavigation[] = [
                         'title': 'Create Resource',
                         'translate': 'NAV.CREATE_RESOURCE.TITLE',
                         'type' : 'item',
-                        'url'  : '/resources/new'
+                        'url'  : '/resources/new',
+                        'exactMatch':true
                     },
                     {
                         'id'   : 'resource_list',
                         'title': 'Resource List',
                         'translate': 'NAV.RESOURCE_LIST.TITLE',
                         'type' : 'item',
-                        'url'  : '/resources'
+                        'url'  : '/resources',
+                        'exactMatch':true
+
                     }
 
                 ]

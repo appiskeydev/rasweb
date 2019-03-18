@@ -20,8 +20,8 @@ export class Fringebenefit {
     {
       
         fringebenefit = fringebenefit || {};
-        if (fringebenefit.fringebenefitName !== ''){
-            this.handle = FuseUtils.handleize(fringebenefit.fringebenefitName  + '');
+        if (fringebenefit.name !== ''){
+            this.handle = FuseUtils.handleize(fringebenefit.name  + '');
         }
         this.id = fringebenefit.id || '';
         this.benefitMonth = fringebenefit.benefitMonth || '';

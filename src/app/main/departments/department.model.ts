@@ -20,13 +20,13 @@ export class Department {
     {
       
         department = department || {};
-        if (department.departmentName !== ''){
-            this.handle = FuseUtils.handleize(department.departmentName  + '');
+        if (department.name !== ''){
+            this.handle = FuseUtils.handleize(department.name  + '');
         }
         this.id = department.id || '';
         this.name = department.name || '';
         this.departmentHod= department.departmentHod || null;
-        this.departmentBench= department.departmentBench || '';
+        this.departmentBench= department.departmentBench || 0;
         this.updatedAt = department.updatedAt || '';
         this.createdAt = department.createdAt || '';
     

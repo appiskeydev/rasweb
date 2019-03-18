@@ -10,8 +10,6 @@ export class Project {
 
 
     id: string;
-    @Input()
-    pattern :string |RegExp
     name: string ;
     projectClient:Client;
     projectFeatures:Feature[];
@@ -36,17 +34,17 @@ export class Project {
     {
       
         project = project || {};
-        if (project.projectName !== ''){
-            this.handle = FuseUtils.handleize(project.projectName  + '');
+        if (project.name !== ''){
+            this.handle = FuseUtils.handleize(project.name  + '');
         }
         this.id = project.id || '';
         this.name = project.name || '';
         this.projectClient =project.projectClient || null;
         this.updatedAt = project.updatedAt || '';
         this.createdAt = project.createdAt || '';
-        this.projectFeatures = project.projectFeatures || null;
-        this.projectResources = project.projectResources || null;
-        this.projectMilestones = project.projectMilestones || null;
+        this.projectFeatures = project.projectFeatures || [];
+        this.projectResources = project.projectResources || [];
+        this.projectMilestones = project.projectMilestones || [];
         this.projectStartDate = project.projectStartDate || '';
         this.projectDevelopmentDate = project.projectDevelopmentDate || '';
         this.projectCost = project.projectCost || '';

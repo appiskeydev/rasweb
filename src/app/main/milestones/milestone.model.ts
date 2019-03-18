@@ -27,8 +27,8 @@ export class Milestone {
     {
       
         milestone = milestone || {};
-        if (milestone.milestoneName !== ''){
-            this.handle = FuseUtils.handleize(milestone.milestoneName  + '');
+        if (milestone.name !== ''){
+            this.handle = FuseUtils.handleize(milestone.name  + '');
         }
         this.id = milestone.id || '';
         this.name = milestone.name || '';

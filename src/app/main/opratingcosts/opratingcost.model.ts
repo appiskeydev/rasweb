@@ -4,7 +4,7 @@ export class Opratingcost {
 
 
     id: string;
-    monthlyCost:number;
+    monthlyCost:number ;
     handle: string;
     updatedAt: string;
     createdAt: string;
@@ -19,8 +19,8 @@ export class Opratingcost {
     {
       
         opratingcost = opratingcost || {};
-        if (opratingcost.opratingcostName !== ''){
-            this.handle = FuseUtils.handleize(opratingcost.opratingcostName  + '');
+        if (opratingcost.monthlyCost !== ''){
+            this.handle = FuseUtils.handleize(opratingcost.monthlyCost  + '');
         }
         this.id = opratingcost.id || '';
         this.monthlyCost = opratingcost.monthlyCost || '';

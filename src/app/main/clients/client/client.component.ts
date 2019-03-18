@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from '../client.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ClientService } from '../client.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
@@ -17,6 +17,8 @@ import { Subscription } from 'rxjs/Subscription';
   animations: fuseAnimations
 })
 export class ClientComponent implements OnInit {
+  @ViewChild('clientname')
+  nameInput:MatInput
   clients: Client[];
   client: Client;
   pageType: string;
@@ -56,6 +58,7 @@ export class ClientComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._clientService.onItemChanged
@@ -110,12 +113,13 @@ export class ClientComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.client.id],
-        name: [this.client.name],
+        name: [this.client.name,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         handle: [this.client.handle],
         clientPhoneNumber:[this.client.clientPhoneNumber],
-        clientEmail: [this.client.clientEmail],
+        clientEmail: [this.client.clientEmail ,[Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(50)]],
         clientLocation: [this.client.clientLocation],
-        parent: [this.client.parent]
+        parent: [this.client.parent],
+        clientCompanyName: [this.client.clientCompanyName]
       });
    
   }

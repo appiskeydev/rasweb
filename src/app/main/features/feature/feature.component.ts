@@ -96,9 +96,9 @@ export class FeatureComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.feature.id],
-        name: [this.feature.name],
+        name: [this.feature.name ,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
         handle: [this.feature.handle],
-        featureEstimateDuration: [this.feature.featureEstimateDuration]
+        featureEstimateDuration: [this.feature.featureEstimateDuration,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
       });
    
   }

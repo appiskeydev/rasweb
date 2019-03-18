@@ -5,28 +5,28 @@ import { Skill } from "../skills/skill.model";
 export class Resource {
 
     id: string;
-    name :string;
-    resourceCNIC : string;
-    resourceDOB : string;
-    resourceEmail : string;
-    resourceAddress : string;
-    resourcePhone : string;
-    resourceReligion : string;
-    resourceBloodGroup : string;
-    resourceNationality : string;
-    resourceEmergencyContactNo : string;
-    resourceMaritalStatus : string;
-    resourceDesignation : string;
-    resourceReportingTo : Resource;
+    name :string ;
+    resourceCNIC : string  ;
+    resourceDOB : string ;
+    resourceEmail : string  ;
+    resourceAddress : string  ;
+    resourcePhone : string ;
+    resourceReligion : string ;
+    resourceBloodGroup : string  ;
+    resourceNationality : string ;
+    resourceEmergencyContactNo : string ;
+    resourceMaritalStatus : string ;
+    resourceDesignation : string ;
+    resourceReportingTo : Resource ;
     resourceResume : string;
     resourceDateOfJoining : Date;
     resourceWorkingDays: number;
-    resourceExperience : number;
+    resourceExperience : number  ;
     resourceSalaryPerMonth: number;
-    resourcePerHourRate :number;
-    resourceShift : string;
-    resourceBenefits: number;
-    resourceContractType : number;     //isIntern, isPartTime , isFullTime
+    resourcePerHourRate :number ;
+    resourceShift : string ;
+    resourceBenefits: String;
+    resourceContractType : String  ;    //isIntern, isPartTime , isFullTime
     resourcePartTime : boolean;
     resourceDepartment: Department;
     resourceSkills:Skill[];
@@ -44,8 +44,8 @@ export class Resource {
     {
       
         resource = resource || {};
-        if (resource.resourceName !== ''){
-            this.handle = FuseUtils.handleize(resource.resourceName  + '');
+        if (resource.name !== ''){
+            this.handle = FuseUtils.handleize(resource.name  + '');
         }
         this.id = resource.id || '';
         this.name = resource.name || '';

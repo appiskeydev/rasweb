@@ -31,6 +31,8 @@ export class MilestoneService {
   items: any[];
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
+  milestoneIndex:any;
+
 
 
   milestones: Milestone[];
@@ -308,10 +310,16 @@ export class MilestoneService {
      */
     updateMilestone(milestone): Promise<any>
     {
+     
         return new Promise((resolve, reject) => {
-//  console.log('in service ',milestone);
+          if(milestone.id != ''){
+           
+        this.milestoneIndex = this.milestones.indexOf(milestone);
+            this.milestones.splice(this.milestoneIndex, 1);
+          }
           this.milestones.push(milestone);
-        this.onMilestonesChanged.next(this.milestones);
+          this.onMilestonesChanged.next(this.milestones);
+
             // this._httpClient.post('api/milestones-milestones/' + milestone.id, {...milestone})
             //     .subscribe(response => {
             //         this.getMilestones();

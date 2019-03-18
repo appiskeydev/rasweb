@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Fringebenefit } from '../fringebenefit.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { FringebenefitService } from '../fringebenefit.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
@@ -16,6 +16,9 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class FringebenefitComponent implements OnInit {
+
+  @ViewChild('fringename')
+  nameInput: MatInput;
   fringebenefit: Fringebenefit;
   pageType: string;
   fringebenefitForm: FormGroup;
@@ -77,6 +80,7 @@ export class FringebenefitComponent implements OnInit {
    * On destroy
    */
   ngOnDestroy(): void {
+  this.nameInput.focus();
     // Unsubscribe from all subscriptions
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();

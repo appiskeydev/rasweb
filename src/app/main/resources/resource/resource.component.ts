@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Resource } from '../resource.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ResourceService } from '../resource.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
@@ -18,19 +18,22 @@ import { Skill } from 'app/main/skills/skill.model';
   animations: fuseAnimations
 })
 export class ResourceComponent implements OnInit {
+  @ViewChild('resourcename')
+  nameInput: MatInput;
   resourceDepartments:Department[];
   resourceReporters:Resource[];
-  resourceSkills:Skill[];
+  resourceSkillsList:Skill[];
   resource: Resource;
   pageType: string;
   resourceForm: FormGroup;
+  employeeTypes: string[] = ['Intern', 'Permanent', 'Part Time', 'Full Time','Contract Based'];
   
   // myControl = new FormControl();
   package_id: string;
 
   // Private
   private _unsubscribeAll: Subject<any>;
-  toppings = new FormControl();
+  // toppings = new FormControl();
 
   //toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   
@@ -61,6 +64,7 @@ export class ResourceComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._resourceService.onItemChanged
@@ -93,7 +97,7 @@ export class ResourceComponent implements OnInit {
   });
 
   this._resourceService.getResourceSkills().subscribe(resourceSkills => {
-    this.resourceSkills =  resourceSkills.map((skill) => new Skill(skill));
+    this.resourceSkillsList =  resourceSkills.map((skill) => new Skill(skill));
 // console.log(this.resourceSkills);
 
 });
@@ -124,27 +128,27 @@ export class ResourceComponent implements OnInit {
       return this._formBuilder.group({
         id: [this.resource.id],
         handle: [this.resource.handle],
-        name : [this.resource.name],
-        resourceCNIC : [this.resource.resourceCNIC],
-        resourceDOB : [this.resource.resourceDOB],
-        resourceEmail : [this.resource.resourceEmail],
+        name : [this.resource.name,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+        resourceCNIC : [this.resource.resourceCNIC,[Validators.maxLength(12)]],
+        resourceDOB : [this.resource.resourceDOB,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceEmail : [this.resource.resourceEmail,[Validators.required,Validators.email, Validators.minLength(2), Validators.maxLength(50)]],
         resourceAddress : [this.resource.resourceAddress],
-        resourcePhone : [this.resource.resourcePhone],
-        resourceReligion :[this.resource.resourceReligion],
-        resourceBloodGroup :[this.resource.resourceBloodGroup], 
-        resourceNationality :[this.resource.resourceNationality],
-        resourceEmergencyContactNo : [this.resource.resourceEmergencyContactNo],
-        resourceMaritalStatus : [this.resource.resourceMaritalStatus] ,
-        resourceDesignation : [this.resource.resourceDesignation], 
+        resourcePhone : [this.resource.resourcePhone,[Validators.required,Validators.minLength(5), Validators.maxLength(11)]],
+        resourceReligion :[this.resource.resourceReligion,[Validators.minLength(2), Validators.maxLength(50)]],
+        resourceBloodGroup :[this.resource.resourceBloodGroup,[ Validators.minLength(2), Validators.maxLength(5)]], 
+        resourceNationality :[this.resource.resourceNationality,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceEmergencyContactNo : [this.resource.resourceEmergencyContactNo,[ Validators.minLength(5), Validators.maxLength(50)]],
+        resourceMaritalStatus : [this.resource.resourceMaritalStatus,[ Validators.minLength(2), Validators.maxLength(50)]] ,
+        resourceDesignation : [this.resource.resourceDesignation,[ Validators.minLength(2), Validators.maxLength(50)]], 
         resourceReportingTo : [ this.resource.resourceReportingTo],
-        resourceResume : [this.resource.resourceResume],
+        resourceResume : [this.resource.resourceResume,[ Validators.minLength(2), Validators.maxLength(50)]],
         resourceDateOfJoining :[this.resource.resourceDateOfJoining],
-        resourceWorkingDays : [this.resource.resourceWorkingDays],
-        resourceExperience :  [this.resource.resourceExperience],
-        resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth],
+        resourceWorkingDays : [this.resource.resourceWorkingDays,[Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+        resourceExperience :  [this.resource.resourceExperience,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth,[ Validators.minLength(2), Validators.maxLength(50)]],
         resourcePerHourRate : [this.resource.resourcePerHourRate],
-        resourceShift: [this.resource.resourceShift],
-        resourceBenefits : [this.resource.resourceBenefits],
+        resourceShift: [this.resource.resourceShift,[ Validators.minLength(2), Validators.maxLength(50)]],
+        resourceBenefits : [this.resource.resourceBenefits,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         resourceContractType : [this.resource.resourceContractType],
         resourcePartTime : [ this.resource.resourcePartTime],
         resourceDepartment : [ this.resource.resourceDepartment],
@@ -183,7 +187,7 @@ export class ResourceComponent implements OnInit {
   addResource(): void {
     const data = this.resourceForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
-    data.resourceSkills = this.toppings.value;
+  
     if(data.resourceReportingTo == ""){
       data.resourceReportingTo=null;
     }
@@ -211,4 +215,9 @@ export class ResourceComponent implements OnInit {
   compareFn(c1: Resource, c2: Resource): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
    }
+
+   comparerSkill(o1: Skill, o2: Skill): boolean {
+    // if possible compare by object's name, and not by reference.
+    return o1 && o2 ? o1.name === o2.name : o2 === o2;
+  }
 }
