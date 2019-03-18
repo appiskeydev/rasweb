@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
-
-import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Feature } from './feature.model';
-
+import { environment } from 'environments/environment';
+import { Resource } from '../resources/resource.model';
+import { HttpClient } from '@angular/common/http';
+import { Client } from '../clients/client.model';
+import { Feature } from '../features/feature.model';
+import { Milestone } from '../milestones/milestone.model';
 const API_URL = environment.apiUrl;
 
-
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
-export class FeatureService {
-  
-  entityNode: string = 'feature';
+export class ProjectWizardService {
+
+  entityNode: string = 'project';
+  entityNodeClient: string = 'client';
+  entityNodeFeature: string = 'feature';
+  entityNodeMilestone: string = 'milestone';
+  entityNodeResource: string = 'resource';
   routeParams: any;
   item: any;
   items: any[];
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
-
-  onFeaturesChanged: BehaviorSubject<any>;
-  onSelectedFeaturesChanged: BehaviorSubject<any>;
-  features: Feature[];
-  featureIndex:any;
 
   /**
    * Constructor
@@ -39,10 +38,6 @@ export class FeatureService {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
-
-    this.onFeaturesChanged = new BehaviorSubject({});
-    this.onSelectedFeaturesChanged = new BehaviorSubject({});
-    
   }
 
   /**
@@ -67,24 +62,24 @@ export class FeatureService {
       );
     });
 
-    
+
   }
- 
-/**
-   * Get item
-   *
-   * @returns {Promise<any>}
-   */
+
+  /**
+     * Get item
+     *
+     * @returns {Promise<any>}
+     */
   getInit(): Promise<any> {
     return new Promise((resolve, reject) => {
       // console.log(this.routeParams.id);
       if (this.routeParams.id === undefined) {
         this._httpClient.get(API_URL + '/' + this.entityNode)
-        .subscribe((response: any) => {
-          this.items = response;
-          this.onItemsChanged.next(this.items);
-          resolve(response);
-        }, reject);
+          .subscribe((response: any) => {
+            this.items = response;
+            this.onItemsChanged.next(this.items);
+            resolve(response);
+          }, reject);
       }
       else if (this.routeParams.id === 'new') {
         this.onItemChanged.next(false);
@@ -114,7 +109,7 @@ export class FeatureService {
         resolve(false);
       }
       else {
-        this._httpClient.get(API_URL + '/' + this.entityNode +'/' + this.routeParams.id)
+        this._httpClient.get(API_URL + '/' + this.entityNode + '/' + this.routeParams.id)
           .subscribe((response: any) => {
             this.item = response;
             this.onItemChanged.next(this.item);
@@ -124,7 +119,7 @@ export class FeatureService {
     });
   }
 
-  
+
   /**
    * Save product
    *
@@ -133,7 +128,7 @@ export class FeatureService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNode , item)
+      this._httpClient.put(API_URL + '/' + this.entityNode, item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
@@ -148,7 +143,7 @@ export class FeatureService {
    */
   addItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.post(API_URL + '/' + this.entityNode , item)
+      this._httpClient.post(API_URL + '/' + this.entityNode, item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);
@@ -172,53 +167,62 @@ export class FeatureService {
     });
   }
 
-  deleteItemById(itemId: number): any {
-    return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
+  public getAllClients(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeClient)
 
+      .map(response => {
+        const clients = response.json();
+        return clients.map((client) => new Client(client));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
+  public getAllFeatures(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeFeature)
+
+      .map(response => {
+        const features = response.json();
+        return features.map((feature) => new Feature(feature));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+
+  public getAllMilestones(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeMilestone)
+
+      .map(response => {
+        const milestones = response.json();
+        return milestones.map((milestone) => new Milestone(milestone));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
   }
 
 
+  public getAllResources(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeResource)
 
-    /**
-     * Update feature
-     *
-     * @param feature
-     * @returns {Promise<any>}
-     */
-    updateFeature(feature): Promise<any>
-    {
-     
-        return new Promise((resolve, reject) => {
-        //   if(feature.id != ''){
-           
-        // this.featureIndex = this.features.indexOf(feature);
-        //     this.features.splice(this.featureIndex, 1);
-        //   }
-        console.log('feature service',feature);
-          this.features.push(feature);
-          this.onFeaturesChanged.next(this.features);
+      .map(response => {
+        const resources = response.json();
+        return resources.map((resource) => new Resource(resource));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
+  deleteItemById(itemId: number): any {
+    return this._httpClient.delete(API_URL + '/' + this.entityNode + '/' + itemId);
 
-            // this._httpClient.post('api/features-features/' + feature.id, {...feature})
-            //     .subscribe(response => {
-            //         this.getFeatures();
-                    resolve(feature);
-            //     });
-        });
-    }
+  }
 
-    
-
-    /**
-     * Delete feature
-     *
-     * @param feature
-     */
-    deleteFeature(feature): void
-    {
-        const featureIndex = this.features.indexOf(feature);
-        this.features.splice(featureIndex, 1);
-        this.onFeaturesChanged.next(this.features);
-    }
-
+  private handleError(error: Response | any) {
+    console.error('LicenceService::handleError', error);
+    return Observable.throw(error);
+  }
 
 }

@@ -7,7 +7,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { ResourceService } from './resource.service';
 import { ResourceComponent } from './resource/resource.component';
 import { ResourceListComponent } from './resource-list/resource-list.component';
-import { DesignationListComponent } from '../designations/designation-list/designation-list.component';
+
 
 const routes: Routes = [
   {

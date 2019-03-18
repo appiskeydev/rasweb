@@ -28,6 +28,13 @@ export class ResourceService {
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
 
+
+
+  onResourcesChanged: BehaviorSubject<any>;
+  onSelectedResourcesChanged: BehaviorSubject<any>;
+  resources: Resource[];
+  resourceIndex:any;
+
   /**
    * Constructor
    *
@@ -40,6 +47,9 @@ export class ResourceService {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
+
+    this.onResourcesChanged = new BehaviorSubject({});
+    this.onSelectedResourcesChanged = new BehaviorSubject({});
   }
 
   /**
@@ -224,5 +234,63 @@ export class ResourceService {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
+
+    /**
+     * Update resource
+     *
+     * @param resource
+     * @returns {Promise<any>}
+     */
+    updateResource(resource): Promise<any>
+    {
+     
+        return new Promise((resolve, reject) => {
+        //   if( != ''){
+        // this.resourceIndex = this.resources.indexOf(resource);
+        // let getItem =new Resource(this.resourceIndex);
+        // console.log(resource.id+' - ' +getItem.id );
+          
+    
+        for (let key in this.resources) {
+          let value = this.resources[key];
+          // Use `key` and `value`
+          if(value.id == resource.id){
+            this.resourceIndex = key;
+            this.resources.splice(this.resourceIndex, 1);
+          }
+      }
+    //     this.resources.forEach(function (value) {
+    //       if(value.id == resource.id){
+    //         let getItem =new Resource(this.resourceIndex value);
+          
+    //  }
+          
+    //     });
+        //   }
+          this.resources.push(resource);
+          this.onResourcesChanged.next(this.resources);
+
+            // this._httpClient.post('api/resources-resources/' + resource.id, {...resource})
+            //     .subscribe(response => {
+            //         this.getResources();
+                    resolve(resource);
+            //     });
+        });
+    }
+
+    
+
+    /**
+     * Delete resource
+     *
+     * @param resource
+     */
+    deleteResource(resource): void
+    {
+        const resourceIndex = this.resources.indexOf(resource);
+        this.resources.splice(resourceIndex, 1);
+        this.onResourcesChanged.next(this.resources);
+    }
+
 
 }

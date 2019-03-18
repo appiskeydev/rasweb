@@ -5,12 +5,15 @@ import { MAT_DIALOG_DATA,MatDialogRef, MatDialog, MatDialogModule, MatInput } fr
 import { MilestoneService } from '../milestone.service';
 import { Router } from '@angular/router';
 import { ViewEncapsulation } from '@angular/core';
+import { fuseAnimations } from '@fuse/animations';
 
 @Component({
   selector: 'app-milestone-form',
   templateUrl: './milestone-form.component.html',
   styleUrls: ['./milestone-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: fuseAnimations
+ 
 })
 
 export class MilestoneFormComponent{

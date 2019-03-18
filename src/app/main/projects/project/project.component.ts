@@ -1,9 +1,9 @@
-import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Project } from '../project.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import {  Subject } from 'rxjs';
 import { ProjectService } from '../project.service';
-import { MatSnackBar, MatDialogModule, MatInput } from '@angular/material';
+import { MatSnackBar, MatDialogModule } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
@@ -16,8 +16,6 @@ import { Milestone } from 'app/main/milestones/milestone.model';
 import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
 import { MilestoneComponent } from 'app/main/milestones/milestone/milestone.component';
 import { MilestoneService } from 'app/main/milestones/milestone.service';
-import { namespaceHTML } from '@angular/core/src/render3';
-import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -28,8 +26,7 @@ import { timingSafeEqual } from 'crypto';
   animations: fuseAnimations
 })
 export class ProjectComponent implements OnInit {
-@ViewChild('projectname')
-nameInput: MatInput;
+
 
   dialogRef: any;
 
@@ -40,12 +37,6 @@ nameInput: MatInput;
   project: Project;
   pageType: string;
   projectForm: FormGroup;
-
-
-  clientControl = new FormControl();
-
-  clientFilteredOptions: Observable<Client[]>;
-
   // resourceToppings = new FormControl();
   // featureToppings = new FormControl();
   // milestoneToppings = new FormControl();
@@ -96,7 +87,6 @@ nameInput: MatInput;
    * On init
    */
   ngOnInit(): void {
-  this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._projectService.onItemChanged
@@ -127,10 +117,6 @@ nameInput: MatInput;
     this._projectService.getAllClients().subscribe(projectClient => {
       this.clients = projectClient.map((client) => new Client(client));
       // console.log(this.resourceDepartments);
-      this.clientFilteredOptions = this.projectForm.controls['projectClient'].valueChanges
-                .pipe(startWith<string | Client>(''),
-                    map(value => typeof value === 'string' ? value : value.name),
-                    map(name => name ? this._filter(name) : this.clients.slice()));
 
     });
 
@@ -186,7 +172,7 @@ nameInput: MatInput;
         projectStartDate:[this.project.projectStartDate], 
         projectDevelopmentDate: [this.project.projectDevelopmentDate], 
         projectCost:[this.project.projectCost ,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]], 
-        projectTimeline:[this.project.projectTimeline], 
+        projectTimeline:[this.project.projectTimeline,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]], 
         projectPaymentMethod:[this.project.projectPaymentMethod,[Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
       });
 
@@ -256,16 +242,6 @@ nameInput: MatInput;
     // if possible compare by object's name, and not by reference.
     return o1 && o2 ? o1.name === o2.name : o2 === o2;
   }
-
-
-   private _filter(name: string): Client[] {
-    const filterValue = name.toLowerCase();
-    return this.clients.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
-}
-displayFn(item?: Client): string | undefined {
-
-  return item ? item.name : undefined;
-}
     /**
      * New contact
      */

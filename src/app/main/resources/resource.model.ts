@@ -36,6 +36,11 @@ export class Resource {
     updatedAt: string;
     createdAt: string;
 
+    resourceProjectHour: string;
+    resourceProjectAllocation : string;
+    resourceProjectWorkStartDate: string;
+    resourceProjectWorkEndDate: string;
+
    
     /**
      * Constructor
@@ -78,5 +83,10 @@ export class Resource {
         this.resourceSkills= resource.resourceSkills || null;
         this.updatedAt = resource.updatedAt || '';
         this.createdAt = resource.createdAt || '';
+
+        this.resourceProjectHour = resource.resourceProjectHour || '';
+        this.resourceProjectAllocation = resource.resourceProjectAllocation || '';
+        this.resourceProjectWorkStartDate = resource.resourceProjectWorkStartDate || '';
+        this.resourceProjectWorkEndDate = resource.resourceProjectWorkEndDate || '';
     }
 }
