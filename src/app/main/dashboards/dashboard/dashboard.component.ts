@@ -145,7 +145,7 @@ export class DashboardComponent implements OnInit {
 
     this.projects = this._projectDashboardService.projects;
     console.log(this.projects);
-    this.selectedProject = this.projects[0];
+    //this.selectedProject = this.projects[0];
     //console.log(this.selectedProject.name);
     this.widgets = this._projectDashboardService.widgets;
 
