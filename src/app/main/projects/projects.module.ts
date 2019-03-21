@@ -15,6 +15,7 @@ import { ResourceDailogFormComponent } from '../resources/resource-dailog-form/r
 import { ResourceListProjectComponent } from '../resources/resource-list-project/resource-list-project.component';
 import { FeatureListProjectComponent } from '../features/feature-list-project/feature-list-project.component';
 import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
+import { MilestoneDialogFormComponent } from '../milestones/milestone-dialog-form/milestone-dialog-form.component';
 
 
 const routes: Routes = [
@@ -70,7 +71,7 @@ const routes: Routes = [
 
 
 @NgModule({
-    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent, ResourceDailogFormComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectCreateDailogComponent],
+    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent, ResourceDailogFormComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectCreateDailogComponent, MilestoneDialogFormComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
