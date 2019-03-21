@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: nsras
+  name: KAPP_NAME
+  labels:
+    app: KAPP_NAME
+spec:
+  template:
+    metadata:
+      labels:
+        app: KAPP_NAME
+        tier: web
+    spec:
+      containers:
+      - name: KAPP_NAME
+        image: khawarhere/KAPP_NAME:KVERSION
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: nsras
+  name: KAPP_NAME
+  labels:
+    app: KAPP_NAME
+spec:
+  type: NodePort
+  selector:
+    app: KAPP_NAME
+    tier: web
+  ports:
+  - port: 80
+    targetPort: 80

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+sudo npm install
 sudo ng build --configuration=dev
 
 sudo ng serve --configuration=dev
