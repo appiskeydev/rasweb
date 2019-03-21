@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Project } from '../project.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
-import {  Subject } from 'rxjs';
+import {  Subject, Observable } from 'rxjs';
 import { ProjectService } from '../project.service';
 import { MatSnackBar, MatDialogModule } from '@angular/material';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ import { MilestoneService } from 'app/main/milestones/milestone.service';
 import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
 import { namespaceHTML } from '@angular/core/src/render3';
 import { timingSafeEqual } from 'crypto';
+import { Company } from 'app/main/companies/company.model';
 
 
 @Component({
@@ -42,7 +43,8 @@ export class ProjectComponent implements OnInit {
   // resourceToppings = new FormControl();
   // featureToppings = new FormControl();
   // milestoneToppings = new FormControl();
-  
+  clientFilteredOptions: Observable<Company[]>;
+
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
 
@@ -232,6 +234,12 @@ export class ProjectComponent implements OnInit {
         this._router.navigate(['/projects']);
       });
   }
+
+  displayFn(item?: Client): string | undefined {
+
+    return item ? item.name : undefined;
+  }
+
 
   compareFn(c1: Project, c2: Project): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;

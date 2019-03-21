@@ -79,7 +79,7 @@ export class ProjectDashboardDb
             'detail': 'You can show some detailed information about this widget in here.'
         },
         'widget5'      : {
-            'title'     : 'Github Issues',
+            'title'     : 'Project Issues',
             'ranges'    : {
                 'TW': 'This Week',
                 'LW': 'Last Week',

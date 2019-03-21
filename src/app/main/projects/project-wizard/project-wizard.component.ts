@@ -40,6 +40,9 @@ export class ProjectWizardComponent implements OnInit {
     project: Project;
     pageType: string;
     projectForm: FormGroup;
+
+    minDate = new Date(2000, 0, 1);
+    maxDate = new Date(2020, 0, 1);
     // Private
     private _unsubscribeAll: Subject<any>;
     // // Private
