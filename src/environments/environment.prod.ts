@@ -1,7 +1,7 @@
 import { KeycloakConfig } from "keycloak-angular";
 
 let keycloakConfig: KeycloakConfig = {
-    url: 'https://rasprod.scaleablecloud.com/keycloak/auth/',
+    url: 'https://rasprod.scaleablecloud.com/auth/',
     realm: 'example',
     clientId: 'rasweb'
 
