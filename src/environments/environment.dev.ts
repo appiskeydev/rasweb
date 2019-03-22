@@ -1,7 +1,7 @@
 import { KeycloakConfig } from "keycloak-angular";
 
 let keycloakConfig: KeycloakConfig = {
-    url: 'http://localhost:8083/auth',
+    url: 'https://rasdev.scaleablecloud.com/keycloak/auth',
     realm: 'example',
     clientId: 'rasweb'
 
@@ -13,7 +13,7 @@ let keycloakConfig: KeycloakConfig = {
 export const environment = {
     // apiUrl: 'http://localhost:8080/api/raservice/v1',
 
-    apiUrl: 'http://rasdev.scaleablecloud.com/api/raservice/v1',
+    apiUrl: 'https://rasdev.scaleablecloud.com/api/raservice/v1',
 
     production:false,
     dev: true,

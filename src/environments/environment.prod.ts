@@ -1,7 +1,7 @@
 import { KeycloakConfig } from "keycloak-angular";
 
 let keycloakConfig: KeycloakConfig = {
-    url: 'http://localhost:8083/auth',
+    url: 'https://rasprod.scaleablecloud.com/keycloak/auth/',
     realm: 'example',
     clientId: 'rasweb'
 
@@ -14,7 +14,7 @@ export const environment = {
     production: true,
     hmr       : false,
     dev:false,
-    apiUrl: 'http://rasprod.scaleablecloud.com/api/raservice/v1',
+    apiUrl: 'https://rasprod.scaleablecloud.com/api/raservice/v1',
     
     assets: {
         dotaImages:
