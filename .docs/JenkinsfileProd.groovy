@@ -21,7 +21,7 @@ pipeline {
         stage('Build Artifact') {
             steps {
                 //sh 'whoami'
-                sh 'rm -rf dist'
+                sh 'sudo rm -rf dist'
                 sh 'sudo npm install'
                 sh 'sudo ng build --configuration=production'
             }
