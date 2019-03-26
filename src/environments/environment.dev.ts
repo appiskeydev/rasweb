@@ -2,10 +2,9 @@ import { KeycloakConfig } from "keycloak-angular";
 
 
 
-
 export const environment = {
 
-    apiUrl: 'http://rasdev.scaleablecloud.com/api/raservice/v1',
+    apiUrl: 'https://rasdev.scaleablecloud.com/api/raservice/v1',
 
     production:false,
     dev: true,
