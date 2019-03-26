@@ -3,7 +3,6 @@ export const environment = {
     hmr       : true,
     dev:false,
     apiUrl: 'http://localhost:8080/api/raservice/v1'
-    // apiUrl: 'http://ras.scaleablecloud.com/api/raservice/v1'
 
 
 
