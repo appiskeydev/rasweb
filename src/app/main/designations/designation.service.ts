@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '.env/environment';
+import { environment } from 'environments/environment';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

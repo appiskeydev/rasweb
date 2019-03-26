@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { environment } from '.env/environment';
+import { environment } from 'environments/environment';
 import { Resource } from '../resources/resource.model';
 import { HttpClient } from '@angular/common/http';
 import { Client } from '../clients/client.model';

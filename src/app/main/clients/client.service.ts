@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { environment } from '.env/environment';
+import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Http } from '@angular/http';
@@ -13,7 +13,6 @@ import { Company } from '../companies/company.model';
 
 
 const API_URL = environment.apiUrl;
-
 
 @Injectable({
   providedIn: "root"
@@ -212,6 +211,8 @@ export class ClientService {
       .get(API_URL + '/' + this.entityNode)
 
       .map(response => {
+        console.log(API_URL);
+
         const clients = response.json();
         return clients.map((client) => new Client(client));
         // return licenses.map((license) => new licenses(license));
