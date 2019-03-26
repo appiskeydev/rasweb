@@ -36,13 +36,13 @@ export class ToolbarComponent implements OnInit, OnDestroy
      * @param {FuseConfigService} _fuseConfigService
      * @param {FuseSidebarService} _fuseSidebarService
      * @param {TranslateService} _translateService
-     * @param {_keycloakService} _keycloakService
+     * param {_keycloakService} _keycloakService
      */
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        private _keycloakService: KeycloakService
+        // private _keycloakService: KeycloakService
 
     )
     {
@@ -165,8 +165,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this._translateService.use(lang.id);
     }
 
-    async doLogout() {
-        await this._keycloakService.logout();
-    }
+    // async doLogout() {
+    //     await this._keycloakService.logout();
+    // }
 
 }
