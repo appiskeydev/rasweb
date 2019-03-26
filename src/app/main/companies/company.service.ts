@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { environment } from 'environments/environment';
+import { environment } from '.env/environment';
 const API_URL = environment.apiUrl;
 
 @Injectable({

@@ -8,7 +8,6 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
-import { KeycloakService } from 'keycloak-angular';
 
 @Component({
     selector     : 'toolbar',

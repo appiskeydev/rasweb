@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { environment } from 'environments/environment';
+import { environment } from '.env/environment';
 
 const API_URL = environment.apiUrl;
 
