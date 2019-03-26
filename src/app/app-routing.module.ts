@@ -1,7 +1,6 @@
 
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { AppAuthGuard } from './app.authguard';
 
 const appRoutes: Routes = [
 
@@ -88,7 +87,7 @@ const appRoutes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule],
-    providers: [AppAuthGuard]
+  //  providers: [AppAuthGuard]
 })
 
 
