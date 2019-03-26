@@ -1,13 +1,6 @@
 import { KeycloakConfig } from "keycloak-angular";
 
-// let keycloakConfig: KeycloakConfig = {
-//     url: 'http://localhost:8083/auth',
-//     realm: 'example',
-//     clientId: 'rasweb'
 
-
-
-// };
 
 
 export const environment = {
@@ -19,11 +12,5 @@ export const environment = {
     dev: true,
     hmr       : false,
     secure : false
-    // ,
-    // assets: {
-    //     dotaImages:
-    //         'https://cdn-keycloak-angular.herokuapp.com/assets/images/dota-heroes/'
-    // },
-    // apis: { dota: 'http://localhost:3000' },
-    // keycloak: keycloakConfig
+
 };
