@@ -74,6 +74,7 @@ import { AppRoutingModule } from './app-routing.module';
         FuseThemeOptionsModule,
         // KeycloakAngularModule,
         AppRoutingModule,
+        
 
         // App modules
         LayoutModule,
