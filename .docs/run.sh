@@ -6,4 +6,7 @@ sudo ng serve --configuration=dev
 
 sudo ng build --configuration=production
 
+
 sudo ng serve --configuration=production
+
+sudo ng build --configuration=staging
