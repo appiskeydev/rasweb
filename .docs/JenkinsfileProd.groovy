@@ -23,7 +23,8 @@ pipeline {
                 //sh 'whoami'
                 sh 'sudo rm -rf dist'
                 sh 'sudo npm install'
-                sh 'sudo ng build --configuration=production'
+                sh 'sudo ng build --prod'
+//                sh 'sudo ng build --configuration=production'
             }
         }
         stage('Building Docker image') {
