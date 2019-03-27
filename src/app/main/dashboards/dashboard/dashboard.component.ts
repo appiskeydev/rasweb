@@ -19,12 +19,12 @@ export class DashboardComponent implements OnInit {
   selectedProject: any;
 
   widgets: any;
-  widget5: any = {};
-  widget6: any = {};
-  widget7: any = {};
-  widget8: any = {};
-  widget9: any = {};
-  widget11: any = {};
+  projectIssue: any = {};
+  taskDistriibution: any = {};
+  schedule: any = {};
+  budgetDistribution: any = {};
+  budgetSpent: any = {};
+  teamMember: any = {};
 
   dateNow = Date.now();
 
@@ -40,8 +40,8 @@ export class DashboardComponent implements OnInit {
     /**
 * Widget 5
 */
-    this.widget5 = {
-      currentRange: 'TW',
+    this.projectIssue = {
+      currentRange: 'thisWeek',
       xAxis: true,
       yAxis: true,
       gradient: false,
@@ -76,8 +76,8 @@ export class DashboardComponent implements OnInit {
     /**
      * Widget 6
      */
-    this.widget6 = {
-      currentRange: 'TW',
+    this.taskDistriibution = {
+      currentRange: 'thisWeek',
       legend: false,
       explodeSlices: false,
       labels: true,
@@ -94,14 +94,14 @@ export class DashboardComponent implements OnInit {
     /**
      * Widget 7
      */
-    this.widget7 = {
-      currentRange: 'T'
+    this.schedule = {
+      currentRange: 'dt'
     };
 
     /**
      * Widget 8
      */
-    this.widget8 = {
+    this.budgetDistribution = {
       legend: false,
       explodeSlices: false,
       labels: true,
@@ -118,8 +118,8 @@ export class DashboardComponent implements OnInit {
     /**
      * Widget 9
      */
-    this.widget9 = {
-      currentRange: 'TW',
+    this.budgetSpent = {
+      currentRange: 'thisWeek',
       xAxis: false,
       yAxis: false,
       gradient: false,
@@ -152,9 +152,9 @@ export class DashboardComponent implements OnInit {
     /**
      * Widget 11
      */
-     this.widget11.onContactsChanged = new BehaviorSubject({});
-     this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
-     this.widget11.dataSource = new FilesDataSource(this.widget11);
+    this.teamMember.onContactsChanged = new BehaviorSubject({});
+    this.teamMember.onContactsChanged.next(this.widgets.widget11.table.rows);
+    this.teamMember.dataSource = new FilesDataSource(this.teamMember);
   }
 
   /**

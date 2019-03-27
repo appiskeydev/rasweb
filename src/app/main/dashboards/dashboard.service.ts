@@ -13,7 +13,8 @@ export class DashboardService {
 
   projects: any[];
   widgets : any[];
-  entityNode : string = 'project';
+  entityNode: string = 'project';
+  entityNodeDashboard: string = 'project/project-dashboard';
 
   /**
    * Constructor
@@ -69,7 +70,7 @@ export class DashboardService {
    */
   getWidgets(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get('api/project-dashboard-widgets')
+      this._httpClient.get(API_URL + '/' + this.entityNodeDashboard)
         .subscribe((response: any) => {
           this.widgets = response;
           resolve(response);

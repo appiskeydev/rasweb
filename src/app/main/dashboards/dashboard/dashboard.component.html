@@ -52,9 +52,9 @@
               <div class="fuse-widget-front">
                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
                   <mat-form-field>
-                    <mat-select class="simplified font-size-16" [(ngModel)]="widgets.widget1.currentRange"
+                    <mat-select class="simplified font-size-16" [(ngModel)]="widgets.dueTask.currentRange"
                       aria-label="Change range">
-                      <mat-option *ngFor="let range of widgets.widget1.ranges | keys" [value]="range.key">
+                      <mat-option *ngFor="let range of widgets.dueTask.ranges | keys" [value]="range.key">
                         {{range.value}}
                       </mat-option>
                     </mat-select>
@@ -66,18 +66,18 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="light-blue-fg font-size-72 line-height-72">
-                    {{widgets.widget1.data.count[widgets.widget1.currentRange]}}
+                    {{widgets.dueTask.data.count[widgets.dueTask.currentRange]}}
                   </div>
-                  <div class="h3 secondary-text font-weight-500">{{widgets.widget1.data.label}}
-                  </div>
+                  <div class="h3 secondary-text font-weight-500">{{widgets.dueTask.data.label}}
+                  </div>g
                 </div>
 
                 <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                   <span class="h4 secondary-text text-truncate">
-                    {{widgets.widget1.data.extra.label}}:
+                    {{widgets.dueTask.data.extra.label}}:
                   </span>
                   <span class="h4 ml-8">
-                    {{widgets.widget1.data.extra.count[widgets.widget1.currentRange]}}
+                    {{widgets.dueTask.data.extra.count[widgets.dueTask.currentRange]}}
                   </span>
                 </div>
               </div>
@@ -90,7 +90,7 @@
                 </button>
 
                 <div>
-                  {{widgets.widget1.detail}}
+                  {{widgets.dueTask.detail}}
                 </div>
               </div>
               <!-- / Back -->
@@ -105,7 +105,7 @@
               <!-- Front -->
               <div class="fuse-widget-front">
                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h3">{{widgets.widget2.title}}</div>
+                  <div class="h3">{{widgets.overdueTask.title}}</div>
 
                   <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="more">
                     <mat-icon>more_vert</mat-icon>
@@ -114,17 +114,17 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-72 line-height-72">
-                    {{widgets.widget2.data.count}}
+                    {{widgets.overdueTask.data.count}}
                   </div>
-                  <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
+                  <div class="h3 secondary-text font-weight-500">{{widgets.overdueTask.data.label}}
                   </div>
                 </div>
 
                 <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                   <span class="h4 secondary-text text-truncate">
-                    {{widgets.widget2.data.extra.label}}:
+                    {{widgets.overdueTask.data.extra.label}}:
                   </span>
-                  <span class="h4 ml-8">{{widgets.widget2.data.extra.count}}</span>
+                  <span class="h4 ml-8">{{widgets.overdueTask.data.extra.count}}</span>
                 </div>
               </div>
               <!-- / Front -->
@@ -136,7 +136,7 @@
                 </button>
 
                 <div>
-                  {{widgets.widget2.detail}}
+                  {{widgets.overdueTask.detail}}
                 </div>
               </div>
               <!-- / Back -->
@@ -151,7 +151,7 @@
               <!-- Front -->
               <div class="fuse-widget-front">
                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h3">{{widgets.widget3.title}}</div>
+                  <div class="h3">{{widgets.openIssue.title}}</div>
 
                   <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="more">
                     <mat-icon>more_vert</mat-icon>
@@ -160,17 +160,17 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="orange-fg font-size-72 line-height-72">
-                    {{widgets.widget3.data.count}}
+                    {{widgets.openIssue.data.count}}
                   </div>
-                  <div class="h3 secondary-text font-weight-500">{{widgets.widget3.data.label}}
+                  <div class="h3 secondary-text font-weight-500">{{widgets.openIssue.data.label}}
                   </div>
                 </div>
 
                 <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                   <span class="h4 secondary-text text-truncate">
-                    {{widgets.widget3.data.extra.label}}:
+                    {{widgets.openIssue.data.extra.label}}:
                   </span>
-                  <span class="h4 ml-8">{{widgets.widget3.data.extra.count}}</span>
+                  <span class="h4 ml-8">{{widgets.openIssue.data.extra.count}}</span>
                 </div>
               </div>
               <!-- / Front -->
@@ -182,7 +182,7 @@
                 </button>
 
                 <div>
-                  {{widgets.widget3.detail}}
+                  {{widgets.openIssue.detail}}
                 </div>
               </div>
               <!-- / Back -->
@@ -197,7 +197,7 @@
               <!-- Front -->
               <div class="fuse-widget-front">
                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h3">{{widgets.widget4.title}}</div>
+                  <div class="h3">{{widgets.feature.title}}</div>
 
                   <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="more">
                     <mat-icon>more_vert</mat-icon>
@@ -206,17 +206,17 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="blue-grey-fg font-size-72 line-height-72">
-                    {{widgets.widget4.data.count}}
+                    {{widgets.feature.data.count}}
                   </div>
-                  <div class="h3 secondary-text font-weight-500">{{widgets.widget4.data.label}}
+                  <div class="h3 secondary-text font-weight-500">{{widgets.feature.data.label}}
                   </div>
                 </div>
 
                 <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                   <span class="h4 secondary-text text-truncate">
-                    {{widgets.widget4.data.extra.label}}:
+                    {{widgets.feature.data.extra.label}}:
                   </span>
-                  <span class="h4 ml-8">{{widgets.widget4.data.extra.count}}</span>
+                  <span class="h4 ml-8">{{widgets.feature.data.extra.count}}</span>
                 </div>
               </div>
               <!-- / Front -->
@@ -228,7 +228,7 @@
                 </button>
 
                 <div>
-                  {{widgets.widget4.detail}}
+                  {{widgets.feature.detail}}
                 </div>
               </div>
               <!-- / Back -->
@@ -237,19 +237,19 @@
             <!-- / WIDGET 4 -->
 
             <!-- WIDGET 5 -->
-            <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" fxLayout="row" fxFlex="100" class="widget widget5">
+            <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" fxLayout="row" fxFlex="100" class="widget projectIssue">
 
               <!-- Front -->
               <div class="fuse-widget-front">
 
                 <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
 
-                  <div fxFlex class="py-16 h3">{{widgets.widget5.title}}</div>
+                  <div fxFlex class="py-16 h3">{{widgets.projectIssue.title}}</div>
 
                   <div fxFlex="0 1 auto" class="py-16" fxLayout="row">
-                    <button mat-button class="px-16" *ngFor="let range of widgets.widget5.ranges | keys"
-                      (click)="widget5.currentRange = range.key"
-                      [ngClass]="{'accent' : widget5.currentRange == range.key}">
+                    <button mat-button class="px-16" *ngFor="let range of widgets.projectIssue.ranges | keys"
+                      (click)="projectIssue.currentRange = range.key"
+                      [ngClass]="{'accent' : projectIssue.currentRange == range.key}">
                       {{range.value}}
                     </button>
                   </div>
@@ -258,35 +258,35 @@
                 <div fxLayout="row wrap" fxLayoutAlign="start start">
 
                   <div class="h-420 my-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="50">
-                    <ngx-charts-bar-vertical-stacked *fuseIfOnDom [scheme]="widget5.scheme"
-                      [results]="this.widgets.widget5.mainChart[this.widget5.currentRange]"
-                      [gradient]="widget5.gradient" [xAxis]="widget5.xAxis" [yAxis]="widget5.yAxis"
-                      [legend]="widget5.legend" [showXAxisLabel]="widget5.showXAxisLabel"
-                      [showYAxisLabel]="widget5.showYAxisLabel" [xAxisLabel]="widget5.xAxisLabel"
-                      [yAxisLabel]="widget5.yAxisLabel" (select)="widget5.onSelect($event)">
+                    <ngx-charts-bar-vertical-stacked *fuseIfOnDom [scheme]="projectIssue.scheme"
+                      [results]="this.widgets.projectIssue.mainChart[this.projectIssue.currentRange]"
+                      [gradient]="projectIssue.gradient" [xAxis]="projectIssue.xAxis" [yAxis]="projectIssue.yAxis"
+                      [legend]="projectIssue.legend" [showXAxisLabel]="projectIssue.showXAxisLabel"
+                      [showYAxisLabel]="projectIssue.showYAxisLabel" [xAxisLabel]="projectIssue.xAxisLabel"
+                      [yAxisLabel]="projectIssue.yAxisLabel" (select)="projectIssue.onSelect($event)">
                     </ngx-charts-bar-vertical-stacked>
                   </div>
 
                   <div class="my-16" fxFlex="100" fxLayout="row wrap" fxFlex.gt-sm="50">
 
                     <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center"
-                      *ngFor="let widget of widgets.widget5.supporting | keys" class="mb-24">
+                      *ngFor="let widget of widgets.projectIssue.supporting | keys" class="mb-24">
 
                       <div class="px-24">
                         <div class="h4 secondary-text">{{widget.value.label}}</div>
                         <div class="mat-display-1 m-0">
-                          {{widget.value.count[widget5.currentRange]}}
+                          {{widget.value.count[projectIssue.currentRange]}}
                         </div>
                       </div>
 
                       <div class="h-64">
-                        <ngx-charts-area-chart *fuseIfOnDom [results]="widget.value.chart[widget5.currentRange]"
-                          [scheme]="widget5.supporting.scheme" [gradient]="widget5.supporting.gradient"
-                          [xAxis]="widget5.supporting.xAxis" [yAxis]="widget5.supporting.yAxis"
-                          [legend]="widget5.supporting.legend" [showXAxisLabel]="widget5.supporting.showXAxisLabel"
-                          [showYAxisLabel]="widget5.supporting.showYAxisLabel"
-                          [xAxisLabel]="widget5.supporting.xAxisLabel" [yAxisLabel]="widget5.supporting.yAxisLabel"
-                          [curve]="widget5.supporting.curve">
+                        <ngx-charts-area-chart *fuseIfOnDom [results]="widget.value.chart[projectIssue.currentRange]"
+                          [scheme]="projectIssue.supporting.scheme" [gradient]="projectIssue.supporting.gradient"
+                          [xAxis]="projectIssue.supporting.xAxis" [yAxis]="projectIssue.supporting.yAxis"
+                          [legend]="projectIssue.supporting.legend" [showXAxisLabel]="projectIssue.supporting.showXAxisLabel"
+                          [showYAxisLabel]="projectIssue.supporting.showYAxisLabel"
+                          [xAxisLabel]="projectIssue.supporting.xAxisLabel" [yAxisLabel]="projectIssue.supporting.yAxisLabel"
+                          [curve]="projectIssue.supporting.curve">
                         </ngx-charts-area-chart>
                       </div>
                     </div>
@@ -306,10 +306,10 @@
               <div class="fuse-widget-front">
 
                 <div class="px-16 py-8 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h3">{{widgets.widget6.title}}</div>
+                  <div class="h3">{{widgets.taskDistriibution.title}}</div>
                   <mat-form-field>
-                    <mat-select class="simplified" [(ngModel)]="widget6.currentRange" aria-label="Change range">
-                      <mat-option *ngFor="let range of widgets.widget6.ranges | keys" [value]="range.key">
+                    <mat-select class="simplified" [(ngModel)]="taskDistriibution.currentRange" aria-label="Change range">
+                      <mat-option *ngFor="let range of widgets.taskDistriibution.ranges | keys" [value]="range.key">
                         {{range.value}}
                       </mat-option>
                     </mat-select>
@@ -317,10 +317,10 @@
                 </div>
 
                 <div class="h-400">
-                  <ngx-charts-pie-chart *fuseIfOnDom [scheme]="widget6.scheme"
-                    [results]="widgets.widget6.mainChart[widget6.currentRange]" [legend]="widget6.showLegend"
-                    [explodeSlices]="widget6.explodeSlices" [labels]="widget6.labels" [doughnut]="widget6.doughnut"
-                    [gradient]="widget6.gradient" (select)="widget6.onSelect($event)">
+                  <ngx-charts-pie-chart *fuseIfOnDom [scheme]="taskDistriibution.scheme"
+                    [results]="widgets.taskDistriibution.mainChart[taskDistriibution.currentRange]" [legend]="taskDistriibution.showLegend"
+                    [explodeSlices]="taskDistriibution.explodeSlices" [labels]="taskDistriibution.labels" [doughnut]="taskDistriibution.doughnut"
+                    [gradient]="taskDistriibution.gradient" (select)="taskDistriibution.onSelect($event)">
                   </ngx-charts-pie-chart>
                 </div>
 
@@ -329,16 +329,16 @@
                   <div class="py-8 border-right" fxLayout="column" fxLayoutAlign="center center" fxFlex="100"
                     fxFlex.gt-sm="50">
                     <span class="mat-display-1 mb-0">
-                      {{widgets.widget6.footerLeft.count[widget6.currentRange]}}
+                      {{widgets.taskDistriibution.footerLeft.count[taskDistriibution.currentRange]}}
                     </span>
-                    <span class="h4">{{widgets.widget6.footerLeft.title}}</span>
+                    <span class="h4">{{widgets.taskDistriibution.footerLeft.title}}</span>
                   </div>
 
                   <div class="py-8" fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.gt-sm="50">
                     <span class="mat-display-1 mb-0">
-                      {{widgets.widget6.footerRight.count[widget6.currentRange]}}
+                      {{widgets.taskDistriibution.footerRight.count[taskDistriibution.currentRange]}}
                     </span>
-                    <span class="h4">{{widgets.widget6.footerRight.title}}</span>
+                    <span class="h4">{{widgets.taskDistriibution.footerRight.title}}</span>
                   </div>
                 </div>
 
@@ -356,10 +356,10 @@
               <div class="fuse-widget-front">
 
                 <div class="px-16 py-8 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h3">{{widgets.widget7.title}}</div>
+                  <div class="h3">{{widgets.schedule.title}}</div>
                   <mat-form-field>
-                    <mat-select class="simplified" [(ngModel)]="widget7.currentRange" aria-label="Change range">
-                      <mat-option *ngFor="let range of widgets.widget7.ranges | keys" [value]="range.key">
+                    <mat-select class="simplified" [(ngModel)]="schedule.currentRange" aria-label="Change range">
+                      <mat-option *ngFor="let range of widgets.schedule.ranges | keys" [value]="range.key">
                         {{range.value}}
                       </mat-option>
                     </mat-select>
@@ -367,7 +367,7 @@
                 </div>
 
                 <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center"
-                  *ngFor="let event of widgets.widget7.schedule[widget7.currentRange]">
+                  *ngFor="let event of widgets.schedule.schedule[schedule.currentRange]">
                   <div>
                     <div class="h3">{{event.title}}</div>
                     <div>
@@ -404,15 +404,15 @@
               <!-- Front -->
               <div class="fuse-widget-front">
                 <div class="h3 px-16 py-24">
-                  {{widgets.widget8.title}}
+                  {{widgets.budgetDistribution.title}}
                 </div>
 
                 <mat-divider></mat-divider>
 
                 <div class="h-400">
-                  <ngx-charts-pie-chart *fuseIfOnDom [scheme]="widget8.scheme" [results]="widgets.widget8.mainChart"
-                    [legend]="widget8.legend" [explodeSlices]="widget8.explodeSlices" [labels]="widget8.labels"
-                    [doughnut]="widget8.doughnut" [gradient]="widget8.gradient" (select)="widget8.onSelect($event)">
+                  <ngx-charts-pie-chart *fuseIfOnDom [scheme]="budgetDistribution.scheme" [results]="widgets.budgetDistribution.mainChart"
+                    [legend]="budgetDistribution.legend" [explodeSlices]="budgetDistribution.explodeSlices" [labels]="budgetDistribution.labels"
+                    [doughnut]="budgetDistribution.doughnut" [gradient]="budgetDistribution.gradient" (select)="budgetDistribution.onSelect($event)">
                   </ngx-charts-pie-chart>
                 </div>
 
@@ -429,10 +429,10 @@
               <!-- Front -->
               <div class="fuse-widget-front">
                 <div class="px-16 py-12 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h3">{{widgets.widget9.title}}</div>
+                  <div class="h3">{{widgets.budgetSpent.title}}</div>
                   <mat-form-field>
-                    <mat-select [(ngModel)]="widget9.currentRange" aria-label="Change range">
-                      <mat-option *ngFor="let range of widgets.widget9.ranges | keys" [value]="range.key">
+                    <mat-select [(ngModel)]="budgetSpent.currentRange" aria-label="Change range">
+                      <mat-option *ngFor="let range of widgets.budgetSpent.ranges | keys" [value]="range.key">
                         {{range.value}}
                       </mat-option>
                     </mat-select>
@@ -442,19 +442,19 @@
                 <div class="px-16 py-24" fxLayout="column" fxLayoutAlign="center" fxLayout.gt-xs="row"
                   fxLayoutAlign.gt-xs="space-between end">
                   <div fxFlex="0 1 auto">
-                    <div class="h4 secondary-text">{{widgets.widget9.weeklySpent.title}}</div>
+                    <div class="h4 secondary-text">{{widgets.budgetSpent.weeklySpent.title}}</div>
                     <div class="pt-8 mat-display-1 m-0 font-weight-300 text-nowrap">
                       <span class="secondary-text">$</span>
-                      <span>{{widgets.widget9.weeklySpent.count[widget9.currentRange]}}</span>
+                      <span>{{widgets.budgetSpent.weeklySpent.count[budgetSpent.currentRange]}}</span>
                     </div>
                   </div>
                   <div class="h-52" fxFlex>
                     <ngx-charts-area-chart *fuseIfOnDom
-                      [results]="widgets.widget9.weeklySpent.chart[widget9.currentRange]" [scheme]="widget9.scheme"
-                      [gradient]="widget9.gradient" [xAxis]="widget9.xAxis" [yAxis]="widget9.yAxis"
-                      [legend]="widget9.legend" [showXAxisLabel]="widget9.showXAxisLabel"
-                      [showYAxisLabel]="widget9.showYAxisLabel" [xAxisLabel]="widget9.xAxisLabel"
-                      [yAxisLabel]="widget9.yAxisLabel" [curve]="widget9.curve">
+                      [results]="widgets.budgetSpent.weeklySpent.chart[budgetSpent.currentRange]" [scheme]="budgetSpent.scheme"
+                      [gradient]="budgetSpent.gradient" [xAxis]="budgetSpent.xAxis" [yAxis]="budgetSpent.yAxis"
+                      [legend]="budgetSpent.legend" [showXAxisLabel]="budgetSpent.showXAxisLabel"
+                      [showYAxisLabel]="budgetSpent.showYAxisLabel" [xAxisLabel]="budgetSpent.xAxisLabel"
+                      [yAxisLabel]="budgetSpent.yAxisLabel" [curve]="budgetSpent.curve">
                     </ngx-charts-area-chart>
                   </div>
                 </div>
@@ -462,19 +462,19 @@
                 <div class="px-16 py-24" fxLayout="column" fxLayoutAlign="center" fxLayout.gt-xs="row"
                   fxLayoutAlign.gt-xs="space-between end">
                   <div fxFlex="0 1 auto">
-                    <div class="h4 secondary-text">{{widgets.widget9.totalSpent.title}}</div>
+                    <div class="h4 secondary-text">{{widgets.budgetSpent.totalSpent.title}}</div>
                     <div class="pt-8 mat-display-1 m-0 font-weight-300 text-nowrap">
                       <span class="secondary-text">$</span>
-                      <span>{{widgets.widget9.totalSpent.count[widget9.currentRange]}}</span>
+                      <span>{{widgets.budgetSpent.totalSpent.count[budgetSpent.currentRange]}}</span>
                     </div>
                   </div>
                   <div class="h-52" fxFlex>
                     <ngx-charts-area-chart *fuseIfOnDom
-                      [results]="widgets.widget9.totalSpent.chart[widget9.currentRange]" [scheme]="widget9.scheme"
-                      [gradient]="widget9.gradient" [xAxis]="widget9.xAxis" [yAxis]="widget9.yAxis"
-                      [legend]="widget9.legend" [showXAxisLabel]="widget9.showXAxisLabel"
-                      [showYAxisLabel]="widget9.showYAxisLabel" [xAxisLabel]="widget9.xAxisLabel"
-                      [yAxisLabel]="widget9.yAxisLabel" [curve]="widget9.curve">
+                      [results]="widgets.budgetSpent.totalSpent.chart[budgetSpent.currentRange]" [scheme]="budgetSpent.scheme"
+                      [gradient]="budgetSpent.gradient" [xAxis]="budgetSpent.xAxis" [yAxis]="budgetSpent.yAxis"
+                      [legend]="budgetSpent.legend" [showXAxisLabel]="budgetSpent.showXAxisLabel"
+                      [showYAxisLabel]="budgetSpent.showYAxisLabel" [xAxisLabel]="budgetSpent.xAxisLabel"
+                      [yAxisLabel]="budgetSpent.yAxisLabel" [curve]="budgetSpent.curve">
                     </ngx-charts-area-chart>
                   </div>
                 </div>
@@ -482,28 +482,28 @@
                 <div class="px-16 py-24" fxLayout="column" fxLayoutAlign="center" fxLayout.gt-xs="row"
                   fxLayoutAlign.gt-xs="space-between end">
                   <div fxFlex="0 1 auto">
-                    <div class="h4 secondary-text">{{widgets.widget9.remaining.title}}</div>
+                    <div class="h4 secondary-text">{{widgets.budgetSpent.remaining.title}}</div>
                     <div class="pt-8 mat-display-1 m-0 font-weight-300 text-nowrap">
                       <span class="secondary-text">$</span>
-                      <span>{{widgets.widget9.remaining.count[widget9.currentRange]}}</span>
+                      <span>{{widgets.budgetSpent.remaining.count[budgetSpent.currentRange]}}</span>
                     </div>
                   </div>
                   <div class="h-52" fxFlex>
                     <ngx-charts-area-chart *fuseIfOnDom
-                      [results]="widgets.widget9.remaining.chart[widget9.currentRange]" [scheme]="widget9.scheme"
-                      [gradient]="widget9.gradient" [xAxis]="widget9.xAxis" [yAxis]="widget9.yAxis"
-                      [legend]="widget9.legend" [showXAxisLabel]="widget9.showXAxisLabel"
-                      [showYAxisLabel]="widget9.showYAxisLabel" [xAxisLabel]="widget9.xAxisLabel"
-                      [yAxisLabel]="widget9.yAxisLabel" [curve]="widget9.curve">
+                      [results]="widgets.budgetSpent.remaining.chart[budgetSpent.currentRange]" [scheme]="budgetSpent.scheme"
+                      [gradient]="budgetSpent.gradient" [xAxis]="budgetSpent.xAxis" [yAxis]="budgetSpent.yAxis"
+                      [legend]="budgetSpent.legend" [showXAxisLabel]="budgetSpent.showXAxisLabel"
+                      [showYAxisLabel]="budgetSpent.showYAxisLabel" [xAxisLabel]="budgetSpent.xAxisLabel"
+                      [yAxisLabel]="budgetSpent.yAxisLabel" [curve]="budgetSpent.curve">
                     </ngx-charts-area-chart>
                   </div>
                 </div>
 
                 <div class="px-16 py-24 border-top">
-                  <div class="h4 secondary-text">{{widgets.widget9.totalBudget.title}}</div>
+                  <div class="h4 secondary-text">{{widgets.budgetSpent.totalBudget.title}}</div>
                   <div class="pt-8 mat-display-1 m-0 font-weight-300">
                     <span class="secondary-text">$</span>
-                    <span>{{widgets.widget9.totalBudget.count}}</span>
+                    <span>{{widgets.budgetSpent.totalBudget.count}}</span>
                   </div>
                 </div>
 
@@ -521,21 +521,21 @@
 
                 <div class="simple-table-container" ms-responsive-table>
                   <div class=" table-title">
-                    {{widgets.widget10.title}}
+                    {{widgets.dueTask.title}}
                   </div>
 
                   <table class="simple">
 
                     <thead>
                       <tr>
-                        <th *ngFor="let column of widgets.widget10.table.columns">
+                        <th *ngFor="let column of widgets.dueTask.table.columns">
                           {{column.title}}
                         </th>
                       </tr>
                     </thead>
 
                     <tbody>
-                      <tr *ngFor="let row of widgets.widget10.table.rows">
+                      <tr *ngFor="let row of widgets.dueTask.table.rows">
                         <td *ngFor="let cell of row">
                           <span class="p-4" [ngClass]="cell.classes">
                             {{cell.value}}
@@ -571,14 +571,14 @@
               <div class="fuse-widget-front">
 
                 <div class="p-24 mb-8 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h2">{{widgets.widget11.title}}</div>
+                  <div class="h2">{{widgets.dueTask.title}}</div>
                   <div class="text-boxed accent m-0">
-                    {{widgets.widget11.table.rows.length}}
+                    {{widgets.dueTask.table.rows.length}}
                     members
                   </div>
                 </div>
 
-                <mat-table #table [dataSource]="widget11.dataSource">
+                <mat-table #table [dataSource]="dueTask.dataSource">
 
                   <!-- Avatar Column -->
                   <ng-container matColumnDef="avatar">
@@ -641,8 +641,8 @@
                     </mat-cell>
                   </ng-container>
 
-                  <mat-header-row *matHeaderRowDef="widgets.widget11.table.columns"></mat-header-row>
-                  <mat-row *matRowDef="let contact; columns: widgets.widget11.table.columns;">
+                  <mat-header-row *matHeaderRowDef="widgets.dueTask.table.columns"></mat-header-row>
+                  <mat-row *matRowDef="let contact; columns: widgets.dueTask.table.columns;">
                   </mat-row>
                 </mat-table>
               </div>
@@ -715,90 +715,10 @@
         </fuse-widget>
         <!-- / NOW WIDGET -->
 
+        
+
         <!-- WEATHER WIDGET -->
-        <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}">
-
-          <!-- Front -->
-          <div class="fuse-widget-front">
-
-            <div class="pl-16 pr-8 py-16" fxLayout="row" fxLayoutAlign="space-between center">
-
-              <div class="h4" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="secondary-text mr-8">place</mat-icon>
-                {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].name}}
-              </div>
-
-              <div>
-                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="more">
-                  <mat-icon class="secondary-text">more_vert</mat-icon>
-                </button>
-
-                <mat-menu #moreMenu="matMenu">
-                  <button mat-menu-item aria-label="Flip widget">
-                    Details
-                  </button>
-                </mat-menu>
-              </div>
-            </div>
-
-            <div class="p-16 pb-32" fxLayout="column" fxLayoutAlign="center center">
-
-              <div fxLayout="row" fxLayoutAlign="center center">
-                <mat-icon fontSet="meteocons"
-                  [fontIcon]="widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].icon"
-                  class="icon s-40 secondary-text mr-16"></mat-icon>
-                <span class="mat-display-2 m-0 font-weight-300 secondary-text">
-                  {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].temp[widgets.weatherWidget.tempUnit]}}
-                </span>
-                <span class="font-size-48 font-weight-300 hint-text text-super ml-8">°</span>
-                <span class="mat-display-2 mb-0 font-weight-300 hint-text ng-binding">C</span>
-              </div>
-            </div>
-
-            <div class="p-16 by" fxLayout="row" fxLayoutAlign="space-between center">
-              <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon fontSet="meteocons" fontIcon="icon-windy" class="s-16 secondary-text mr-8"></mat-icon>
-                <span>
-                  {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].windSpeed[widgets.weatherWidget.speedUnit]}}
-                </span>
-                <span class="secondary-text ml-5">{{widgets.weatherWidget.speedUnit}}</span>
-              </div>
-
-              <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon fontSet="meteocons" fontIcon="icon-compass" class="s-16 secondary-text mr-8"></mat-icon>
-                <span>
-                  {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].windDirection}}
-                </span>
-              </div>
-
-              <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon fontSet="meteocons" fontIcon="icon-rainy" class="s-16 secondary-text mr-8"></mat-icon>
-                <span>
-                  {{widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].rainProbability}}
-                </span>
-              </div>
-            </div>
-
-            <div class="py-16">
-              <div class="py-16 px-24" fxLayout="row" fxLayoutAlign="space-between center"
-                *ngFor="let day of widgets.weatherWidget.locations[widgets.weatherWidget.currentLocation].next3Days">
-                <span class="h4">{{day.name}}</span>
-                <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-icon fontSet="meteocons" [fontIcon]="day.icon" class="secondary-text mr-16"></mat-icon>
-                  <span class="h2">{{day.temp[widgets.weatherWidget.tempUnit]}}</span>
-                  <span class="h2 font-weight-300 secondary-text text-super">&deg;</span>
-                  <span class="h2 font-weight-300 secondary-text">
-                    {{widgets.weatherWidget.tempUnit}}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!-- / Front -->
-
-        </fuse-widget>
-        <!-- / WEATHER WIDGET -->
+    
 
       </div>
       <!-- / WIDGET GROUP -->
