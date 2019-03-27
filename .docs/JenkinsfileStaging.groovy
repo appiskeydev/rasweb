@@ -49,7 +49,7 @@ pipeline {
         }
         stage('Deploy on Dev Server') {
             steps {
-                withCredentials([file(credentialsId: 'JENKINS_PROD', variable: 'GC_KEY')]) {
+                withCredentials([file(credentialsId: 'JENKINS_STAGING', variable: 'GC_KEY')]) {
                     sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
                     sh("gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID")
                     sh("cat .docs/deployment.yaml | sed -e 's/KVERSION/${env.IMAGE_VERSION}/g' -e 's/KAPP_NAME/$IMAGE_NAME/g' | kubectl apply -f-")
