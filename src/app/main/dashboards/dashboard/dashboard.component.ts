@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
 * Widget 5
 */
     this.projectIssue = {
-      currentRange: 'thisWeek',
+      currentRange: 'thisW',
       xAxis: true,
       yAxis: true,
       gradient: false,
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
      * Widget 6
      */
     this.taskDistriibution = {
-      currentRange: 'thisWeek',
+      currentRange: 'thisW',
       legend: false,
       explodeSlices: false,
       labels: true,
@@ -119,7 +119,7 @@ export class DashboardComponent implements OnInit {
      * Widget 9
      */
     this.budgetSpent = {
-      currentRange: 'thisWeek',
+      currentRange: 'thisW',
       xAxis: false,
       yAxis: false,
       gradient: false,
@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit {
      * Widget 11
      */
     this.teamMember.onContactsChanged = new BehaviorSubject({});
-    this.teamMember.onContactsChanged.next(this.widgets.widget11.table.rows);
+    this.teamMember.onContactsChanged.next(this.widgets.teamMember.table.rows);
     this.teamMember.dataSource = new FilesDataSource(this.teamMember);
   }
 
