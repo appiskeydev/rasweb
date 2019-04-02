@@ -1,0 +1,50 @@
+<div id="project-detail" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+<!-- HEADER -->
+<div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+  fxLayoutAlign.gt-sm="space-between center">
+
+  <!-- APP TITLE -->
+  <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+
+    <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+      Project Detail
+    </span>
+  </div>
+  <!-- / APP TITLE -->
+
+ 
+
+  </div>
+   <!-- CONTENT CARD -->
+      <div >
+
+         
+
+              <!-- Name Column -->
+           
+                   <h1>{{project.name}}</h1> 
+              
+                    {{project.projectClient?.name}}
+    
+
+              
+
+       
+
+          
+          <!-- <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator> -->
+
+      </div>
+
+
+</div>
+</div>

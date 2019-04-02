@@ -140,6 +140,9 @@ export class ProjectService {
     });
   }
 
+
+
+
   /**
    * Add product
    *
@@ -224,6 +227,10 @@ export class ProjectService {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
+
+  // getItemById(itemId : number) :any{
+  //   return this._httpClient.get(API_URL + '/' + this.entityNode + '/' + itemId);
+  // }
 
   private handleError (error: Response | any) {
     console.error('LicenceService::handleError', error);

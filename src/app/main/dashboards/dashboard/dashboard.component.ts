@@ -5,6 +5,8 @@ import * as shape from 'd3-shape';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { fuseAnimations } from '@fuse/animations';
+import { Dashboard } from '../dashboard.model';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,12 +21,17 @@ export class DashboardComponent implements OnInit {
   selectedProject: any;
 
   widgets: any;
-  projectIssue: any = {};
-  taskDistriibution: any = {};
-  schedule: any = {};
-  budgetDistribution: any = {};
-  budgetSpent: any = {};
-  teamMember: any = {};
+
+  widget1 : any= {};
+  widget2: any = {};
+  widget3: any = {};
+  widget4 : any = {};
+  widget5: any = {};
+  widget6: any = {};
+  widget7: any = {};
+  widget8: any = {};
+  widget9: any = {};
+  widget11: any = {};
 
   dateNow = Date.now();
 
@@ -35,13 +42,14 @@ export class DashboardComponent implements OnInit {
   */
 
   constructor(private _fuseSidebarService : FuseSidebarService,
-    private _projectDashboardService : DashboardService) {
+    private http: Http,
+private _projectDashboardService : DashboardService) {
 
     /**
 * Widget 5
 */
-    this.projectIssue = {
-      currentRange: 'thisW',
+    this.widget5 = {
+      currentRange: 'thisWeek',
       xAxis: true,
       yAxis: true,
       gradient: false,
@@ -76,8 +84,8 @@ export class DashboardComponent implements OnInit {
     /**
      * Widget 6
      */
-    this.taskDistriibution = {
-      currentRange: 'thisW',
+    this.widget6 = {
+      currentRange: 'TW',
       legend: false,
       explodeSlices: false,
       labels: true,
@@ -94,14 +102,14 @@ export class DashboardComponent implements OnInit {
     /**
      * Widget 7
      */
-    this.schedule = {
-      currentRange: 'dt'
+    this.widget7 = {
+      currentRange: 'DT'
     };
 
     /**
      * Widget 8
      */
-    this.budgetDistribution = {
+    this.widget8 = {
       legend: false,
       explodeSlices: false,
       labels: true,
@@ -118,8 +126,8 @@ export class DashboardComponent implements OnInit {
     /**
      * Widget 9
      */
-    this.budgetSpent = {
-      currentRange: 'thisW',
+    this.widget9 = {
+      currentRange: 'TW',
       xAxis: false,
       yAxis: false,
       gradient: false,
@@ -148,15 +156,56 @@ export class DashboardComponent implements OnInit {
     //this.selectedProject = this.projects[0];
     //console.log(this.selectedProject.name);
     this.widgets = this._projectDashboardService.widgets;
-
+    // this.widget1 = this.widgets.widget1;
     /**
      * Widget 11
+  widget3 : any = {};
      */
-    this.teamMember.onContactsChanged = new BehaviorSubject({});
-    this.teamMember.onContactsChanged.next(this.widgets.teamMember.table.rows);
-    this.teamMember.dataSource = new FilesDataSource(this.teamMember);
-  }
+    this.widget11.onContactsChanged = new BehaviorSubject({});
+    this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
+    this.widget11.dataSource = new FilesDataSource(this.widget11);
 
+    // console.log(this.widgets.widget1);
+    this._projectDashboardService.getWidget1().subscribe(projectWidget1 => {
+      this.widgets.widget1= projectWidget1;
+      // console.log(this.widgets.widget1);
+
+  });
+
+  // console.log(this.widgets.widget2);
+  this._projectDashboardService.getWidget2().subscribe(projectWidget2 =>{
+    this.widgets.widget2 = projectWidget2;
+ 
+    // console.log(this.widgets.widget2)
+  });
+
+
+  // console.log(this.widgets.widget3);
+  this._projectDashboardService.getWidget3().subscribe(projectWidget3 => {
+    this.widgets.widget3 = projectWidget3;
+    // console.log(this.widgets.widget3);
+  });
+
+  // console.log(this.widgets.widget4);
+  this._projectDashboardService.getWidget4().subscribe(projectWidget4 =>
+    {this.widgets.widget4 = projectWidget4;
+      // console.log(this.widgets.widget4);
+    });
+
+    // console.log(this.widgets.widget5);
+    this._projectDashboardService.getWidget5().subscribe(projectWidget5 => {
+      this.widgets.widget5 = projectWidget5;
+      // console.log(this.widgets.widget5);
+    });
+
+    // console.log(this.widgets.widget6)
+    // this._projectDashboardService.getWidget6().subscribe(projectWidget6 => {
+    //   this.widgets.widget6 = projectWidget6;
+    //   console.log(this.widgets.widget6)
+    // });
+  
+
+  }
   /**
   * Toggle the sidebar
   *

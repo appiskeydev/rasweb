@@ -48,7 +48,7 @@
               <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
                   <mat-cell *matCellDef="let project">
-                      <p class="text-truncate">{{project.name}}</p>
+                      <a [routerLink]="'/project-detail/'+project.id+'/'"><p class="text-truncate">{{project.name}}</p></a>
                   </mat-cell>
               </ng-container>
 

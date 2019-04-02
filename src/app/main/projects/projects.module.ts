@@ -16,6 +16,7 @@ import { ResourceListProjectComponent } from '../resources/resource-list-project
 import { FeatureListProjectComponent } from '../features/feature-list-project/feature-list-project.component';
 import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
 import { MilestoneDialogFormComponent } from '../milestones/milestone-dialog-form/milestone-dialog-form.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
 
 const routes: Routes = [
@@ -65,13 +66,27 @@ const routes: Routes = [
             data: MilestoneService
         }
 
-    }
+    },
+    {
+        path: 'project-detail',
+        component: ProjectDetailComponent,
+        resolve: {
+            data: ProjectService
+        }
+    },
+     {
+         path: 'project-detail/:id',
+         component: ProjectDetailComponent,
+         resolve :{
+             data: ProjectService
+         }
+     }
 ];
 
 
 
 @NgModule({
-    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent, ResourceDailogFormComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectCreateDailogComponent, MilestoneDialogFormComponent],
+    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent, ResourceDailogFormComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectCreateDailogComponent, MilestoneDialogFormComponent,ProjectDetailComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -111,7 +126,7 @@ const routes: Routes = [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] }
     ],
-    exports: [MilestoneListProjectComponent,ResourceListProjectComponent, FeatureListProjectComponent],
+    exports: [MilestoneListProjectComponent,ResourceListProjectComponent, FeatureListProjectComponent, ProjectDetailComponent],
     entryComponents: [
         MilestoneFormComponent,ResourceDailogFormComponent,ProjectCreateDailogComponent
     ]
