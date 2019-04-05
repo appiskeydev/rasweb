@@ -1,4 +1,4 @@
-<div id="project-detail" class="page-layout carded fullwidth inner-scroll">
+<div id="client-detail" class="page-layout carded fullwidth inner-scroll">
 
   <!-- TOP BACKGROUND -->
   <div class="top-bg accent"></div>
@@ -14,7 +14,7 @@
       <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
 
         <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-          Project Detail
+          Client Detail
         </span>
       </div>
       <!-- / APP TITLE -->
@@ -28,45 +28,35 @@
 
       <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
 
-        <mat-label><b>Project Name</b></mat-label>
-        {{project.name}}
+        <mat-label><b>Client Name</b></mat-label>
+        {{client.name}}
       </div>
 
-      <a [routerLink]="'/client-detail/'+project.projectClient?.id+'/'"> {{project.projectClient?.name}}</a>
-      <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-        <mat-label><b>Start Date</b></mat-label>
-        {{project.projectStartDate}}
-      </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-        <mat-label><b>Development Date</b></mat-label>
-        {{project.projectDevelopmentDate}}
+      
+        <mat-label><b>Company</b></mat-label>
+        {{client.clientCompany?.name}}
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+      
+        <mat-label><b>Phone Number</b></mat-label>
+        {{client.clientPhoneNumber}}
+      </div>
 
-        <mat-label><b>Project Cost </b></mat-label>
-        {{project.projectCost}}
+
+      <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+      
+        <mat-label><b>Email</b></mat-label>
+        {{client.clientEmail}}
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-        <mat-label><b>Timeline </b></mat-label>
-        {{project.projectTimeline}}
+      
+        <mat-label><b>Location</b></mat-label>
+        {{client.clientLocation}}
       </div>
-
-      <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-        <mat-label><b>Payment Method </b></mat-label>
-        {{project.projectPaymentMethod}}
-      </div>
-
-
-
-
-
     </div>
 
     <!-- 

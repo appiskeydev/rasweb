@@ -20,14 +20,15 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { initializer } from './utils/app-init';
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 
 
 
 
 @NgModule({
     declarations: [
-        AppComponent
-    ],
+        AppComponent    ],
     imports: [
         BrowserModule,
 
@@ -71,23 +72,23 @@ import { AppRoutingModule } from './app-routing.module';
         FuseSharedModule,
         FuseSidebarModule,
         FuseThemeOptionsModule,
-        // KeycloakAngularModule,
+        KeycloakAngularModule,
         AppRoutingModule,
         
 
         // App modules
         LayoutModule,
     ],
-    // providers: [
-    //     {
-    //         provide: APP_INITIALIZER,
-    //         useFactory: initializer,
-    //         multi: true,
-    //         deps: [KeycloakService]
-    //     }
+    providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializer,
+            multi: true,
+            deps: [KeycloakService]
+        }
 
 
-    // ],
+    ],
     bootstrap: [
         AppComponent
     ]

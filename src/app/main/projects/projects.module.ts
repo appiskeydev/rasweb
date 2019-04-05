@@ -17,6 +17,8 @@ import { FeatureListProjectComponent } from '../features/feature-list-project/fe
 import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
 import { MilestoneDialogFormComponent } from '../milestones/milestone-dialog-form/milestone-dialog-form.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { ClientDetailComponent } from '../clients/client-detail/client-detail.component';
+import { ClientService } from '../clients/client.service';
 
 
 const routes: Routes = [
@@ -80,13 +82,27 @@ const routes: Routes = [
          resolve :{
              data: ProjectService
          }
-     }
+     },
+    {
+        path: 'client-detail',
+        component: ClientDetailComponent,
+        resolve: {
+            data: ClientService
+        }
+    },
+    {
+        path: 'client-detail/:id',
+        component: ClientDetailComponent,
+        resolve: {
+            data: ClientService
+        }
+    }
 ];
 
 
 
 @NgModule({
-    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent, ResourceDailogFormComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectCreateDailogComponent, MilestoneDialogFormComponent,ProjectDetailComponent],
+    declarations: [ ProjectListComponent, MilestoneFormComponent,MilestoneListProjectComponent,ProjectComponent, ProjectWizardComponent, ResourceDailogFormComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectCreateDailogComponent, MilestoneDialogFormComponent,ProjectDetailComponent, ClientDetailComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -126,7 +142,7 @@ const routes: Routes = [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] }
     ],
-    exports: [MilestoneListProjectComponent,ResourceListProjectComponent, FeatureListProjectComponent, ProjectDetailComponent],
+    exports: [MilestoneListProjectComponent,ResourceListProjectComponent, FeatureListProjectComponent, ProjectDetailComponent, ClientDetailComponent],
     entryComponents: [
         MilestoneFormComponent,ResourceDailogFormComponent,ProjectCreateDailogComponent
     ]
