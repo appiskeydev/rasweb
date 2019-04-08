@@ -5,6 +5,8 @@ import * as shape from 'd3-shape';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { fuseAnimations } from '@fuse/animations';
+import { Dashboard } from '../dashboard.model';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +21,11 @@ export class DashboardComponent implements OnInit {
   selectedProject: any;
 
   widgets: any;
+
+  widget1 : any= {};
+  widget2: any = {};
+  widget3: any = {};
+  widget4 : any = {};
   widget5: any = {};
   widget6: any = {};
   widget7: any = {};
@@ -35,13 +42,14 @@ export class DashboardComponent implements OnInit {
   */
 
   constructor(private _fuseSidebarService : FuseSidebarService,
-    private _projectDashboardService : DashboardService) {
+    private http: Http,
+private _projectDashboardService : DashboardService) {
 
     /**
 * Widget 5
 */
     this.widget5 = {
-      currentRange: 'TW',
+      currentRange: 'thisWeek',
       xAxis: true,
       yAxis: true,
       gradient: false,
@@ -95,7 +103,7 @@ export class DashboardComponent implements OnInit {
      * Widget 7
      */
     this.widget7 = {
-      currentRange: 'T'
+      currentRange: 'DT'
     };
 
     /**
@@ -148,15 +156,56 @@ export class DashboardComponent implements OnInit {
     //this.selectedProject = this.projects[0];
     //console.log(this.selectedProject.name);
     this.widgets = this._projectDashboardService.widgets;
-
+    // this.widget1 = this.widgets.widget1;
     /**
      * Widget 11
+  widget3 : any = {};
      */
-     this.widget11.onContactsChanged = new BehaviorSubject({});
-     this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
-     this.widget11.dataSource = new FilesDataSource(this.widget11);
-  }
+    this.widget11.onContactsChanged = new BehaviorSubject({});
+    this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
+    this.widget11.dataSource = new FilesDataSource(this.widget11);
 
+    // console.log(this.widgets.widget1);
+    this._projectDashboardService.getWidget1().subscribe(projectWidget1 => {
+      this.widgets.widget1= projectWidget1;
+      // console.log(this.widgets.widget1);
+
+  });
+
+  // console.log(this.widgets.widget2);
+  this._projectDashboardService.getWidget2().subscribe(projectWidget2 =>{
+    this.widgets.widget2 = projectWidget2;
+ 
+    // console.log(this.widgets.widget2)
+  });
+
+
+  // console.log(this.widgets.widget3);
+  this._projectDashboardService.getWidget3().subscribe(projectWidget3 => {
+    this.widgets.widget3 = projectWidget3;
+    // console.log(this.widgets.widget3);
+  });
+
+  // console.log(this.widgets.widget4);
+  this._projectDashboardService.getWidget4().subscribe(projectWidget4 =>
+    {this.widgets.widget4 = projectWidget4;
+      // console.log(this.widgets.widget4);
+    });
+
+    // console.log(this.widgets.widget5);
+    this._projectDashboardService.getWidget5().subscribe(projectWidget5 => {
+      this.widgets.widget5 = projectWidget5;
+      // console.log(this.widgets.widget5);
+    });
+
+    // console.log(this.widgets.widget6)
+    // this._projectDashboardService.getWidget6().subscribe(projectWidget6 => {
+    //   this.widgets.widget6 = projectWidget6;
+    //   console.log(this.widgets.widget6)
+    // });
+  
+
+  }
   /**
   * Toggle the sidebar
   *

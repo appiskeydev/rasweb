@@ -13,7 +13,14 @@ export class DashboardService {
 
   projects: any[];
   widgets : any[];
-  entityNode : string = 'project';
+  entityNode: string = 'project';
+  entityNodeWidget1: string = 'project/widget1';
+  entityNodeWidget2: string = 'project/widget2';
+  entityNodeWidget3: string = 'project/widget3';
+  entityNodeWidget4: string = 'project/widget4';
+  entityNodeWidget5: string = 'project/widget5';
+  entityNodeWidget6: string = 'project/widget6';
+  entityNodeDashboard: string = 'project/project-dashboard';
 
   /**
    * Constructor
@@ -52,7 +59,7 @@ export class DashboardService {
    *
    * @returns {Promise<any>}
    */
-  getProjects(): Promise<any> {
+  public getProjects(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient.get(API_URL + '/' + this.entityNode)
         .subscribe((response: any) => {
@@ -67,8 +74,9 @@ export class DashboardService {
    *
    * @returns {Promise<any>}
    */
-  getWidgets(): Promise<any> {
+  public getWidgets(): Promise<any> {
     return new Promise((resolve, reject) => {
+      //this._httpClient.get(API_URL + '/' + this.entityNodeDashboard)
       this._httpClient.get('api/project-dashboard-widgets')
         .subscribe((response: any) => {
           this.widgets = response;
@@ -78,5 +86,30 @@ export class DashboardService {
     });
   }
 
+  public getWidget1(): Observable<any> {
+    return this._httpClient
+      .get(API_URL + '/' + this.entityNodeWidget1)
+
+  }
+
+  public getWidget2() : Observable<any>
+{
+    return this._httpClient.get(API_URL + '/' + this.entityNodeWidget2)
+}
+public getWidget3() : Observable<any>{
+  return this._httpClient.get(API_URL + '/' + this.entityNodeWidget3);
+}
+public getWidget4() :Observable<any>{
+  return this._httpClient.get(API_URL +'/' + this.entityNodeWidget4);
+}
+public getWidget5() : Observable<any>{
+  return this._httpClient.get(API_URL + '/' + this.entityNodeWidget5);
+}
+
+public getWidget6() :Observable<any> {
+
+  return this._httpClient.get(API_URL + '/' + this.entityNodeWidget6);
+
+}
 
 }

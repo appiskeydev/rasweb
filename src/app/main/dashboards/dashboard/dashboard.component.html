@@ -66,7 +66,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="light-blue-fg font-size-72 line-height-72">
-                    {{widgets.widget1.data.count[widgets.widget1.currentRange]}}
+                    {{widgets.widget1.data.countObj[widgets.widget1.currentRange]}}
                   </div>
                   <div class="h3 secondary-text font-weight-500">{{widgets.widget1.data.label}}
                   </div>
@@ -77,7 +77,7 @@
                     {{widgets.widget1.data.extra.label}}:
                   </span>
                   <span class="h4 ml-8">
-                    {{widgets.widget1.data.extra.count[widgets.widget1.currentRange]}}
+                    {{widgets.widget1.data.extra.countObj[widgets.widget1.currentRange]}}
                   </span>
                 </div>
               </div>
@@ -358,7 +358,7 @@
                 <div class="px-16 py-8 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
                   <div class="h3">{{widgets.widget7.title}}</div>
                   <mat-form-field>
-                    <mat-select class="simplified" [(ngModel)]="widget7.currentRange" aria-label="Change range">
+                    <mat-select class="simplified" [(ngModel)]="widget7.ranges" aria-label="Change range">
                       <mat-option *ngFor="let range of widgets.widget7.ranges | keys" [value]="range.key">
                         {{range.value}}
                       </mat-option>
@@ -367,7 +367,7 @@
                 </div>
 
                 <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center"
-                  *ngFor="let event of widgets.widget7.schedule[widget7.currentRange]">
+                  *ngFor="let event of widgets.widget7.schedule[widget7.ranges]">
                   <div>
                     <div class="h3">{{event.title}}</div>
                     <div>
