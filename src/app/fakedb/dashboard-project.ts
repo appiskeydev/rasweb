@@ -1,5 +1,4 @@
-export class ProjectDashboardDb
-{
+export class ProjectDashboardDb {
     public static projects = [
         {
             'name': 'ACME Corp. Backend App'
@@ -16,35 +15,35 @@ export class ProjectDashboardDb
     ];
 
     public static widgets = {
-        'widget1'      : {
-            'ranges'      : {
-                'DY' : 'Yesterday',
-                'DT' : 'Today',
+        'widget1': {
+            'ranges': {
+                'DY': 'Yesterday',
+                'DT': 'Today',
                 'DTM': 'Tomorrow'
             },
             'currentRange': 'DT',
-            'data'        : {
+            'data': {
                 'label': 'DUE TASKS',
                 'count': {
-                    'DY' : 21,
-                    'DT' : 25,
+                    'DY': 21,
+                    'DT': 25,
                     'DTM': 19
                 },
                 'extra': {
                     'label': 'Completed',
                     'count': {
-                        'DY' : 6,
-                        'DT' : 7,
+                        'DY': 6,
+                        'DT': 7,
                         'DTM': '-'
                     }
 
                 }
             },
-            'detail'      : 'You can show some detailed information about this widget in here.'
+            'detail': 'You can show some detailed information about this widget in here.'
         },
-        'widget2'      : {
-            'title' : 'Overdue',
-            'data'  : {
+        'widget2': {
+            'title': 'Overdue',
+            'data': {
                 'label': 'TASKS',
                 'count': 4,
                 'extra': {
@@ -54,9 +53,9 @@ export class ProjectDashboardDb
             },
             'detail': 'You can show some detailed information about this widget in here.'
         },
-        'widget3'      : {
-            'title' : 'Issues',
-            'data'  : {
+        'widget3': {
+            'title': 'Issues',
+            'data': {
                 'label': 'OPEN',
                 'count': 32,
                 'extra': {
@@ -66,9 +65,9 @@ export class ProjectDashboardDb
             },
             'detail': 'You can show some detailed information about this widget in here.'
         },
-        'widget4'      : {
-            'title' : 'Features',
-            'data'  : {
+        'widget4': {
+            'title': 'Features',
+            'data': {
                 'label': 'PROPOSALS',
                 'count': 42,
                 'extra': {
@@ -78,102 +77,102 @@ export class ProjectDashboardDb
             },
             'detail': 'You can show some detailed information about this widget in here.'
         },
-        'widget5'      : {
-            'title'     : 'Project Issues',
-            'ranges'    : {
+        'widget5': {
+            'title': 'Github Issues',
+            'ranges': {
                 'TW': 'This Week',
                 'LW': 'Last Week',
                 '2W': '2 Weeks Ago'
             },
-            'mainChart' : {
+            'mainChart': {
                 '2W': [
                     {
-                        'name'  : 'Mon',
+                        'name': 'Mon',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 37
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 9
                             }
                         ]
                     },
                     {
-                        'name'  : 'Tue',
+                        'name': 'Tue',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 32
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 12
                             }
                         ]
                     },
                     {
-                        'name'  : 'Wed',
+                        'name': 'Wed',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 39
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 9
                             }
                         ]
                     },
                     {
-                        'name'  : 'Thu',
+                        'name': 'Thu',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 27
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 12
                             }
                         ]
                     },
                     {
-                        'name'  : 'Fri',
+                        'name': 'Fri',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 18
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 7
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sat',
+                        'name': 'Sat',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 24
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 8
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sun',
+                        'name': 'Sun',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 20
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 16
                             }
                         ]
@@ -181,92 +180,92 @@ export class ProjectDashboardDb
                 ],
                 'LW': [
                     {
-                        'name'  : 'Mon',
+                        'name': 'Mon',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 37
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 12
                             }
                         ]
                     },
                     {
-                        'name'  : 'Tue',
+                        'name': 'Tue',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 24
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 8
                             }
                         ]
                     },
                     {
-                        'name'  : 'Wed',
+                        'name': 'Wed',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 51
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 7
                             }
                         ]
                     },
                     {
-                        'name'  : 'Thu',
+                        'name': 'Thu',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 31
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 13
                             }
                         ]
                     },
                     {
-                        'name'  : 'Fri',
+                        'name': 'Fri',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 29
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 7
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sat',
+                        'name': 'Sat',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 17
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 6
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sun',
+                        'name': 'Sun',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 31
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 10
                             }
                         ]
@@ -274,92 +273,92 @@ export class ProjectDashboardDb
                 ],
                 'TW': [
                     {
-                        'name'  : 'Mon',
+                        'name': 'Mon',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 42
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 11
                             }
                         ]
                     },
                     {
-                        'name'  : 'Tue',
+                        'name': 'Tue',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 28
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 10
                             }
                         ]
                     },
                     {
-                        'name'  : 'Wed',
+                        'name': 'Wed',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 43
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 8
                             }
                         ]
                     },
                     {
-                        'name'  : 'Thu',
+                        'name': 'Thu',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 34
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 11
                             }
                         ]
                     },
                     {
-                        'name'  : 'Fri',
+                        'name': 'Fri',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 20
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 8
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sat',
+                        'name': 'Sat',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 25
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 10
                             }
                         ]
                     },
                     {
-                        'name'  : 'Sun',
+                        'name': 'Sun',
                         'series': [
                             {
-                                'name' : 'issues',
+                                'name': 'issues',
                                 'value': 22
                             },
                             {
-                                'name' : 'closed issues',
+                                'name': 'closed issues',
                                 'value': 17
                             }
                         ]
@@ -367,7 +366,7 @@ export class ProjectDashboardDb
                 ]
             },
             'supporting': {
-                'created'  : {
+                'created': {
                     'label': 'CREATED',
                     'count': {
                         '2W': 48,
@@ -377,34 +376,34 @@ export class ProjectDashboardDb
                     'chart': {
                         '2W': [
                             {
-                                'name'  : 'CREATED',
+                                'name': 'CREATED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -412,34 +411,34 @@ export class ProjectDashboardDb
                         ],
                         'LW': [
                             {
-                                'name'  : 'Created',
+                                'name': 'Created',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -447,34 +446,34 @@ export class ProjectDashboardDb
                         ],
                         'TW': [
                             {
-                                'name'  : 'Created',
+                                'name': 'Created',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 2
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 1
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 4
                                     }
                                 ]
@@ -482,7 +481,7 @@ export class ProjectDashboardDb
                         ]
                     }
                 },
-                'closed'   : {
+                'closed': {
                     'label': 'CLOSED',
                     'count': {
                         '2W': 27,
@@ -492,34 +491,34 @@ export class ProjectDashboardDb
                     'chart': {
                         '2W': [
                             {
-                                'name'  : 'CLOSED',
+                                'name': 'CLOSED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 2
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 1
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 4
                                     }
                                 ]
@@ -527,34 +526,34 @@ export class ProjectDashboardDb
                         ],
                         'LW': [
                             {
-                                'name'  : 'CLOSED',
+                                'name': 'CLOSED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -562,34 +561,34 @@ export class ProjectDashboardDb
                         ],
                         'TW': [
                             {
-                                'name'  : 'CLOSED',
+                                'name': 'CLOSED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -597,7 +596,7 @@ export class ProjectDashboardDb
                         ]
                     }
                 },
-                'reOpened' : {
+                'reOpened': {
                     'label': 'RE-OPENED',
                     'count': {
                         '2W': 4,
@@ -607,34 +606,34 @@ export class ProjectDashboardDb
                     'chart': {
                         '2W': [
                             {
-                                'name'  : 'RE-OPENED',
+                                'name': 'RE-OPENED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -642,34 +641,34 @@ export class ProjectDashboardDb
                         ],
                         'LW': [
                             {
-                                'name'  : 'RE-OPENED',
+                                'name': 'RE-OPENED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 1
                                     }
                                 ]
@@ -677,34 +676,34 @@ export class ProjectDashboardDb
                         ],
                         'TW': [
                             {
-                                'name'  : 'RE-OPENED',
+                                'name': 'RE-OPENED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 2
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 1
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 4
                                     }
                                 ]
@@ -712,7 +711,7 @@ export class ProjectDashboardDb
                         ]
                     }
                 },
-                'wontFix'  : {
+                'wontFix': {
                     'label': 'WON\'T FIX',
                     'count': {
                         '2W': 6,
@@ -722,34 +721,34 @@ export class ProjectDashboardDb
                     'chart': {
                         '2W': [
                             {
-                                'name'  : 'WON\'T FIX',
+                                'name': 'WON\'T FIX',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 2
                                     }
                                 ]
@@ -757,34 +756,34 @@ export class ProjectDashboardDb
                         ],
                         'LW': [
                             {
-                                'name'  : 'WON\'T FIX',
+                                'name': 'WON\'T FIX',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -792,34 +791,34 @@ export class ProjectDashboardDb
                         ],
                         'TW': [
                             {
-                                'name'  : 'WON\'T FIX',
+                                'name': 'WON\'T FIX',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -837,34 +836,34 @@ export class ProjectDashboardDb
                     'chart': {
                         '2W': [
                             {
-                                'name'  : 'NEEDS TEST',
+                                'name': 'NEEDS TEST',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -872,34 +871,34 @@ export class ProjectDashboardDb
                         ],
                         'LW': [
                             {
-                                'name'  : 'NEEDS TEST',
+                                'name': 'NEEDS TEST',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 1
                                     }
                                 ]
@@ -907,34 +906,34 @@ export class ProjectDashboardDb
                         ],
                         'TW': [
                             {
-                                'name'  : 'NEEDS TEST',
+                                'name': 'NEEDS TEST',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -942,7 +941,7 @@ export class ProjectDashboardDb
                         ]
                     }
                 },
-                'fixed'    : {
+                'fixed': {
                     'label': 'FIXED',
                     'count': {
                         '2W': 21,
@@ -952,34 +951,34 @@ export class ProjectDashboardDb
                     'chart': {
                         '2W': [
                             {
-                                'name'  : 'FIXED',
+                                'name': 'FIXED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 8
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 1
                                     }
                                 ]
@@ -987,34 +986,34 @@ export class ProjectDashboardDb
                         ],
                         'LW': [
                             {
-                                'name'  : 'FIXED',
+                                'name': 'FIXED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 7
                                     }
                                 ]
@@ -1022,34 +1021,34 @@ export class ProjectDashboardDb
                         ],
                         'TW': [
                             {
-                                'name'  : 'FIXED',
+                                'name': 'FIXED',
                                 'series': [
                                     {
-                                        'name' : 'Mon',
+                                        'name': 'Mon',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Tue',
+                                        'name': 'Tue',
                                         'value': 7
                                     },
                                     {
-                                        'name' : 'Wed',
+                                        'name': 'Wed',
                                         'value': 4
                                     },
                                     {
-                                        'name' : 'Thu',
+                                        'name': 'Thu',
                                         'value': 6
                                     },
                                     {
-                                        'name' : 'Fri',
+                                        'name': 'Fri',
                                         'value': 5
                                     },
                                     {
-                                        'name' : 'Sat',
+                                        'name': 'Sat',
                                         'value': 3
                                     },
                                     {
-                                        'name' : 'Sun',
+                                        'name': 'Sun',
                                         'value': 2
                                     }
                                 ]
@@ -1059,70 +1058,70 @@ export class ProjectDashboardDb
                 }
             }
         },
-        'widget6'      : {
-            'title'      : 'Task Distribution',
-            'ranges'     : {
+        'widget6': {
+            'title': 'Task Distribution',
+            'ranges': {
                 'TW': 'This Week',
                 'LW': 'Last Week',
                 '2W': '2 Weeks Ago'
             },
-            'mainChart'  : {
+            'mainChart': {
                 'TW': [
                     {
-                        'name' : 'Frontend',
+                        'name': 'Frontend',
                         'value': 15
                     },
                     {
-                        'name' : 'Backend',
+                        'name': 'Backend',
                         'value': 20
                     },
                     {
-                        'name' : 'API',
+                        'name': 'API',
                         'value': 38
                     },
                     {
-                        'name' : 'Issues',
+                        'name': 'Issues',
                         'value': 27
                     }
                 ],
                 'LW': [
                     {
-                        'name' : 'Frontend',
+                        'name': 'Frontend',
                         'value': 19
                     },
                     {
-                        'name' : 'Backend',
+                        'name': 'Backend',
                         'value': 16
                     },
                     {
-                        'name' : 'API',
+                        'name': 'API',
                         'value': 42
                     },
                     {
-                        'name' : 'Issues',
+                        'name': 'Issues',
                         'value': 23
                     }
                 ],
                 '2W': [
                     {
-                        'name' : 'Frontend',
+                        'name': 'Frontend',
                         'value': 18
                     },
                     {
-                        'name' : 'Backend',
+                        'name': 'Backend',
                         'value': 17
                     },
                     {
-                        'name' : 'API',
+                        'name': 'API',
                         'value': 40
                     },
                     {
-                        'name' : 'Issues',
+                        'name': 'Issues',
                         'value': 25
                     }
                 ]
             },
-            'footerLeft' : {
+            'footerLeft': {
                 'title': 'Tasks Added',
                 'count': {
                     '2W': 487,
@@ -1139,109 +1138,109 @@ export class ProjectDashboardDb
                 }
             }
         },
-        'widget7'      : {
-            'title'   : 'Schedule',
-            'ranges'  : {
-                'T' : 'Today',
+        'widget7': {
+            'title': 'Schedule',
+            'ranges': {
+                'T': 'Today',
                 'TM': 'Tomorrow'
             },
             'schedule': {
-                'T' : [
+                'T': [
                     {
-                        'title'   : 'Group Meeting',
-                        'time'    : 'In 32 minutes',
+                        'title': 'Group Meeting',
+                        'time': 'In 32 minutes',
                         'location': 'Room 1B'
                     },
                     {
                         'title': 'Coffee Break',
-                        'time' : '10:30 AM'
+                        'time': '10:30 AM'
                     },
                     {
                         'title': 'Public Beta Release',
-                        'time' : '11:00 AM'
+                        'time': '11:00 AM'
                     },
                     {
                         'title': 'Lunch',
-                        'time' : '12:10 PM'
+                        'time': '12:10 PM'
                     },
                     {
                         'title': 'Dinner with David',
-                        'time' : '17:30 PM'
+                        'time': '17:30 PM'
                     },
                     {
                         'title': 'Jane\'s Birthday Party',
-                        'time' : '19:30 PM'
+                        'time': '19:30 PM'
                     },
                     {
                         'title': 'Overseer\'s Retirement Party',
-                        'time' : '21:30 PM'
+                        'time': '21:30 PM'
                     }
                 ],
                 'TM': [
                     {
                         'title': 'Marketing Meeting',
-                        'time' : '09:00 AM'
+                        'time': '09:00 AM'
                     },
                     {
                         'title': 'Public Announcement',
-                        'time' : '11:00 AM'
+                        'time': '11:00 AM'
                     },
                     {
                         'title': 'Lunch',
-                        'time' : '12:10 PM'
+                        'time': '12:10 PM'
                     },
                     {
                         'title': 'Meeting with Beta Testers',
-                        'time' : '15:00 AM'
+                        'time': '15:00 AM'
                     },
                     {
                         'title': 'Live Stream',
-                        'time' : '17:30 PM'
+                        'time': '17:30 PM'
                     },
                     {
                         'title': 'Release Party',
-                        'time' : '19:30 PM'
+                        'time': '19:30 PM'
                     },
                     {
                         'title': 'CEO\'s Party',
-                        'time' : '22:30 PM'
+                        'time': '22:30 PM'
                     }
                 ]
             }
         },
-        'widget8'      : {
-            'title'    : 'Budget Distribution',
+        'widget8': {
+            'title': 'Budget Distribution',
             'mainChart': [
                 {
-                    'name' : 'Wireframing',
+                    'name': 'Wireframing',
                     'value': 12
                 },
                 {
-                    'name' : 'Design',
+                    'name': 'Design',
                     'value': 17
                 },
                 {
-                    'name' : 'Coding',
+                    'name': 'Coding',
                     'value': 28
                 },
                 {
-                    'name' : 'Marketing',
+                    'name': 'Marketing',
                     'value': 25
                 },
                 {
-                    'name' : 'Extra',
+                    'name': 'Extra',
                     'value': 15
                 }
             ]
         },
-        'widget9'      : {
-            'title'         : 'Spent',
-            'ranges'        : {
+        'widget9': {
+            'title': 'Spent',
+            'ranges': {
                 'TW': 'This Week',
                 'LW': 'Last Week',
                 '2W': '2 Weeks Ago'
             },
-            'weeklySpent'   : {
+            'weeklySpent': {
                 'title': 'WEEKLY SPENT',
                 'count': {
                     '2W': '2,682.85',
@@ -1251,34 +1250,34 @@ export class ProjectDashboardDb
                 'chart': {
                     '2W': [
                         {
-                            'name'  : 'CREATED',
+                            'name': 'CREATED',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 6
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 1
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 3
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 2
                                 }
                             ]
@@ -1286,34 +1285,34 @@ export class ProjectDashboardDb
                     ],
                     'LW': [
                         {
-                            'name'  : 'Created',
+                            'name': 'Created',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 6
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 1
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 3
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 4
                                 }
                             ]
@@ -1321,34 +1320,34 @@ export class ProjectDashboardDb
                     ],
                     'TW': [
                         {
-                            'name'  : 'Created',
+                            'name': 'Created',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 6
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 3
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 6
                                 }
                             ]
@@ -1356,7 +1355,7 @@ export class ProjectDashboardDb
                     ]
                 }
             },
-            'totalSpent'    : {
+            'totalSpent': {
                 'title': 'TOTAL SPENT',
                 'count': {
                     '2W': '29,682.85',
@@ -1366,34 +1365,34 @@ export class ProjectDashboardDb
                 'chart': {
                     '2W': [
                         {
-                            'name'  : 'CREATED',
+                            'name': 'CREATED',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 3
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 7
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 7
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 4
                                 }
                             ]
@@ -1401,34 +1400,34 @@ export class ProjectDashboardDb
                     ],
                     'LW': [
                         {
-                            'name'  : 'Created',
+                            'name': 'Created',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 7
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 8
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 8
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 6
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 1
                                 }
                             ]
@@ -1436,34 +1435,34 @@ export class ProjectDashboardDb
                     ],
                     'TW': [
                         {
-                            'name'  : 'Created',
+                            'name': 'Created',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 6
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 7
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 7
                                 }
                             ]
@@ -1471,7 +1470,7 @@ export class ProjectDashboardDb
                     ]
                 }
             },
-            'remaining'     : {
+            'remaining': {
                 'title': 'REMAINING',
                 'count': {
                     '2W': '94.317,15',
@@ -1481,34 +1480,34 @@ export class ProjectDashboardDb
                 'chart': {
                     '2W': [
                         {
-                            'name'  : 'CREATED',
+                            'name': 'CREATED',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 1
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 7
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 8
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 4
                                 }
                             ]
@@ -1516,34 +1515,34 @@ export class ProjectDashboardDb
                     ],
                     'LW': [
                         {
-                            'name'  : 'Created',
+                            'name': 'Created',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 3
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 1
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 8
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 8
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 4
                                 }
                             ]
@@ -1551,34 +1550,34 @@ export class ProjectDashboardDb
                     ],
                     'TW': [
                         {
-                            'name'  : 'Created',
+                            'name': 'Created',
                             'series': [
                                 {
-                                    'name' : 'Mon',
+                                    'name': 'Mon',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Tue',
+                                    'name': 'Tue',
                                     'value': 4
                                 },
                                 {
-                                    'name' : 'Wed',
+                                    'name': 'Wed',
                                     'value': 8
                                 },
                                 {
-                                    'name' : 'Thu',
+                                    'name': 'Thu',
                                     'value': 6
                                 },
                                 {
-                                    'name' : 'Fri',
+                                    'name': 'Fri',
                                     'value': 2
                                 },
                                 {
-                                    'name' : 'Sat',
+                                    'name': 'Sat',
                                     'value': 5
                                 },
                                 {
-                                    'name' : 'Sun',
+                                    'name': 'Sun',
                                     'value': 1
                                 }
                             ]
@@ -1590,12 +1589,12 @@ export class ProjectDashboardDb
                 'title': 'TOTAL BUDGET',
                 'count': '124.000,00'
             },
-            'totalBudget'   : {
+            'totalBudget': {
                 'title': 'TOTAL BUDGET',
                 'count': '124.000,00'
             }
         },
-        'widget10'     : {
+        'widget10': {
             'title': 'Budget Details',
             'table': {
                 'columns': [
@@ -1618,351 +1617,351 @@ export class ProjectDashboardDb
                         'title': 'Remaining (%)'
                     }
                 ],
-                'rows'   : [
+                'rows': [
                     [
                         {
-                            'value'  : 'Wireframing',
+                            'value': 'Wireframing',
                             'classes': 'primary',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$14,880.00',
+                            'value': '$14,880.00',
                             'classes': 'text-bold',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$14,000.00',
+                            'value': '$14,000.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%94.08',
+                            'value': '%94.08',
                             'classes': 'text-success',
-                            'icon'   : 'trending_up'
+                            'icon': 'trending_up'
                         },
                         {
-                            'value'  : '$880.00',
+                            'value': '$880.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%5.92',
+                            'value': '%5.92',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         }
                     ],
                     [
                         {
-                            'value'  : 'Design',
+                            'value': 'Design',
                             'classes': 'green',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$21,080.00',
+                            'value': '$21,080.00',
                             'classes': 'text-bold',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$17,240.34',
+                            'value': '$17,240.34',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%81.78',
+                            'value': '%81.78',
                             'classes': 'text-success',
-                            'icon'   : 'trending_up'
+                            'icon': 'trending_up'
                         },
                         {
-                            'value'  : '$3,839.66',
+                            'value': '$3,839.66',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%18.22',
+                            'value': '%18.22',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         }
                     ],
                     [
                         {
-                            'value'  : 'Coding',
+                            'value': 'Coding',
                             'classes': 'red',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$34,720.00',
+                            'value': '$34,720.00',
                             'classes': 'text-bold',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$3,518.00',
+                            'value': '$3,518.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%10.13',
+                            'value': '%10.13',
                             'classes': 'text-danger',
-                            'icon'   : 'trending_down'
+                            'icon': 'trending_down'
                         },
                         {
-                            'value'  : '$31,202.00',
+                            'value': '$31,202.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%89.87',
+                            'value': '%89.87',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         }
                     ],
                     [
                         {
-                            'value'  : 'Marketing',
+                            'value': 'Marketing',
                             'classes': 'accent',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$34,720.00',
+                            'value': '$34,720.00',
                             'classes': 'text-bold',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$0.00',
+                            'value': '$0.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%0.00',
+                            'value': '%0.00',
                             'classes': 'text-info',
-                            'icon'   : 'trending_flat'
+                            'icon': 'trending_flat'
                         },
                         {
-                            'value'  : '$34,720.00',
+                            'value': '$34,720.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%100.00',
+                            'value': '%100.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         }
                     ],
                     [
                         {
-                            'value'  : 'Extra',
+                            'value': 'Extra',
                             'classes': 'orange',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$18,600.00',
+                            'value': '$18,600.00',
                             'classes': 'text-bold',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '$0.00',
+                            'value': '$0.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%0.00',
+                            'value': '%0.00',
                             'classes': 'text-info',
-                            'icon'   : 'trending_flat'
+                            'icon': 'trending_flat'
                         },
                         {
-                            'value'  : '$34,720.00',
+                            'value': '$34,720.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         },
                         {
-                            'value'  : '%100.00',
+                            'value': '%100.00',
                             'classes': '',
-                            'icon'   : ''
+                            'icon': ''
                         }
                     ]
                 ]
             }
         },
-        'widget11'     : {
+        'widget11': {
             'title': 'Team Members',
             'table': {
                 'columns': ['avatar', 'name', 'position', 'office', 'email', 'phone'],
-                'rows'   : [
+                'rows': [
                     {
-                        avatar  : 'assets/images/avatars/james.jpg',
-                        name    : 'Jack Gilbert',
+                        avatar: 'assets/images/avatars/james.jpg',
+                        name: 'Jack Gilbert',
                         position: 'Design Manager',
-                        office  : 'Johor Bahru',
-                        email   : 'jgilbert48@mail.com',
-                        phone   : '+16 298 032 7774'
+                        office: 'Johor Bahru',
+                        email: 'jgilbert48@mail.com',
+                        phone: '+16 298 032 7774'
                     },
                     {
-                        avatar  : 'assets/images/avatars/katherine.jpg',
-                        name    : 'Kathy Anderson',
+                        avatar: 'assets/images/avatars/katherine.jpg',
+                        name: 'Kathy Anderson',
                         position: 'Recruiting Manager',
-                        office  : 'Solţānābād',
-                        email   : 'kanderson49@mail.com.br',
-                        phone   : '+23 572 311 1136'
+                        office: 'Solţānābād',
+                        email: 'kanderson49@mail.com.br',
+                        phone: '+23 572 311 1136'
                     },
                     {
-                        avatar  : 'assets/images/avatars/andrew.jpg',
-                        name    : 'Mark Turner',
+                        avatar: 'assets/images/avatars/andrew.jpg',
+                        name: 'Mark Turner',
                         position: 'Recruiting Manager',
-                        office  : 'Neftegorsk',
-                        email   : 'mturner4a@mail.com',
-                        phone   : '+01 139 803 9263'
+                        office: 'Neftegorsk',
+                        email: 'mturner4a@mail.com',
+                        phone: '+01 139 803 9263'
                     },
                     {
-                        avatar  : 'assets/images/avatars/jane.jpg',
-                        name    : 'Kathryn Martinez',
+                        avatar: 'assets/images/avatars/jane.jpg',
+                        name: 'Kathryn Martinez',
                         position: 'Director of Sales',
-                        office  : 'Palekastro',
-                        email   : 'kmartinez4b@mail.com',
-                        phone   : '+25 467 022 5393'
+                        office: 'Palekastro',
+                        email: 'kmartinez4b@mail.com',
+                        phone: '+25 467 022 5393'
                     },
                     {
-                        avatar  : 'assets/images/avatars/alice.jpg',
-                        name    : 'Annie Gonzales',
+                        avatar: 'assets/images/avatars/alice.jpg',
+                        name: 'Annie Gonzales',
                         position: 'Actuary',
-                        office  : 'Candon',
-                        email   : 'agonzales4c@mail.edu',
-                        phone   : '+99 891 619 7138'
+                        office: 'Candon',
+                        email: 'agonzales4c@mail.edu',
+                        phone: '+99 891 619 7138'
                     },
                     {
-                        avatar  : 'assets/images/avatars/vincent.jpg',
-                        name    : 'Howard King',
+                        avatar: 'assets/images/avatars/vincent.jpg',
+                        name: 'Howard King',
                         position: 'Human Resources',
-                        office  : 'Bergen op Zoom',
-                        email   : 'hking4d@mail.gov',
-                        phone   : '+46 984 348 1409'
+                        office: 'Bergen op Zoom',
+                        email: 'hking4d@mail.gov',
+                        phone: '+46 984 348 1409'
                     },
                     {
-                        avatar  : 'assets/images/avatars/joyce.jpg',
-                        name    : 'Elizabeth Dixon',
+                        avatar: 'assets/images/avatars/joyce.jpg',
+                        name: 'Elizabeth Dixon',
                         position: 'Electrical Engineer',
-                        office  : 'Písečná',
-                        email   : 'edixon4e@mail.gov',
-                        phone   : '+33 332 067 9063'
+                        office: 'Písečná',
+                        email: 'edixon4e@mail.gov',
+                        phone: '+33 332 067 9063'
                     },
                     {
-                        avatar  : 'assets/images/avatars/danielle.jpg',
-                        name    : 'Dorothy Morris',
+                        avatar: 'assets/images/avatars/danielle.jpg',
+                        name: 'Dorothy Morris',
                         position: 'Office Assistant',
-                        office  : 'Magsaysay',
-                        email   : 'dmorris4f@mail.com',
-                        phone   : '+05 490 958 6120'
+                        office: 'Magsaysay',
+                        email: 'dmorris4f@mail.com',
+                        phone: '+05 490 958 6120'
                     },
                     {
-                        avatar  : 'assets/images/avatars/carl.jpg',
-                        name    : 'Mark Gonzales',
+                        avatar: 'assets/images/avatars/carl.jpg',
+                        name: 'Mark Gonzales',
                         position: 'Quality Control',
-                        office  : 'Matsue-shi',
-                        email   : 'mgonzales4g@mail.com',
-                        phone   : '+03 168 394 9935'
+                        office: 'Matsue-shi',
+                        email: 'mgonzales4g@mail.com',
+                        phone: '+03 168 394 9935'
                     },
                     {
-                        avatar  : 'assets/images/avatars/profile.jpg',
-                        name    : 'Catherine Rogers',
+                        avatar: 'assets/images/avatars/profile.jpg',
+                        name: 'Catherine Rogers',
                         position: 'Programmer Analyst',
-                        office  : 'Kangar',
-                        email   : 'crogers4h@mail.com',
-                        phone   : '+86 235 407 5373'
+                        office: 'Kangar',
+                        email: 'crogers4h@mail.com',
+                        phone: '+86 235 407 5373'
                     },
                     {
-                        avatar  : 'assets/images/avatars/garry.jpg',
-                        name    : 'Ruth Grant',
+                        avatar: 'assets/images/avatars/garry.jpg',
+                        name: 'Ruth Grant',
                         position: 'Community Outreach',
-                        office  : 'Beaune',
-                        email   : 'rgrant4i@mail.pl',
-                        phone   : '+36 288 083 8460'
+                        office: 'Beaune',
+                        email: 'rgrant4i@mail.pl',
+                        phone: '+36 288 083 8460'
                     },
                     {
-                        avatar  : 'assets/images/avatars/james.jpg',
-                        name    : 'Phyllis Gutierrez',
+                        avatar: 'assets/images/avatars/james.jpg',
+                        name: 'Phyllis Gutierrez',
                         position: 'Administrative Assistant',
-                        office  : 'Shlissel’burg',
-                        email   : 'pgutierrez4j@mail.net',
-                        phone   : '+52 749 861 9304'
+                        office: 'Shlissel’burg',
+                        email: 'pgutierrez4j@mail.net',
+                        phone: '+52 749 861 9304'
                     }, {
-                        avatar  : 'assets/images/avatars/alice.jpg',
-                        name    : 'Lillian Morris',
+                        avatar: 'assets/images/avatars/alice.jpg',
+                        name: 'Lillian Morris',
                         position: 'Media Planner',
-                        office  : 'Berlin',
-                        email   : 'lmorris4k@mail.de',
-                        phone   : '+59 695 110 3856'
+                        office: 'Berlin',
+                        email: 'lmorris4k@mail.de',
+                        phone: '+59 695 110 3856'
                     }, {
-                        avatar  : 'assets/images/avatars/vincent.jpg',
-                        name    : 'Jeremy Anderson',
+                        avatar: 'assets/images/avatars/vincent.jpg',
+                        name: 'Jeremy Anderson',
                         position: 'Systems Engineer',
-                        office  : 'Lũng Hồ',
-                        email   : 'janderson4l@mail.uk',
-                        phone   : '+40 384 115 1448'
+                        office: 'Lũng Hồ',
+                        email: 'janderson4l@mail.uk',
+                        phone: '+40 384 115 1448'
                     },
                     {
-                        avatar  : 'assets/images/avatars/carl.jpg',
-                        name    : 'Arthur Lawrence',
+                        avatar: 'assets/images/avatars/carl.jpg',
+                        name: 'Arthur Lawrence',
                         position: 'Nurse Practicioner',
-                        office  : 'Sarkanjut',
-                        email   : 'alawrence4m@mail.com',
-                        phone   : '+36 631 599 7867'
+                        office: 'Sarkanjut',
+                        email: 'alawrence4m@mail.com',
+                        phone: '+36 631 599 7867'
                     }, {
-                        avatar  : 'assets/images/avatars/andrew.jpg',
-                        name    : 'David Simmons',
+                        avatar: 'assets/images/avatars/andrew.jpg',
+                        name: 'David Simmons',
                         position: 'Social Worker',
-                        office  : 'Ushumun',
-                        email   : 'dsimmons4n@mail.com',
-                        phone   : '+01 189 681 4417'
+                        office: 'Ushumun',
+                        email: 'dsimmons4n@mail.com',
+                        phone: '+01 189 681 4417'
                     }, {
-                        avatar  : 'assets/images/avatars/danielle.jpg',
-                        name    : 'Daniel Johnston',
+                        avatar: 'assets/images/avatars/danielle.jpg',
+                        name: 'Daniel Johnston',
                         position: 'Help Desk',
-                        office  : 'São Carlos',
-                        email   : 'djohnston4o@mail.gov',
-                        phone   : '+60 028 943 7919'
+                        office: 'São Carlos',
+                        email: 'djohnston4o@mail.gov',
+                        phone: '+60 028 943 7919'
                     },
 
                     {
-                        avatar  : 'assets/images/avatars/joyce.jpg',
-                        name    : 'Ann King',
+                        avatar: 'assets/images/avatars/joyce.jpg',
+                        name: 'Ann King',
                         position: 'Internal Auditor',
-                        office  : 'Liren',
-                        email   : 'aking4p@mail.com',
-                        phone   : '+91 103 932 6545'
+                        office: 'Liren',
+                        email: 'aking4p@mail.com',
+                        phone: '+91 103 932 6545'
                     },
                     {
-                        avatar  : 'assets/images/avatars/james.jpg',
-                        name    : 'Phillip Franklin',
+                        avatar: 'assets/images/avatars/james.jpg',
+                        name: 'Phillip Franklin',
                         position: 'VP Accounting',
-                        office  : 'Soba',
-                        email   : 'pfranklin4q@mail.com',
-                        phone   : '+25 820 986 7626'
+                        office: 'Soba',
+                        email: 'pfranklin4q@mail.com',
+                        phone: '+25 820 986 7626'
                     },
                     {
-                        avatar  : 'assets/images/avatars/garry.jpg',
-                        name    : 'Gary Gonzalez',
+                        avatar: 'assets/images/avatars/garry.jpg',
+                        name: 'Gary Gonzalez',
                         position: 'Speech Pathologist',
-                        office  : 'Gangkou',
-                        email   : 'ggonzalez4r@mail.cc',
-                        phone   : '+10 862 046 7916'
+                        office: 'Gangkou',
+                        email: 'ggonzalez4r@mail.cc',
+                        phone: '+10 862 046 7916'
                     }
                 ]
             }
         },
         'weatherWidget': {
-            'locations'      : {
+            'locations': {
                 'NewYork': {
-                    'name'           : 'New York',
-                    'icon'           : 'icon-rainy2',
-                    'temp'           : {
+                    'name': 'New York',
+                    'icon': 'icon-rainy2',
+                    'temp': {
                         'C': '22',
                         'F': '72'
                     },
-                    'windSpeed'      : {
+                    'windSpeed': {
                         'KMH': 12,
                         'MPH': 7.5
                     },
-                    'windDirection'  : 'NW',
+                    'windDirection': 'NW',
                     'rainProbability': '98%',
-                    'next3Days'      : [
+                    'next3Days': [
                         {
                             'name': 'Sunday',
                             'icon': 'icon-rainy',
@@ -1991,8 +1990,8 @@ export class ProjectDashboardDb
                 }
             },
             'currentLocation': 'NewYork',
-            'tempUnit'       : 'C',
-            'speedUnit'      : 'KMH'
+            'tempUnit': 'C',
+            'speedUnit': 'KMH'
         }
     };
 }
