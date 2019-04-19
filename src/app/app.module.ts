@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule, MatDialogModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatFormFieldModule, MatRadioModule, MatDatepickerModule, MatDialogModule, MatTableModule, MatCardModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 import { FakeDbService } from 'app/fakedb/fake-db.service';
@@ -55,6 +55,7 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
         MatDatepickerModule,
         MatDialogModule,
         MatTableModule,
+        MatCardModule,
 
 
         // Fuse modules

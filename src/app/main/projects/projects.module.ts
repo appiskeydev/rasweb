@@ -4,7 +4,7 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectService } from './project.service';
-import { MatButtonModule, MatChipsModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatSnackBarModule, MatTabsModule, MatTableModule, MatAutocompleteModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatCheckboxModule, MatToolbarModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatButtonModule, MatChipsModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatSnackBarModule, MatTabsModule, MatTableModule, MatAutocompleteModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatCheckboxModule, MatToolbarModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatCardModule } from '@angular/material';
 import { FuseConfirmDialogModule, FuseWidgetModule, FuseSidebarModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MilestoneFormComponent } from '../milestones/milestone-form/milestone-form.component';
@@ -19,6 +19,7 @@ import { MilestoneDialogFormComponent } from '../milestones/milestone-dialog-for
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ClientDetailComponent } from '../clients/client-detail/client-detail.component';
 import { ClientService } from '../clients/client.service';
+import { ProjectWizardService } from './project-wizard.service';
 
 
 const routes: Routes = [
@@ -49,7 +50,7 @@ const routes: Routes = [
         path: 'projects-wizard/:id',
         component: ProjectWizardComponent,
         resolve: {
-            data: ProjectService
+            data: ProjectWizardService
         }
 
     },
@@ -57,7 +58,7 @@ const routes: Routes = [
         path: 'projects-wizard/:id/:handle',
         component: ProjectWizardComponent,
         resolve: {
-            data: ProjectService
+            data: ProjectWizardService
         }
 
     },
@@ -126,6 +127,7 @@ const routes: Routes = [
         MatCheckboxModule,
         MatToolbarModule,
         MatDialogModule,
+        MatCardModule,
 
 
         MatButtonModule,
@@ -142,9 +144,9 @@ const routes: Routes = [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] }
     ],
-    exports: [MilestoneListProjectComponent,ResourceListProjectComponent, FeatureListProjectComponent, ProjectDetailComponent, ClientDetailComponent],
+    exports: [MilestoneListProjectComponent, ResourceListProjectComponent, FeatureListProjectComponent, ProjectDetailComponent, ClientDetailComponent],
     entryComponents: [
-        MilestoneFormComponent,ResourceDailogFormComponent,ProjectCreateDailogComponent
+        ProjectWizardComponent, MilestoneFormComponent,ResourceDailogFormComponent,ProjectCreateDailogComponent
     ]
 })
 export class ProjectsModule { }

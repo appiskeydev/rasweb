@@ -2,6 +2,7 @@ import { FuseUtils } from "@fuse/utils";
 import { Department } from "../departments/department.model";
 import { Skill } from "../skills/skill.model";
 import { Designation } from "../designations/designation.model";
+import { Project } from "../projects/project.model";
 
 export class Resource {
 
@@ -35,6 +36,7 @@ export class Resource {
     handle: string;
     updatedAt: string;
     createdAt: string;
+    project: Project;
 
     resourceProjectHour: string;
     resourceProjectAllocation : string;
@@ -83,6 +85,7 @@ export class Resource {
         this.resourceSkills= resource.resourceSkills || null;
         this.updatedAt = resource.updatedAt || '';
         this.createdAt = resource.createdAt || '';
+        this.project =resource.project || null;
 
         this.resourceProjectHour = resource.resourceProjectHour || '';
         this.resourceProjectAllocation = resource.resourceProjectAllocation || '';

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { FuseUtils } from '@fuse/utils';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, takeUntil } from 'rxjs/operators';
 import { MilestoneService } from 'app/main/milestones/milestone.service';
 import { FeatureService } from 'app/main/features/feature.service';
 import { ResourceService } from 'app/main/resources/resource.service';
@@ -79,7 +79,7 @@ export class ProjectWizardComponent implements OnInit {
         this.project = new Project();
 
         // Set the private defaults
-        // this._unsubscribeAll = new Subject();
+        this._unsubscribeAll = new Subject();
         // Set the private defaults
         // this._unsubscribeAll = new Subject();
     }
@@ -93,23 +93,17 @@ export class ProjectWizardComponent implements OnInit {
      */
     ngOnInit(): void {
         // Subscribe to update project on changes
-        // this._projectService.onProjectChanged
-        //     .pipe(takeUntil(this._unsubscribeAll))
-        //     .subscribe(project => {
+        this._projectWizardService.onItemChanged
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(project => {
+       
+            this.project = new Project(project);
+            this.pageType = 'edit';
+        
+       
 
-        // if ( project )
-        // {
-        //     this.project = new Project(project);
-        //     this.pageType = 'edit';
-        // }
-        // else
-        // {
-        this.pageType = 'new';
-        this.project = new Project();
-        // }
-
-        this.projectForm = this.createProjectForm();
-        // });
+       this.projectForm = this.createProjectForm();
+        });
 
 
         this._projectWizardService.getAllClients().subscribe(projectClient => {
@@ -170,8 +164,8 @@ export class ProjectWizardComponent implements OnInit {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        // this._unsubscribeAll.next();
-        // this._unsubscribeAll.complete();
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 
 
@@ -188,17 +182,19 @@ export class ProjectWizardComponent implements OnInit {
     createProjectForm(): FormGroup {
         return this._formBuilder.group({
             id: [this.project.id],
-            name: [this.project.name],
+            name: [this.project.name, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
             handle: [this.project.handle],
-            description: [''],
+            projectClient: [this.project.projectClient],
+            projectFeatures: [this.project.projectFeatures],
+            projectResources: [this.project.projectResources],
+            projectMilestones: [this.project.projectMilestones],
             projectStartDate: [this.project.projectStartDate],
             projectDevelopmentDate: [this.project.projectDevelopmentDate],
-            projectClient: [this.project.projectClient],
             projectCost: [this.project.projectCost, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
             projectTimeline: [this.project.projectTimeline, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            projectPaymentMethod: [this.project.projectPaymentMethod, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            projectResources: [this.project.projectResources]
+            projectPaymentMethod: [this.project.projectPaymentMethod, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
         });
+    
     }
 
     compareFn(c1: Client, c2: Client): boolean {
@@ -208,25 +204,48 @@ export class ProjectWizardComponent implements OnInit {
         // if possible compare by object's name, and not by reference.
         return o1 && o2 ? o1.name === o2.name : o2 === o2;
     }
+
+    getByIdProject() :any{
+        const data = this.projectForm.getRawValue();
+        data.handle =FuseUtils.handleize(data.name);
+
+        this._projectWizardService.getItem()
+            .then(() => {
+
+                // Trigger the subscription with new data
+                this._projectWizardService.onItemChanged.next(data);
+
+                // Show the success message
+                this._snackBar.open('Project saved', 'OK', {
+                    verticalPosition: 'top',
+                    duration: 2000
+                });
+            });
+
+
+    }
+
+
     /**
      * Save project
      */
     saveProject(): void {
         const data = this.projectForm.getRawValue();
         data.handle = FuseUtils.handleize(data.name);
+        console.log("Data" +data);
 
-        // this._projectService.saveProject(data)
-        //     .then(() => {
+        this._projectWizardService.saveItem(data)
+            .then(() => {
 
-        //         // Trigger the subscription with new data
-        //         this._projectService.onProjectChanged.next(data);
+                // Trigger the subscription with new data
+                this._projectWizardService.onItemChanged.next(data);
 
-        //         // Show the success message
-        //         this._matSnackBar.open('Project saved', 'OK', {
-        //             verticalPosition: 'top',
-        //             duration        : 2000
-        //         });
-        //     });
+                // Show the success message
+                this._snackBar.open('Project saved', 'OK', {
+                    verticalPosition: 'top',
+                    duration        : 2000
+                });
+            });
     }
 
     /**

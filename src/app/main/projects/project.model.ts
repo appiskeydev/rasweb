@@ -5,6 +5,7 @@ import { Feature } from "../features/feature.model";
 import { Resource } from "../resources/resource.model";
 import { Milestone } from "../milestones/milestone.model";
 import { Input } from "@angular/core";
+import { ResourceProject } from "../resources/resource-project.model";
 
 export class Project {
 

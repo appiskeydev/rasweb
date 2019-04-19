@@ -95,6 +95,10 @@
                   </mat-form-field>
 
 
+
+
+
+
                   <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
                     <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2"
                       placeholder="Choose Developmennt Date" name="projectDevelopmentDate"
@@ -110,13 +114,13 @@
                   <input matInput placeholder="Project Time Line" name="projectTimeline" formControlName="projectTimeline"
                     type="number">
                 </mat-form-field>
-
+<!-- 
                 <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
                   <mat-label>Project Description</mat-label>
                   <textarea matInput placeholder="Project Description" name="description" formControlName="description"
                     rows="5">
                                   </textarea>
-                </mat-form-field>
+                </mat-form-field> -->
               </div>
 
             </mat-tab>
@@ -163,7 +167,7 @@
 
               <div class="tab-content p-24" fusePerfectScrollbar>
 
-               
+                
 
                 <div fxLayout="row" fxLayoutAlign="space-between">
 
@@ -227,7 +231,12 @@
                 </div>
 
                 
-            
+         
+            <button mat-raised-button class="save-project-button" 
+              (click)="saveProject()">
+              <span>SAVE</span>
+            </button>
+
 
               </div>
 

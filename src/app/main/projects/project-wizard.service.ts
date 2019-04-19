@@ -16,6 +16,7 @@ const API_URL = environment.apiUrl;
 export class ProjectWizardService {
 
   entityNode: string = 'project';
+  entityNodeUpdate : string ='project/project';
   entityNodeClient: string = 'client';
   entityNodeFeature: string = 'feature';
   entityNodeMilestone: string = 'milestone';
@@ -25,6 +26,11 @@ export class ProjectWizardService {
   items: any[];
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
+
+
+
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
 
   /**
    * Constructor
@@ -72,7 +78,7 @@ export class ProjectWizardService {
      */
   getInit(): Promise<any> {
     return new Promise((resolve, reject) => {
-      // console.log(this.routeParams.id);
+      console.log(this.routeParams.id);
       if (this.routeParams.id === undefined) {
         this._httpClient.get(API_URL + '/' + this.entityNode)
           .subscribe((response: any) => {
@@ -89,6 +95,7 @@ export class ProjectWizardService {
         this._httpClient.get(API_URL + '/' + this.entityNode + '/' + this.routeParams.id)
           .subscribe((response: any) => {
             this.item = response;
+            console.log(response)
             this.onItemChanged.next(this.item);
             resolve(response);
           }, reject);
@@ -128,7 +135,7 @@ export class ProjectWizardService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNode, item)
+      this._httpClient.put(API_URL + '/' + this.entityNodeUpdate ,item)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);

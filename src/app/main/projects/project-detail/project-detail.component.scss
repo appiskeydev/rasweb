@@ -126,3 +126,12 @@ project-detail {
         }
     }
 }
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('/assets/images/backgrounds/dark-material-bg.jpg');
+  background-size: cover;
+}
