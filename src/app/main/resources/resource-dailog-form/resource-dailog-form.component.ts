@@ -38,7 +38,6 @@ export class ResourceDailogFormComponent {
   ) {
     // Set the defaults
     this.action = _data.action;
-    //this.action = 'edit';
     // console.log(this.action);
     if (this.action === 'edit') {
       this.dialogTitle = 'Edit Resource';
@@ -46,7 +45,7 @@ export class ResourceDailogFormComponent {
     }
     else {
       this.dialogTitle = 'New Resource';
-      this.resource = new Resource({});
+      this.resource = new Resource(_data.resource);
     }
 
     this.resourceForm = this.createContactForm();
