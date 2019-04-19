@@ -38,15 +38,15 @@ export class ResourceDailogFormComponent {
   ) {
     // Set the defaults
     this.action = _data.action;
-
-    console.log(this.action);
+    //this.action = 'edit';
+    // console.log(this.action);
     if (this.action === 'edit') {
       this.dialogTitle = 'Edit Resource';
-      this.resourceProject = _data.resource;
+      this.resource = _data.resource;
     }
     else {
       this.dialogTitle = 'New Resource';
-      this.resourceProject = new ResourceProject();
+      this.resource = new Resource({});
     }
 
     this.resourceForm = this.createContactForm();
@@ -63,12 +63,14 @@ export class ResourceDailogFormComponent {
    */
   createContactForm(): FormGroup {
     return this._formBuilder.group({
-      
-      resourceProjectHour: [this.resourceProject.resourceProjectHour],
-      resourceProjectAllocation: [this.resourceProject.resourceProjectAllocation],
-      resourceProjectWorkStartDate: [this.resourceProject.resourceProjectWorkStartDate],
-      resourceProjectWorkEndDate: [this.resourceProject.resourceProjectWorkEndDate],
-      project: [this.resourceProject.project]
+      id: [this.resource.id],
+      handle: [this.resource.handle],
+      name: [this.resource.name, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      resourceProjectHour: [this.resource.resourceProjectHour],
+      resourceProjectAllocation: [this.resource.resourceProjectAllocation],
+      resourceProjectWorkStartDate: [this.resource.resourceProjectWorkStartDate],
+      resourceProjectWorkEndDate: [this.resource.resourceProjectWorkEndDate],
+      project: [this.resource.project]
       
     });
   }
