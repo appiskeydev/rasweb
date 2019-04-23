@@ -10,6 +10,7 @@ import { Department } from '../departments/department.model';
 import { Resource } from './resource.model';
 import { Skill } from '../skills/skill.model';
 import { Designation } from '../designations/designation.model';
+import { ResourceProject } from './resource-project.model';
 
 const API_URL = environment.apiUrl;
 

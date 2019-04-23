@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Client } from '../clients/client.model';
 import { Feature } from '../features/feature.model';
 import { Milestone } from '../milestones/milestone.model';
+import { ResourceProject } from '../resources/resource-project.model';
 const API_URL = environment.apiUrl;
 
 @Injectable({
@@ -23,6 +24,7 @@ export class ProjectWizardService {
   entityNodeResource: string = 'resource';
   routeParams: any;
   item: any;
+  // resourceProjects: ResourceProject[];
   items: any[];
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
@@ -135,8 +137,26 @@ export class ProjectWizardService {
    */
   saveItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.put(API_URL + '/' + this.entityNodeUpdate ,item)
+      this._httpClient.put(API_URL + '/' + this.entityNode ,item)
         .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  /**
+ * Save product
+ *
+ * @param item
+ * @returns {Promise<any>}
+ */
+  saveResourceProjectItem(item): Promise<any> {
+    return new Promise((resolve, reject) => {
+    //  item["proj"]["id"] = "abc"; 
+      console.log('Item' +item)
+      this._httpClient.put(API_URL + '/' + this.entityNodeUpdate, item)
+        .subscribe((response: any) => {
+console.log(response);
           resolve(response);
         }, reject);
     });

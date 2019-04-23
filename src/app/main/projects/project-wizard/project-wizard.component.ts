@@ -16,6 +16,8 @@ import { ProjectWizardService } from '../project-wizard.service';
 import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
 import { ResourceDailogFormComponent } from 'app/main/resources/resource-dailog-form/resource-dailog-form.component';
 import { Project } from '../project.model';
+import { ResourceProject } from 'app/main/resources/resource-project.model';
+import { tick } from '@angular/core/src/render3';
 @Component({
   selector: 'app-project-wizard',
   templateUrl: './project-wizard.component.html',
@@ -41,6 +43,7 @@ export class ProjectWizardComponent implements OnInit {
     pageType: string;
     projectForm: FormGroup;
 
+    // resourceProjects: ResourceProject[];
     minDate = new Date(2000, 0, 1);
     maxDate = new Date(2020, 0, 1);
     // Private
@@ -132,10 +135,20 @@ export class ProjectWizardComponent implements OnInit {
                 map(name => name ? this._filterFeature(name) : this.projectFeatureList.slice()));
           });
 
+        // this._projectWizardService.getItem().subscribe(projectResource => {
+        //     this.resourceProjects = projectResource.map((feature) => new projectResource(feature));
+        //     console.log(this.resourceProjects);
+        //     this.resourceFilteredOptions = this.resourceControl.valueChanges
+        //         .pipe(startWith<string | Project>(''),
+        //             map(value => typeof value === 'string' ? value : value.name),
+        //             map(name => name ? this._filterFeature(name) : this.resourceProjects.slice()));
+        // });
+
 
         this._milestoneService.milestones = this.project.projectMilestones;
-        this._resourceService.resources = this.project.projectResources;
+        this._resourceService.resources = this.project.resourceProjects;
         this._featureService.features = this.project.projectFeatures;
+        //  this._resourceService.resources = this.projectResourcesList
 
 
     }
@@ -186,7 +199,8 @@ export class ProjectWizardComponent implements OnInit {
             handle: [this.project.handle],
             projectClient: [this.project.projectClient],
             projectFeatures: [this.project.projectFeatures],
-            projectResources: [this.project.projectResources],
+            resourceProjects: [this.project.resourceProjects],
+            // projectResourcesList: [this.project.projectResourcesList],
             projectMilestones: [this.project.projectMilestones],
             projectStartDate: [this.project.projectStartDate],
             projectDevelopmentDate: [this.project.projectDevelopmentDate],
@@ -248,6 +262,32 @@ export class ProjectWizardComponent implements OnInit {
             });
     }
 
+
+    /**
+     * Save project
+     */
+    saveResourceProject(): void {
+        const data = this.projectForm.getRawValue();
+        data.handle = FuseUtils.handleize(data.name);
+        console.log("Data" + data);
+
+        this._projectWizardService.saveResourceProjectItem(data)
+            .then(() => {
+                console.log("Data" + data);
+
+
+                // Trigger the subscription with new data
+                this._projectWizardService.onItemChanged.next(data);
+
+                // Show the success message
+                this._snackBar.open('Project saved here!', 'OK', {
+                    verticalPosition: 'top',
+                    duration: 2000
+                });
+            });
+    }
+
+
     /**
      * Add project
      */
@@ -308,6 +348,7 @@ export class ProjectWizardComponent implements OnInit {
                 panelClass: 'milestone-form-dialog',
                 data: {
                     resource: this.resourceControl.value,
+                    project: this.project,
                     action: 'new',
 
                 }

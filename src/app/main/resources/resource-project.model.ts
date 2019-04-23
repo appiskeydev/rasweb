@@ -1,6 +1,7 @@
-import { Project } from "../projects/project.model";
+
 import { Resource } from "./resource.model";
 import { FuseUtils } from "@fuse/utils";
+import { Projectid } from "../projects/projectid.model";
 
 
 export class ResourceProject {
@@ -10,8 +11,8 @@ export class ResourceProject {
     handle:string;
     updatedAt: string;
     createdAt: string;
-    project: Project;
-    resource:Resource;
+    resourceProj: Projectid;
+    projectRes:Resource;
     resourceProjectHour: string;
     resourceProjectAllocation: string;
     resourceProjectWorkStartDate: string;
@@ -21,24 +22,28 @@ export class ResourceProject {
         * Constructor
         *
         * @param Resource
+        * @param Project
         */
-    constructor(resourceProject?) {
+    constructor(resource?, project? ) {
 
-        resourceProject = resourceProject || {};
-        if (resourceProject.name !== '') {
-            this.handle = FuseUtils.handleize(resourceProject.name + '');
+        resource = resource || {};
+        project = project || {};
+        if ((resource.name || project.name) !== '') {
+            this.handle = FuseUtils.handleize(resource.name + '');
+            this.handle = FuseUtils.handleize(project.name + '');
         }
-        this.id = resourceProject.id || '';
-        this.name = resourceProject.name || '';
-        this.updatedAt = resourceProject.updatedAt || '';
-        this.createdAt = resourceProject.createdAt || '';
-        this.project = resourceProject.project || null;
-        this.resource = resourceProject.resource || null;
-        this.resourceProjectHour = resourceProject.resourceProjectHour || '';
-        this.resourceProjectAllocation = resourceProject.resourceProjectAllocation || '';
-        this.resourceProjectWorkStartDate = resourceProject.resourceProjectWorkStartDate || '';
-        this.resourceProjectWorkEndDate = resourceProject.resourceProjectWorkEndDate || '';
+        this.id =  '';
+        this.name =  '';
+        this.updatedAt =   '';
+        this.createdAt =  '';
+        this.resourceProj = new Projectid(project)|| null;
+        this.projectRes = resource.projectRes || null;
+        this.resourceProjectHour = resource.resourceProjectHour || '';
+        this.resourceProjectAllocation = resource.resourceProjectAllocation || '';
+        this.resourceProjectWorkStartDate = resource.resourceProjectWorkStartDate || '';
+        this.resourceProjectWorkEndDate = resource.resourceProjectWorkEndDate || '';
     }
+
 }
 
 

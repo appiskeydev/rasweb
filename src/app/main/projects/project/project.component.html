@@ -131,7 +131,7 @@
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                   <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                    <mat-select placeholder="Resources"  name="projectResources" formControlName="projectResources" multiple  [compareWith]="comparerResource">
+                    <mat-select placeholder="Resources"  name="resourceProjects" formControlName="resourceProjects" multiple  [compareWith]="comparerResource">
                             <mat-option *ngFor="let resource of projectResourcesList" [value]="resource">{{resource.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>

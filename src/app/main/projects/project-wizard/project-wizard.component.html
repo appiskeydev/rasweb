@@ -42,7 +42,7 @@
       </button>
 
       <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid || projectForm.pristine"
-        *ngIf="pageType ==='edit'" (click)="saveProject()">
+        *ngIf="pageType ==='edit'" (click)="saveResourceProject()">
         <span>SAVE</span>
       </button>
     </div>
@@ -233,7 +233,7 @@
                 
          
             <button mat-raised-button class="save-project-button" 
-              (click)="saveProject()">
+              (click)="saveResourceProject()">  
               <span>SAVE</span>
             </button>
 

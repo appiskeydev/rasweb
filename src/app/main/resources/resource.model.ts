@@ -38,10 +38,10 @@ export class Resource {
     createdAt: string;
     project: Project;
 
-    resourceProjectHour: string;
-    resourceProjectAllocation : string;
-    resourceProjectWorkStartDate: string;
-    resourceProjectWorkEndDate: string;
+    // resourceProjectHour: string;
+    // resourceProjectAllocation : string;
+    // resourceProjectWorkStartDate: string;
+    // resourceProjectWorkEndDate: string;
 
    
     /**
@@ -87,9 +87,9 @@ export class Resource {
         this.createdAt = resource.createdAt || '';
         this.project =resource.project || null;
 
-        this.resourceProjectHour = resource.resourceProjectHour || '';
-        this.resourceProjectAllocation = resource.resourceProjectAllocation || '';
-        this.resourceProjectWorkStartDate = resource.resourceProjectWorkStartDate || '';
-        this.resourceProjectWorkEndDate = resource.resourceProjectWorkEndDate || '';
+        // this.resourceProjectHour = resource.resourceProjectHour || '';
+        // this.resourceProjectAllocation = resource.resourceProjectAllocation || '';
+        // this.resourceProjectWorkStartDate = resource.resourceProjectWorkStartDate || '';
+        // this.resourceProjectWorkEndDate = resource.resourceProjectWorkEndDate || '';
     }
 }

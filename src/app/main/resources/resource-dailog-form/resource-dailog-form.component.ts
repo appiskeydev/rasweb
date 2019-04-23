@@ -4,6 +4,8 @@ import { Resource } from '../resource.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { ResourceProject } from '../resource-project.model';
+import { Project } from 'app/main/projects/project.model';
+import { Projectid } from 'app/main/projects/projectid.model';
 
 @Component({
   selector: 'app-resource-dailog-form',
@@ -21,6 +23,8 @@ export class ResourceDailogFormComponent {
   dialogTitle: string;
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
+  project: Project;
+  
 
 
   /**
@@ -38,14 +42,26 @@ export class ResourceDailogFormComponent {
   ) {
     // Set the defaults
     this.action = _data.action;
+
     // console.log(this.action);
     if (this.action === 'edit') {
       this.dialogTitle = 'Edit Resource';
-      this.resource = _data.resource;
+     this.resource = new Resource(_data.resource);
+     this.project = new Project(_data.project);
+      // this.project.id = _data.project.id;
+      this.resourceProject = new ResourceProject(this.resource, this.project);
+
+      // this.project = _data.project;
+      console.log('Project :' +this.resourceProject);
+      
+
     }
     else {
       this.dialogTitle = 'New Resource';
       this.resource = new Resource(_data.resource);
+      this.project = _data.project;
+      this.resourceProject = new ResourceProject(this.resource, _data.project);
+
     }
 
     this.resourceForm = this.createContactForm();
@@ -61,15 +77,16 @@ export class ResourceDailogFormComponent {
    * @returns {FormGroup}
    */
   createContactForm(): FormGroup {
+
     return this._formBuilder.group({
-      id: [this.resource.id],
-      handle: [this.resource.handle],
-      name: [this.resource.name, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      resourceProjectHour: [this.resource.resourceProjectHour],
-      resourceProjectAllocation: [this.resource.resourceProjectAllocation],
-      resourceProjectWorkStartDate: [this.resource.resourceProjectWorkStartDate],
-      resourceProjectWorkEndDate: [this.resource.resourceProjectWorkEndDate],
-      project: [this.resource.project]
+     
+       name: [this.resource.name, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      resourceProjectHour: [this.resourceProject.resourceProjectHour],
+      resourceProjectAllocation: [this.resourceProject.resourceProjectAllocation],
+      resourceProjectWorkStartDate: [this.resourceProject.resourceProjectWorkStartDate],
+      resourceProjectWorkEndDate: [this.resourceProject.resourceProjectWorkEndDate],
+      resource : [this.resource],
+      project: [new Projectid(this.project)]
       
     });
   }
