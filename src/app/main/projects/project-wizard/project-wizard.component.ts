@@ -95,14 +95,24 @@ export class ProjectWizardComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
+
         // Subscribe to update project on changes
         this._projectWizardService.onItemChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(project => {
        
             this.project = new Project(project);
+                console.log("Project :",project)
+                this._resourceService.resources = project.resourceProjects;
+                
+                
+
             this.pageType = 'edit';
-        
+      
+                // this._projectWizardService.getAllResources().subscribe(projectResource => {
+                //     this.projectResourcesList = projectResource.map((resource) => new Resource(resource));
+                
+                // });
        
 
        this.projectForm = this.createProjectForm();
@@ -146,6 +156,7 @@ export class ProjectWizardComponent implements OnInit {
 
 
         this._milestoneService.milestones = this.project.projectMilestones;
+        // console.log('Mile '+ this._milestoneService.milestones);
         this._resourceService.resources = this.project.resourceProjects;
         this._featureService.features = this.project.projectFeatures;
         //  this._resourceService.resources = this.projectResourcesList

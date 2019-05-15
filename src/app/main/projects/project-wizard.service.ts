@@ -121,6 +121,7 @@ export class ProjectWizardService {
         this._httpClient.get(API_URL + '/' + this.entityNode + '/' + this.routeParams.id)
           .subscribe((response: any) => {
             this.item = response;
+            console.log(response)
             this.onItemChanged.next(this.item);
             resolve(response);
           }, reject);

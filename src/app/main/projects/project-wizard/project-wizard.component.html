@@ -36,15 +36,16 @@
       </div>
       <!-- / APP TITLE -->
 
-      <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
+      <button mat-raised-button class="save this._milestoneService.milestones-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
         (click)="addProject()">
         <span>ADD</span>
       </button>
 
-      <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid || projectForm.pristine"
+      <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid "
         *ngIf="pageType ==='edit'" (click)="saveResourceProject()">
         <span>SAVE</span>
       </button>
+      
     </div>
     <!-- / HEADER -->
 
@@ -182,7 +183,7 @@
                               </mat-option>
                             </mat-autocomplete>
                           </mat-form-field>
-                    </div>
+                   </div>
   
   
                     <div floatLabel="always" fxFlex="6">
@@ -231,11 +232,11 @@
                 </div>
 
                 
-         
+<!--          
             <button mat-raised-button class="save-project-button" 
               (click)="saveResourceProject()">  
               <span>SAVE</span>
-            </button>
+            </button> -->
 
 
               </div>

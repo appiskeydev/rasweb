@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardService } from './dashboard.service';
-import { MatButtonModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatSelectModule, MatTableModule, MatTabsModule } from '@angular/material';
+import { MatButtonModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatMenuModule, MatSelectModule, MatTableModule, MatTabsModule, MatDatepickerModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
+import { KeycloakService } from 'keycloak-angular';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
 const routes: Routes = [
   {
     path: '',
@@ -32,8 +35,10 @@ const routes: Routes = [
     MatSelectModule,
     MatTableModule,
     MatTabsModule,
-    
+    MatDatepickerModule,
+    MatIconModule,
 
+    MatMomentDateModule,
     NgxChartsModule,
 
     FuseSharedModule,
@@ -42,6 +47,7 @@ const routes: Routes = [
   ],
   providers: [
     DashboardService
+  
   ]
 })
 export class DashboardsModule { }

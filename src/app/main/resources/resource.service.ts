@@ -257,8 +257,14 @@ export class ResourceService {
           let value = this.resources[key];
           // Use `key` and `value`
           if(value.id == resource.id){
-            this.resourceIndex = key;
-            this.resources.splice(this.resourceIndex, 1);
+            console.log('Value id' +value.id)
+            // this.resourceIndex = key;
+            // this.resources.splice(this.resourceIndex, 1);
+            // console.log(this.resourceIndex)
+
+            // this.resources.push(resource);
+            // this.onResourcesChanged.next(this.resources);
+
           }
       }
     //     this.resources.forEach(function (value) {

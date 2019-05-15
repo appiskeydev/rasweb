@@ -2,11 +2,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { DashboardService } from '../dashboard.service';
 import * as shape from 'd3-shape';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, from } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { fuseAnimations } from '@fuse/animations';
 import { Dashboard } from '../dashboard.model';
 import { Http } from '@angular/http';
+import { KeycloakService } from 'keycloak-angular';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +21,9 @@ import { Http } from '@angular/http';
 export class DashboardComponent implements OnInit {
 
   projects: any[];
+  dashboard: Dashboard;
   selectedProject: any;
+  dashboardForm : FormGroup;
 
   widgets: any;
 
@@ -27,120 +32,136 @@ export class DashboardComponent implements OnInit {
   widget3: any = {};
   widget4 : any = {};
   widget5: any = {};
-  widget6: any = {};
+  widget6: any = [];
   widget7: any = {};
   widget8: any = {};
   widget9: any = {};
+  widget10: any = {};
   widget11: any = {};
+  widget12: any = {};
+  widget13: any = {};
+  widget14: any = {};
+  widget15: any = {};
+  widget16: any = {};
+  widget17: any = {};
+  username: String;
 
   dateNow = Date.now();
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
 
   /** 
   * Constructor
   * @param {FuseSidebarService} _fuseSidebarService
   * @param {DashboardService} _projectDashboardService
+  * @param {KeycloakService} _keycloakService
+  * @param {FormBuilder} _formBuilder
+
   */
 
   constructor(private _fuseSidebarService : FuseSidebarService,
     private http: Http,
-private _projectDashboardService : DashboardService) {
+private _projectDashboardService : DashboardService,
+    private _keycloakService: KeycloakService,
+    private _formBuilder: FormBuilder,
+) {
 
     /**
 * Widget 5
 */
-    this.widget5 = {
-      currentRange: 'thisWeek',
-      xAxis: true,
-      yAxis: true,
-      gradient: false,
-      legend: false,
-      showXAxisLabel: false,
-      xAxisLabel: 'Days',
-      showYAxisLabel: false,
-      yAxisLabel: 'Isues',
-      scheme: {
-        domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
-      },
-      onSelect: (ev) => {
-        console.log(ev);
-      },
-      supporting: {
-        currentRange: '',
-        xAxis: false,
-        yAxis: false,
-        gradient: false,
-        legend: false,
-        showXAxisLabel: false,
-        xAxisLabel: 'Days',
-        showYAxisLabel: false,
-        yAxisLabel: 'Isues',
-        scheme: {
-          domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
-        },
-        curve: shape.curveBasis
-      }
-    };
+    // this.widget5 = {
+    //   currentRange: 'thisWeek',
+    //   xAxis: true,
+    //   yAxis: true,
+    //   gradient: false,
+    //   legend: false,
+    //   showXAxisLabel: false,
+    //   xAxisLabel: 'Days',
+    //   showYAxisLabel: false,
+    //   yAxisLabel: 'Isues',
+    //   scheme: {
+    //     domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
+    //   },
+    //   onSelect: (ev) => {
+    //     console.log(ev);
+    //   },
+    //   supporting: {
+    //     currentRange: '',
+    //     xAxis: false,
+    //     yAxis: false,
+    //     gradient: false,
+    //     legend: false,
+    //     showXAxisLabel: false,
+    //     xAxisLabel: 'Days',
+    //     showYAxisLabel: false,
+    //     yAxisLabel: 'Isues',
+    //     scheme: {
+    //       domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
+    //     },
+    //     curve: shape.curveBasis
+    //   }
+    // };
 
     /**
      * Widget 6
      */
-    this.widget6 = {
-      currentRange: 'TW',
-      legend: false,
-      explodeSlices: false,
-      labels: true,
-      doughnut: true,
-      gradient: false,
-      scheme: {
-        domain: ['#f44336', '#9c27b0', '#03a9f4', '#e91e63']
-      },
-      onSelect: (ev) => {
-        console.log(ev);
-      }
-    };
+    // this.widget6 = {
+    //   currentRange: 'TW',
+    //   legend: false,
+    //   explodeSlices: false,
+    //   labels: true,
+    //   doughnut: true,
+    //   gradient: false,
+    //   scheme: {
+    //     domain: ['#f44336', '#9c27b0', '#03a9f4', '#e91e63']
+    //   },
+    //   onSelect: (ev) => {
+    //     console.log(ev);
+    //   }
+    // };
 
     /**
      * Widget 7
      */
-    this.widget7 = {
-      currentRange: 'DT'
-    };
+    // this.widget7 = {
+    //   currentRange: 'DT'
+    // };
 
     /**
      * Widget 8
      */
-    this.widget8 = {
-      legend: false,
-      explodeSlices: false,
-      labels: true,
-      doughnut: false,
-      gradient: false,
-      scheme: {
-        domain: ['#f44336', '#9c27b0', '#03a9f4', '#e91e63', '#ffc107']
-      },
-      onSelect: (ev) => {
-        console.log(ev);
-      }
-    };
+    // this.widget8 = {
+    //   legend: false,
+    //   explodeSlices: false,
+    //   labels: true,
+    //   doughnut: false,
+    //   gradient: false,
+    //   scheme: {
+    //     domain: ['#f44336', '#9c27b0', '#03a9f4', '#e91e63', '#ffc107']
+    //   },
+    //   onSelect: (ev) => {
+    //     console.log(ev);
+    //   }
+    // };
 
     /**
      * Widget 9
      */
-    this.widget9 = {
-      currentRange: 'TW',
-      xAxis: false,
-      yAxis: false,
-      gradient: false,
-      legend: false,
-      showXAxisLabel: false,
-      xAxisLabel: 'Days',
-      showYAxisLabel: false,
-      yAxisLabel: 'Isues',
-      scheme: {
-        domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
-      },
-      curve: shape.curveBasis
-    };
+    // this.widget9 = {
+    //   currentRange: 'TW',
+    //   xAxis: false,
+    //   yAxis: false,
+    //   gradient: false,
+    //   legend: false,
+    //   showXAxisLabel: false,
+    //   xAxisLabel: 'Days',
+    //   showYAxisLabel: false,
+    //   yAxisLabel: 'Isues',
+    //   scheme: {
+    //     domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
+    //   },
+    //   curve: shape.curveBasis
+    // };
 
     setInterval(() => {
       this.dateNow = Date.now();
@@ -156,14 +177,17 @@ private _projectDashboardService : DashboardService) {
     //this.selectedProject = this.projects[0];
     //console.log(this.selectedProject.name);
     this.widgets = this._projectDashboardService.widgets;
+    this.username = this._keycloakService.getUsername();
+    console.log(this.username)
+
     // this.widget1 = this.widgets.widget1;
     /**
      * Widget 11
   widget3 : any = {};
      */
-    this.widget11.onContactsChanged = new BehaviorSubject({});
-    this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
-    this.widget11.dataSource = new FilesDataSource(this.widget11);
+    // this.widget11.onContactsChanged = new BehaviorSubject({});
+    // this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
+    // this.widget11.dataSource = new FilesDataSource(this.widget11);
 
     // console.log(this.widgets.widget1);
     this._projectDashboardService.getWidget1().subscribe(projectWidget1 => {
@@ -177,6 +201,8 @@ private _projectDashboardService : DashboardService) {
     this.widgets.widget2 = projectWidget2;
  
     // console.log(this.widgets.widget2)
+    this.dashboardForm = this.createDashboardForm();
+
   });
 
 
@@ -193,17 +219,94 @@ private _projectDashboardService : DashboardService) {
     });
 
     // console.log(this.widgets.widget5);
-    this._projectDashboardService.getWidget5().subscribe(projectWidget5 => {
+    this._projectDashboardService.getWidget5('','').subscribe(projectWidget5 => {
       this.widgets.widget5 = projectWidget5;
-      // console.log(this.widgets.widget5);
+       console.log(this.widgets.widget5);
+    });
+    
+   
+
+   // console.log(this.widgets.widget6)
+    this._projectDashboardService.getWidget6().subscribe(projectWidget6 => {
+      this.widgets.widget6 = projectWidget6;
+      console.log(this.widgets.widget6)
     });
 
-    // console.log(this.widgets.widget6)
-    // this._projectDashboardService.getWidget6().subscribe(projectWidget6 => {
-    //   this.widgets.widget6 = projectWidget6;
-    //   console.log(this.widgets.widget6)
-    // });
+    this._projectDashboardService.getWidget7().subscribe(projectWidget7 => {
+      this.widgets.widget7 = projectWidget7;
+      console.log(this.widgets.widget7)
+    });
   
+    this._projectDashboardService.getWidget8().subscribe(projectWidget8 => {
+      this.widgets.widget8 = projectWidget8;
+      console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget9().subscribe(projectWidget9 => {
+      this.widgets.widget9 = projectWidget9;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget10().subscribe(projectWidget10 => {
+      this.widgets.widget10 = projectWidget10;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget11().subscribe(projectWidget11 => {
+      this.widgets.widget11 = projectWidget11;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget12().subscribe(projectWidget12 => {
+      this.widgets.widget12 = projectWidget12;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget13().subscribe(projectWidget13 => {
+      this.widgets.widget13 = projectWidget13;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget14().subscribe(projectWidget14 => {
+      this.widgets.widget14 = projectWidget14;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget15().subscribe(projectWidget15 => {
+      this.widgets.widget15 = projectWidget15;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget16().subscribe(projectWidget16 => {
+      this.widgets.widget16 = projectWidget16;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget17().subscribe(projectWidget17 => {
+      this.widgets.widget17 = projectWidget17;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget18().subscribe(projectWidget18 => {
+      this.widgets.widget18 = projectWidget18;
+      // console.log(this.widgets.widget8)
+    });
+    this._projectDashboardService.getWidget19().subscribe(projectWidget19 => {
+      this.widgets.widget19 = projectWidget19;
+      // console.log(this.widgets.widget8)
+    });
+  }
+/**
+* Create department form
+*
+* @returns {FormGroup}
+*/
+  createDashboardForm(): FormGroup {
+
+    return this._formBuilder.group({
+      to: [],
+      from: [],
+    });
 
   }
   /**
@@ -214,6 +317,16 @@ private _projectDashboardService : DashboardService) {
   toggleSidebar(name): void {
     this._fuseSidebarService.getSidebar(name).toggleOpen();
   }
+
+  search():void{
+    const data = this.dashboardForm.getRawValue();
+    console.log(data.to, data.from);
+    this._projectDashboardService.getWidget5(data.to, data.from).subscribe(projectWidget5 => {
+      this.widgets.widget5 = projectWidget5;
+   
+    });
+
+}
 
 }
 export class FilesDataSource extends DataSource<any>

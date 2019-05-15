@@ -193,7 +193,7 @@ this.designationFilteredOptions = this.resourceForm.controls['resourceDesignatio
         resourceSalaryPerMonth :[this.resource.resourceSalaryPerMonth],
         resourcePerHourRate : [this.resource.resourcePerHourRate],
         resourceShift: [this.resource.resourceShift],
-        resourceBenefits : [this.resource.resourceBenefits,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+        resourceBenefits : [this.resource.resourceBenefits,[ Validators.minLength(2), Validators.maxLength(50)]],
         resourceEmployeeType : [this.resource.resourceEmployeeType],
         resourceJobType : [this.resource.resourceJobType],
         resourcePartTime : [ this.resource.resourcePartTime],

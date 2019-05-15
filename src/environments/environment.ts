@@ -5,7 +5,7 @@ import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
 let keycloakConfig: KeycloakConfig = {
-    url: 'https://rasauth.scaleablecloud.com/auth',
+    url: 'http://localhost:8083/auth',
     realm: 'example',
     clientId: 'rasweb'
 };
