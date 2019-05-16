@@ -295,6 +295,21 @@ private _projectDashboardService : DashboardService,
       this.widgets.widget19 = projectWidget19;
       // console.log(this.widgets.widget8)
     });
+
+    this._projectDashboardService.getWidget20().subscribe(projectWidget20 => {
+      this.widgets.widget20 = projectWidget20;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget21().subscribe(projectWidget21 => {
+      this.widgets.widget21 = projectWidget21;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget22().subscribe(projectWidget22 => {
+      this.widgets.widget22 = projectWidget22;
+      // console.log(this.widgets.widget8)
+    });
   }
 /**
 * Create department form

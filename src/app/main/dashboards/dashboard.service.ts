@@ -36,6 +36,9 @@ export class DashboardService {
   entityNodeWidget17: string = 'resource/detail';
   entityNodeWidget18: string = 'resource/resource-this-month';
   entityNodeWidget19: string = 'resource/list';
+  entityNodeWidget20: string = 'resource/total-spent-month';
+  entityNodeWidget21: string = 'project/total-remaining';
+  entityNodeWidget22: string = 'project/detail';
   entityNodeDashboard: string = 'project/project-dashboard';
 
   /**
@@ -236,6 +239,24 @@ public getWidget6() :Observable<any> {
   public getWidget19(): Observable<any> {
 
     return this._httpClient.get(API_URL + '/' + this.entityNodeWidget19);
+
+  }
+
+  public getWidget20(): Observable<any> {
+
+    return this._httpClient.get(API_URL + '/' + this.entityNodeWidget20);
+
+  }
+
+  public getWidget21(): Observable<any> {
+
+    return this._httpClient.get(API_URL + '/' + this.entityNodeWidget21);
+
+  }
+
+  public getWidget22(): Observable<any> {
+
+    return this._httpClient.get(API_URL + '/' + this.entityNodeWidget22);
 
   }
 }
