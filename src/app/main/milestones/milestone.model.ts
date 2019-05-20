@@ -10,6 +10,9 @@ export class Milestone {
     milestoneExpectedPayment:number;
     milestoneCost:number;
     milestoneNoOfDays:number;
+    milestoneTotalPercent:number;
+    milestonePercentComplete:number;
+    flag : boolean;
     project:Project;
     handle: string;
     updatedAt: string;
@@ -37,6 +40,10 @@ export class Milestone {
         this.milestoneExpectedPayment = milestone.milestoneExpectedPayment || '';
         this.milestoneCost = milestone.milestoneCost || '';
         this.milestoneNoOfDays = milestone.milestoneNoOfDays || '';
+        this.milestoneTotalPercent = milestone.milestoneTotalPercent || '';
+        this.milestonePercentComplete = milestone.milestonePercentComplete || '';
+        this.flag = milestone.flag || '';
+
         this.project = milestone.project || null;
     }
 }

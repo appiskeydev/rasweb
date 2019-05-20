@@ -17,7 +17,7 @@
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
 
         <form  name="milestoneForm" [formGroup]="milestoneForm">
-          
+<!--           
             <div  >
                 <mat-form-field >
     
@@ -25,7 +25,7 @@
                      >
                  
                 </mat-form-field>
-              </div>
+              </div> -->
 
 
               <!-- pattern="[a-zA-Z ]*" -->
@@ -64,8 +64,13 @@
                   <mat-label>Expected Payment $</mat-label>
                   <input matInput minlength="3" maxlength="100" placeholder="Milestone Expected Payment ($)" name="milestoneExpectedPayment" formControlName="milestoneExpectedPayment"
                     required>
+                      
                   <mat-error>Length must be 3-100!</mat-error>
                 </mat-form-field>
+
+              </div>
+              <div  fxLayout="row" fxLayoutAlign="end end">
+                <mat-slide-toggle name="flag" formControlName="flag">Expected Amount Paid?</mat-slide-toggle>
               </div>
   
               <div fxLayout="row" fxLayoutAlign="start start"  >
@@ -87,7 +92,23 @@
                 </mat-form-field>
               </div>
   
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label> Total % of project</mat-label>
+        <input matInput placeholder="Milestone Total Percent (%)" name="milestoneTotalPercent" formControlName="milestoneTotalPercent">
+        <mat-error></mat-error>
+      </mat-form-field>
   
+    </div>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label> Completed % of total</mat-label>
+            <input matInput placeholder="Milestone Completed (%)" name="milestonePercentComplete"
+              formControlName="milestonePercentComplete">
+            <mat-error></mat-error>
+          </mat-form-field>
+        </div>
   
 
         </form>

@@ -1,14 +1,17 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { DashboardService } from '../dashboard.service';
 import * as shape from 'd3-shape';
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable, from, merge } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { fuseAnimations } from '@fuse/animations';
 import { Dashboard } from '../dashboard.model';
 import { Http } from '@angular/http';
 import { KeycloakService } from 'keycloak-angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatPaginator, MatSort } from '@angular/material';
+import { map } from 'rxjs/operators';
+import { FuseUtils } from '@fuse/utils';
 
 
 @Component({
@@ -24,6 +27,10 @@ export class DashboardComponent implements OnInit {
   dashboard: Dashboard;
   selectedProject: any;
   dashboardForm : FormGroup;
+
+
+  @ViewChild('filter')
+  filter: ElementRef;
 
   widgets: any;
 
@@ -174,8 +181,9 @@ private _projectDashboardService : DashboardService,
 
     this.projects = this._projectDashboardService.projects;
     console.log(this.projects);
-    //this.selectedProject = this.projects[0];
-    //console.log(this.selectedProject.name);
+    this.selectedProject = 'Cuzhub';
+    // this.selectedProject = this.projects[0];
+    // console.log(this.selectedProject.name);
     this.widgets = this._projectDashboardService.widgets;
     this.username = this._keycloakService.getUsername();
     console.log(this.username)
@@ -310,6 +318,20 @@ private _projectDashboardService : DashboardService,
       this.widgets.widget22 = projectWidget22;
       // console.log(this.widgets.widget8)
     });
+    this._projectDashboardService.getWidget23().subscribe(projectWidget23 => {
+      this.widgets.widget23 = projectWidget23;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget24().subscribe(projectWidget24 => {
+      this.widgets.widget24 = projectWidget24;
+      // console.log(this.widgets.widget8)
+    });
+
+    this._projectDashboardService.getWidget25().subscribe(projectWidget25 => {
+      this.widgets.widget25 = projectWidget25;
+      // console.log(this.widgets.widget8)
+    });
   }
 /**
 * Create department form
@@ -344,15 +366,54 @@ private _projectDashboardService : DashboardService,
 }
 
 }
+// export class FilesDataSource extends DataSource<any>
+// {
+//   /**
+//    * Constructor
+//    *
+//    * @param _widget11
+//    */
+//   constructor(private _widget11) {
+//     super();
+//   }
+
+//   /**
+//    * Connect function called by the table to retrieve one stream containing the data to render.
+//    *
+//    * @returns {Observable<any[]>}
+//    */
+//   connect(): Observable<any[]> {
+//     return this._widget11.onContactsChanged;
+//   }
+
+//   /**
+//    * Disconnect
+//    */
+//   disconnect(): void {
+//   }
+// }
+
+
 export class FilesDataSource extends DataSource<any>
 {
+  private _filterChange = new BehaviorSubject('');
+  private _filteredDataChange = new BehaviorSubject('');
+
   /**
    * Constructor
    *
-   * @param _widget11
+   * @param {DashboardService} _dashboardService
+   * @param {MatPaginator} _matPaginator
+   * @param {MatSort} _matSort
    */
-  constructor(private _widget11) {
+  constructor(
+    private _dashboardService: DashboardService,
+    private _matPaginator: MatPaginator,
+    private _matSort: MatSort
+  ) {
     super();
+
+    this.filteredData = this._dashboardService.items;
   }
 
   /**
@@ -361,7 +422,98 @@ export class FilesDataSource extends DataSource<any>
    * @returns {Observable<any[]>}
    */
   connect(): Observable<any[]> {
-    return this._widget11.onContactsChanged;
+    const displayDataChanges = [
+      this._dashboardService.onItemsChanged,
+      this._matPaginator.page,
+      this._filterChange,
+      this._matSort.sortChange
+    ];
+
+    return merge(...displayDataChanges)
+      .pipe(
+        map(() => {
+          let data = this._dashboardService.items.slice();
+
+          data = this.filterData(data);
+
+          this.filteredData = [...data];
+
+          data = this.sortData(data);
+
+          // Grab the page's slice of data.
+          const startIndex = this._matPaginator.pageIndex * this._matPaginator.pageSize;
+          return data.splice(startIndex, this._matPaginator.pageSize);
+        }
+        ));
+  }
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Accessors
+  // -----------------------------------------------------------------------------------------------------
+
+  // Filtered data
+  get filteredData(): any {
+    return this._filteredDataChange.value;
+  }
+
+  set filteredData(value: any) {
+    this._filteredDataChange.next(value);
+  }
+
+  // Filter
+  get filter(): string {
+    return this._filterChange.value;
+  }
+
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
+
+  // -----------------------------------------------------------------------------------------------------
+  // @ Public methods
+  // -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Filter data
+   *
+   * @param data
+   * @returns {any}
+   */
+  filterData(data): any {
+    if (!this.filter) {
+      return data;
+    }
+    return FuseUtils.filterArrayByString(data, this.filter);
+  }
+
+  /**
+   * Sort data
+   *
+   * @param data
+   * @returns {any[]}
+   */
+  sortData(data): any[] {
+    if (!this._matSort.active || this._matSort.direction === '') {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this._matSort.active) {
+        case 'name':
+          [propertyA, propertyB] = [a.name, b.name];
+          break;
+
+        
+      }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._matSort.direction === 'asc' ? 1 : -1);
+    });
   }
 
   /**
@@ -369,6 +521,5 @@ export class FilesDataSource extends DataSource<any>
    */
   disconnect(): void {
   }
+
 }
-
-

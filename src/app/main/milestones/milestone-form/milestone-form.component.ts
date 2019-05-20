@@ -82,7 +82,10 @@ export class MilestoneFormComponent{
           milestoneDelieveryDate: [this.milestone.milestoneDelieveryDate],
           milestoneExpectedPayment: [this.milestone.milestoneExpectedPayment,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
           milestoneCost: [this.milestone.milestoneCost,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          milestoneNoOfDays: [this.milestone.milestoneNoOfDays,[Validators.minLength(1), Validators.maxLength(50)]]
+          milestoneNoOfDays: [this.milestone.milestoneNoOfDays,[Validators.minLength(1), Validators.maxLength(50)]],
+          milestoneTotalPercent: [this.milestone.milestoneTotalPercent],
+          milestonePercentComplete : [this.milestone.milestonePercentComplete],
+          flag :[this.milestone.flag]
         });
     }
 

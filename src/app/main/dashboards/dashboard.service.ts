@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'environments/environment';
 import * as moment from 'moment';
+import { Http } from '@angular/http';
 
 
 
@@ -14,9 +15,15 @@ const API_URL = environment.apiUrl;
 })
 export class DashboardService {
 
+  onItemChanged: BehaviorSubject<any>;
+  onItemsChanged: BehaviorSubject<any>;
+  item: any;
+  items: any[];
+  routeParams: any;
   projects: any[];
   widgets : any[];
   entityNode: string = 'project';
+  entityNode1: string ="resource";
   entityNodeWidget1: string = 'project/count';
   entityNodeWidget2: string = 'milestone/count';
   entityNodeWidget3: string = 'project/critical-project';
@@ -39,6 +46,9 @@ export class DashboardService {
   entityNodeWidget20: string = 'resource/total-spent-month';
   entityNodeWidget21: string = 'project/total-remaining';
   entityNodeWidget22: string = 'project/detail';
+  entityNodeWidget23: string = 'project/project-health';
+  entityNodeWidget24: string = 'project/project-percent-complete';
+  entityNodeWidget25: string = 'project/total-revenue';
   entityNodeDashboard: string = 'project/project-dashboard';
 
   /**
@@ -47,8 +57,11 @@ export class DashboardService {
    * @param {HttpClient} _httpClient
    */
   constructor(
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private http: Http,
   ) {
+    this.onItemChanged = new BehaviorSubject({});
+    this.onItemsChanged = new BehaviorSubject({});
   }
   /**
      * Resolver
@@ -72,6 +85,60 @@ export class DashboardService {
       );
     });
   }
+  /**
+   * Get item
+   *
+   * @returns {Promise<any>}
+   */
+  getInit(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      // console.log(this.routeParams.id);
+      if (this.routeParams.id === undefined) {
+        this._httpClient.get(API_URL + '/' + this.entityNode1)
+          .subscribe((response: any) => {
+            this.items = response;
+            this.onItemsChanged.next(this.items);
+            resolve(response);
+          }, reject);
+      }
+      else if (this.routeParams.id === 'new') {
+        this.onItemChanged.next(false);
+        resolve(false);
+      }
+      else {
+        this._httpClient.get(API_URL + '/' + this.entityNode1 + '/' + this.routeParams.id)
+          .subscribe((response: any) => {
+            this.item = response;
+            this.onItemChanged.next(this.item);
+            resolve(response);
+          }, reject);
+      }
+    });
+  }
+
+
+  /**
+   * Get item
+   *
+   * @returns {Promise<any>}
+   */
+  getItem(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (this.routeParams.id === 'new') {
+        this.onItemChanged.next(false);
+        resolve(false);
+      }
+      else {
+        this._httpClient.get(API_URL + '/' + this.entityNode1 + '/' + this.routeParams.id)
+          .subscribe((response: any) => {
+            this.item = response;
+            this.onItemChanged.next(this.item);
+            resolve(response);
+          }, reject);
+      }
+    });
+  }
+
 
   /**
    * Get projects
@@ -80,7 +147,7 @@ export class DashboardService {
    */
   public getProjects(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get(API_URL + '/' + this.entityNode)
+      this._httpClient.get(API_URL + '/' + this.entityNode1)
         .subscribe((response: any) => {
           this.projects = response;
           resolve(response);
@@ -257,6 +324,25 @@ public getWidget6() :Observable<any> {
   public getWidget22(): Observable<any> {
 
     return this._httpClient.get(API_URL + '/' + this.entityNodeWidget22);
+
+  }
+
+
+  public getWidget23(): Observable<any> {
+
+    return this._httpClient.get(API_URL + '/' + this.entityNodeWidget23);
+
+  }
+
+  public getWidget24(): Observable<any> {
+
+    return this._httpClient.get(API_URL + '/' + this.entityNodeWidget24);
+
+  }
+
+  public getWidget25(): Observable<any> {
+
+    return this._httpClient.get(API_URL + '/' + this.entityNodeWidget25);
 
   }
 }

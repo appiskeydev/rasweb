@@ -678,7 +678,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="light-blue-fg font-size-24 line-height-72">
-                    ${{widgets.widget5.totalRevenue}}
+                    ${{widgets.widget25.totalRevenue}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget1.data.label}}
                                                             </div> -->
@@ -1054,7 +1054,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-24 line-height-72">
-                    ${{widgets.widget9.totalRevenueThisMonth}}
+                    ${{widgets.widget25.totalRevenue}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
                                                                     </div> -->
@@ -1321,7 +1321,22 @@
         <mat-tab label="Projects">
 
           <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom [@animateStagger]="{value:'50'}">
-          
+            <div fxLayout="row">
+            
+                    <div class="selected-project">{{selectedProject.name}}</div>
+            
+                    <button mat-icon-button class="project-selector" [matMenuTriggerFor]="projectsMenu" aria-label="Select project">
+                      <mat-icon>more_horiz</mat-icon>
+                    </button>
+            
+                    <mat-menu #projectsMenu="matMenu">
+                      <button mat-menu-item *ngFor="let project of projects" (click)="selectedProject = project.name">
+                        <span>{{project.name}}</span>
+                      </button>
+                    </mat-menu>
+                  </div>
+
+
             <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
               fxFlex.gt-xs="50" fxFlex.gt-md="30">
           
@@ -1383,7 +1398,7 @@
           
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-24 line-height-72">
-                    ${{widgets.widget5.totalRevenue}}
+                    ${{widgets.widget25.totalRevenue}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
                                                                                 </div> -->
@@ -1507,7 +1522,7 @@
               <!-- Front -->
               <div class="fuse-widget-front">
                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="h3">Percentage Complete</div>
+                  <div class="h3">Projects Completed</div>
           
                   <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button" aria-label="more">
                     <mat-icon>more_vert</mat-icon>
@@ -1516,7 +1531,7 @@
           
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-24 line-height-72">
-                    ${{widgets.widget13.averageRevenue}}
+                    {{widgets.widget24.percentCompleted}}%
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
                                                                                                             </div> -->
@@ -1606,7 +1621,7 @@
                             <mat-progress-bar mode="determinate" [color] = "red" value="80"></mat-progress-bar>
                           <!-- </div> -->
                       </div>
-                      <div class="h4 secondary-text">$1000</div>
+                      <div class="h4 secondary-text">$10</div>
                     </div>
               
                  
@@ -1621,6 +1636,46 @@
                 </div>
               
               </div>
+              <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50">
+              
+                <!-- Front -->
+                <div class="fuse-widget-front">
+              
+                  <div class="px-16 py-8 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="h3">Project Health/Performance</div>
+              
+                  </div>
+                  <table class="simple clickable">
+                    <thead>
+                      <tr>
+                        <th class="text-left"> Project Name</th>
+                        <th>Health (Budget)</th>
+                        <th class="text-right">Health (Schedule)</th>
+              
+              
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let row of widgets.widget23">
+                        <td class="text-left"> {{row.projectName}}</td>
+                        <td><mat-progress-bar mode="determinate"  color="red" value={{row.cpi}}></mat-progress-bar></td>
+                        <td><mat-progress-bar mode="determinate"  color="red" value={{row.spi}}></mat-progress-bar></td>
+                        <!-- <td class="text-right"> ${{row.totalSpent}}</td> -->
+                      </tr>
+                      <tr>
+              
+                    </tbody>
+                  </table>
+              
+              
+                </div>
+              
+                <!-- / Front -->
+              
+              </fuse-widget>
+              
+
+              
 
 
               <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
@@ -1654,7 +1709,7 @@
 
                         <td>{{row.currentMilestoneDeliveryDate}}</td>
                         <td>{{row.currentMilestoneDeliveryDate}}</td>
-                        <td class="text-right">{{row.currentMilestoneDeliveryDate}}</td>
+                        <td class="text-right">{{row.percentCompleted}}</td>
                       </tr>
                       <tr>
               
