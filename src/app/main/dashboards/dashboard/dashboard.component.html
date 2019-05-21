@@ -391,7 +391,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="light-blue-fg font-size-50 line-height-72">
-                    ${{widgets.widget7.count}}
+                    {{widgets.widget7.count}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget1.data.label}}
                                           </div> -->
@@ -439,7 +439,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-50 line-height-72">
-                    ${{widgets.widget8.count}}
+                    {{widgets.widget8.count}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
                                           </div> -->
@@ -556,6 +556,21 @@
               </div>
               <!-- / Back -->
 
+            </fuse-widget>
+
+            <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
+              fxFlex.gt-sm="100">
+            
+              <!-- Front -->
+              <div class="fuse-widget-front" style="height: 300px;border: aliceblue;">
+                
+               
+            
+            
+              </div>
+            
+              <!-- / Front -->
+            
             </fuse-widget>
 
 
