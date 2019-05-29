@@ -876,7 +876,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-24 line-height-72">
-                    ${{widgets.widget14.averageCost}}
+                    ${{widgets.widget14.averageCost | number:'3.1-2'}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
                                                               </div> -->
@@ -1204,7 +1204,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-24 line-height-72">
-                    ${{widgets.widget14.averageCost}}
+                    ${{widgets.widget14.averageCost | number:'3.1-2'}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
                                                                       </div> -->
@@ -1312,7 +1312,7 @@
                       <td>{{row.resourceOccupied}}</td>
                       <td>{{row.totalProjects}}</td>
                       <!-- <td>{{row.departmentThreshold}}</td> -->
-                      <td>${{row.revenuePerResource}}</td>
+                      <td>${{row.revenuePerResource }}</td>
                     </tr>
                     <tr>
 
