@@ -741,7 +741,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="red-fg font-size-24 line-height-72">
-                    ${{widgets.widget11.count}}
+                    {{widgets.widget11.count}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget2.data.label}}
                                                             </div> -->
@@ -973,7 +973,7 @@
 
                 <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                   <div class="light-blue-fg font-size-24 line-height-72">
-                    ${{widgets.widget16.totalResourceCount}}
+                    {{widgets.widget16.totalResourceCount}}
                   </div>
                   <!-- <div class="h3 secondary-text font-weight-500">{{widgets.widget1.data.label}}
                                                                     </div> -->
@@ -1336,7 +1336,7 @@
         <mat-tab label="Projects">
 
           <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom [@animateStagger]="{value:'50'}">
-            <div fxLayout="row">
+            <!-- <div fxLayout="row">
             
                     <div class="selected-project">{{selectedProject.name}}</div>
             
@@ -1349,7 +1349,7 @@
                         <span>{{project.name}}</span>
                       </button>
                     </mat-menu>
-                  </div>
+                  </div> -->
 
 
             <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"

@@ -182,8 +182,8 @@ private _projectDashboardService : DashboardService,
     this.projects = this._projectDashboardService.projects;
     console.log(this.projects);
     
-    this.selectedProject = this.projects[0];
-    console.log(this.selectedProject.name);
+    // this.selectedProject = this.projects[0];
+    // console.log(this.selectedProject.name);
     this.widgets = this._projectDashboardService.widgets;
     this.username = this._keycloakService.getUsername();
     console.log(this.username)
