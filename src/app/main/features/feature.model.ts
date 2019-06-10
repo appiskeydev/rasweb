@@ -24,6 +24,7 @@ export class Feature {
         }
         this.id = feature.id || '';
         this.name = feature.name || '';
+        this.featureEstimateDuration = feature.featureEstimateDuration || '';
         this.updatedAt = feature.updatedAt || '';
         this.createdAt = feature.createdAt || '';
     }

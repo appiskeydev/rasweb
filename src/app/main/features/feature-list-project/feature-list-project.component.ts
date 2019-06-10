@@ -1,19 +1,21 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs';
-import { MatDialog, MatDialogRef } from '@angular/material';
 import { FeatureService } from '../feature.service';
-import { DataSource } from '@angular/cdk/table';
 import { fuseAnimations } from '@fuse/animations';
+import { Subject, Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { takeUntil } from 'rxjs/operators';
+import { DataSource } from '@angular/cdk/table';
+
 
 @Component({
   selector: 'app-feature-list-project',
   templateUrl: './feature-list-project.component.html',
   styleUrls: ['./feature-list-project.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations   : fuseAnimations
+  animations: fuseAnimations
 })
 export class FeatureListProjectComponent implements OnInit {
+
 
 
   features: any;
@@ -58,12 +60,13 @@ export class FeatureListProjectComponent implements OnInit {
       this._featuresService.onFeaturesChanged
           .pipe(takeUntil(this._unsubscribeAll))
           .subscribe(features => {
+              console.log('feature list project', features);
               this.features = features;
 
-              this.checkboxes = {};
-              features.map(feature => {
-                  this.checkboxes[feature.id] = false;
-              });
+            //   this.checkboxes = {};
+            //   features.map(feature => {
+            //       this.checkboxes[feature.id] = false;
+            //   });
           });
 
     
@@ -129,4 +132,5 @@ export class FilesDataSource extends DataSource<any>
   disconnect(): void
   {
   }
+
 }

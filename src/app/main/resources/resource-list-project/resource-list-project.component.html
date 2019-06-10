@@ -74,7 +74,6 @@
     <mat-row *matRowDef="let resource; columns: displayedColumns;"
              class="resource"
              (click)="editResource(resource)"
-             [ngClass]="{'accent-50':checkboxes[resource.id]}"
              matRipple
              [@animate]="{value:'*',params:{y:'100%'}}">
     </mat-row>

@@ -36,15 +36,16 @@
       </div>
       <!-- / APP TITLE -->
 
-      <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
+      <button mat-raised-button class="save this._milestoneService.milestones-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
         (click)="addProject()">
         <span>ADD</span>
       </button>
 
-      <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid || projectForm.pristine"
-        *ngIf="pageType ==='edit'" (click)="saveProject()">
+      <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid "
+        *ngIf="pageType ==='edit'" (click)="saveResourceProject()">
         <span>SAVE</span>
       </button>
+      
     </div>
     <!-- / HEADER -->
 
@@ -95,6 +96,10 @@
                   </mat-form-field>
 
 
+
+
+
+
                   <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
                     <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2"
                       placeholder="Choose Developmennt Date" name="projectDevelopmentDate"
@@ -110,13 +115,13 @@
                   <input matInput placeholder="Project Time Line" name="projectTimeline" formControlName="projectTimeline"
                     type="number">
                 </mat-form-field>
-
+<!-- 
                 <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
                   <mat-label>Project Description</mat-label>
                   <textarea matInput placeholder="Project Description" name="description" formControlName="description"
                     rows="5">
                                   </textarea>
-                </mat-form-field>
+                </mat-form-field> -->
               </div>
 
             </mat-tab>
@@ -163,7 +168,7 @@
 
               <div class="tab-content p-24" fusePerfectScrollbar>
 
-               
+                
 
                 <div fxLayout="row" fxLayoutAlign="space-between">
 
@@ -178,7 +183,7 @@
                               </mat-option>
                             </mat-autocomplete>
                           </mat-form-field>
-                    </div>
+                   </div>
   
   
                     <div floatLabel="always" fxFlex="6">
@@ -199,34 +204,7 @@
             </mat-tab>
 
 
-            <mat-tab label="Payments">
-
-              <div class="tab-content p-24" fusePerfectScrollbar fxLayout="column">
-
-                  <div fxLayout="row" fxLayoutAlign="space-between">
-
-
-                      <div floatLabel="always" fxFlex="90">
-                          <app-payment-list-project></app-payment-list-project>
-                      </div>
-    
-    
-                      <div floatLabel="always" fxFlex="6">
-                            <!-- ADD CONTACT BUTTON -->
-                    <button mat-fab class="accent" id="add-contact-button" (click)="newPayment()" aria-label="add contact"
-                    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}"  >
-                    <mat-icon>add</mat-icon>
-                    </button>
-                    <!-- / ADD CONTACT BUTTON -->
-                      </div>
-    
-                    </div>
-
-               
-
-              </div>
-
-            </mat-tab>
+       
 
 
             <mat-tab label="Milestone">
@@ -254,7 +232,12 @@
                 </div>
 
                 
-            
+<!--          
+            <button mat-raised-button class="save-project-button" 
+              (click)="saveResourceProject()">  
+              <span>SAVE</span>
+            </button> -->
+
 
               </div>
 

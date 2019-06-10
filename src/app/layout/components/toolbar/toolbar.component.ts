@@ -36,13 +36,14 @@ export class ToolbarComponent implements OnInit, OnDestroy
      * @param {FuseConfigService} _fuseConfigService
      * @param {FuseSidebarService} _fuseSidebarService
      * @param {TranslateService} _translateService
-     * @param {KeycloakService} _keycloakService 
+     * @param {_keycloakService} _keycloakService
      */
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
         private _keycloakService: KeycloakService
+
     )
     {
         // Set the defaults
@@ -92,12 +93,6 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
-
-
-    async doLogout() {
-        await this._keycloakService.logout();
-      }
-  
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -169,4 +164,9 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // Use the selected language for translations
         this._translateService.use(lang.id);
     }
+
+    async doLogout() {
+        await this._keycloakService.logout();
+    }
+
 }

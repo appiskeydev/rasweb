@@ -1,20 +1,20 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, TemplateRef } from '@angular/core';
-import { fuseAnimations } from '@fuse/animations';
+import { Component, OnInit, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 import { Subject, Observable } from 'rxjs';
 import { ResourceService } from '../resource.service';
-import { DataSource } from '@angular/cdk/table';
-import { FormGroup } from '@angular/forms';
-import { ResourceDailogFormComponent } from '../resource-dailog-form/resource-dailog-form.component';
 import { takeUntil } from 'rxjs/operators';
+import { ResourceDailogFormComponent } from '../resource-dailog-form/resource-dailog-form.component';
+import { FormGroup } from '@angular/forms';
+import { DataSource } from '@angular/cdk/table';
+import { fuseAnimations } from '@fuse/animations';
 
 @Component({
   selector: 'app-resource-list-project',
   templateUrl: './resource-list-project.component.html',
   styleUrls: ['./resource-list-project.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations   : fuseAnimations
+  animations: fuseAnimations
 })
 export class ResourceListProjectComponent implements OnInit {
 
@@ -68,10 +68,10 @@ export class ResourceListProjectComponent implements OnInit {
           .subscribe(resources => {
               this.resources = resources;
 
-              this.checkboxes = {};
-              resources.map(resource => {
-                  this.checkboxes[resource.id] = false;
-              });
+            //   this.checkboxes = {};
+            //   resources.map(resource => {
+            //       this.checkboxes[resource.id] = false;
+            //   });
           });
 
     
@@ -190,4 +190,5 @@ export class FilesDataSource extends DataSource<any>
   disconnect(): void
   {
   }
+
 }

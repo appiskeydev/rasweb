@@ -22,11 +22,11 @@ export class FeatureService {
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
 
-
   onFeaturesChanged: BehaviorSubject<any>;
   onSelectedFeaturesChanged: BehaviorSubject<any>;
   features: Feature[];
   featureIndex:any;
+
   /**
    * Constructor
    *
@@ -39,9 +39,10 @@ export class FeatureService {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
-            // Set the defaults
-            this.onFeaturesChanged = new BehaviorSubject([]);
-            this.onSelectedFeaturesChanged = new BehaviorSubject([]);
+
+    this.onFeaturesChanged = new BehaviorSubject({});
+    this.onSelectedFeaturesChanged = new BehaviorSubject({});
+    
   }
 
   /**
@@ -178,8 +179,6 @@ export class FeatureService {
 
 
 
-  
-
     /**
      * Update feature
      *
@@ -195,6 +194,7 @@ export class FeatureService {
         // this.featureIndex = this.features.indexOf(feature);
         //     this.features.splice(this.featureIndex, 1);
         //   }
+        console.log('feature service',feature);
           this.features.push(feature);
           this.onFeaturesChanged.next(this.features);
 

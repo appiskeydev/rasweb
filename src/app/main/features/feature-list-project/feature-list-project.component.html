@@ -44,7 +44,6 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let feature; columns: displayedColumns;"
              class="feature"
-             [ngClass]="{'accent-50':checkboxes[feature.id]}"
              matRipple
              [@animate]="{value:'*',params:{y:'100%'}}">
     </mat-row>

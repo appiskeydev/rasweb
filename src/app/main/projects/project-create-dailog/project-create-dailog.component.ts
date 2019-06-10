@@ -1,20 +1,20 @@
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
-import { fuseAnimations } from '@fuse/animations';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { Project } from '../project.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Client } from 'app/main/clients/client.model';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProjectService } from '../project.service';
+import { fuseAnimations } from '@fuse/animations';
+
 
 @Component({
   selector: 'app-project-create-dailog',
   templateUrl: './project-create-dailog.component.html',
   styleUrls: ['./project-create-dailog.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  animations   : fuseAnimations
+  animations: fuseAnimations,
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectCreateDailogComponent  {
-
 
   action: string;
   project: Project;
@@ -93,4 +93,5 @@ export class ProjectCreateDailogComponent  {
    
       });
   }
+
 }

@@ -7,11 +7,12 @@ export class Milestone {
     name: string;
     milestoneStartDate:Date;
     milestoneDelieveryDate:Date;
-    milestoneDevelopmentDate:Date;
     milestoneExpectedPayment:number;
-    milestonePaymentAmount:number;
     milestoneCost:number;
-    milestonePaymentMethod:string;
+    milestoneNoOfDays:number;
+    milestoneTotalPercent:number;
+    milestonePercentComplete:number;
+    flag : boolean;
     project:Project;
     handle: string;
     updatedAt: string;
@@ -36,11 +37,13 @@ export class Milestone {
         this.createdAt = milestone.createdAt || '';
         this.milestoneStartDate = milestone.milestoneStartDate || '';
         this.milestoneDelieveryDate = milestone.milestoneDelieveryDate || '';
-        this.milestoneDevelopmentDate = milestone.milestoneDevelopmentDate || '';
         this.milestoneExpectedPayment = milestone.milestoneExpectedPayment || '';
-        this.milestonePaymentAmount = milestone.milestonePaymentAmount || '';
         this.milestoneCost = milestone.milestoneCost || '';
-        this.milestonePaymentMethod = milestone.milestonePaymentMethod || '';
+        this.milestoneNoOfDays = milestone.milestoneNoOfDays || '';
+        this.milestoneTotalPercent = milestone.milestoneTotalPercent || '';
+        this.milestonePercentComplete = milestone.milestonePercentComplete || '';
+        this.flag = milestone.flag || '';
+
         this.project = milestone.project || null;
     }
 }

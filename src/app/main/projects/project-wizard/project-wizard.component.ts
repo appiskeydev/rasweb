@@ -1,38 +1,35 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Project } from '../project.model';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { FuseUtils } from '@fuse/utils';
 import { MatSnackBar, MatDialog } from '@angular/material';
-import { ProjectService } from '../project.service';
-import { fuseAnimations } from '@fuse/animations';
-import { Client } from 'app/main/clients/client.model';
-import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
-import { Milestone } from 'app/main/milestones/milestone.model';
-import { MilestoneService } from 'app/main/milestones/milestone.service';
-import { PaymentService } from 'app/main/payments/payment.service';
-import { PaymentDailogFormComponent } from 'app/main/payments/payment-dailog-form/payment-dailog-form.component';
-import { Payment } from 'app/main/payments/payment.model';
-import { ResourceDailogFormComponent } from 'app/main/resources/resource-dailog-form/resource-dailog-form.component';
-import { Resource } from 'app/main/resources/resource.model';
-import { ResourceService } from 'app/main/resources/resource.service';
 import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { resource } from 'selenium-webdriver/http';
-import { Feature } from 'app/main/features/feature.model';
+import { map, startWith, takeUntil } from 'rxjs/operators';
+import { MilestoneService } from 'app/main/milestones/milestone.service';
 import { FeatureService } from 'app/main/features/feature.service';
-
+import { ResourceService } from 'app/main/resources/resource.service';
+import { Client } from 'app/main/clients/client.model';
+import { Milestone } from 'app/main/milestones/milestone.model';
+import { Resource } from 'app/main/resources/resource.model';
+import { Feature } from 'app/main/features/feature.model';
+import { fuseAnimations } from '@fuse/animations';
+import { ProjectWizardService } from '../project-wizard.service';
+import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
+import { ResourceDailogFormComponent } from 'app/main/resources/resource-dailog-form/resource-dailog-form.component';
+import { Project } from '../project.model';
+import { ResourceProject } from 'app/main/resources/resource-project.model';
+import { tick } from '@angular/core/src/render3';
 @Component({
-    selector: 'app-project-wizard',
-    templateUrl: './project-wizard.component.html',
-    styleUrls: ['./project-wizard.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    animations: fuseAnimations
+  selector: 'app-project-wizard',
+  templateUrl: './project-wizard.component.html',
+  styleUrls: ['./project-wizard.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  animations: fuseAnimations
 })
 export class ProjectWizardComponent implements OnInit {
 
+
     clients: Client[];
     projectMilestonesList: Milestone[];
-    projectPaymentList: Payment[];
     projectResourceList: Resource[];
     projectFeatureList: Feature[];
 
@@ -45,6 +42,10 @@ export class ProjectWizardComponent implements OnInit {
     project: Project;
     pageType: string;
     projectForm: FormGroup;
+
+    // resourceProjects: ResourceProject[];
+    minDate = new Date(2000, 0, 1);
+    maxDate = new Date(2020, 0, 1);
     // Private
     private _unsubscribeAll: Subject<any>;
     // // Private
@@ -60,21 +61,19 @@ export class ProjectWizardComponent implements OnInit {
     /**
      * Constructor
      *
-     * @param {ProjectService} _projectService
+     * @param {ProjectWizardService} _projectWizardService
      * @param {FormBuilder} _formBuilder
      * @param {MatDialog} _matDialog
      * @param {MilestoneService} _milestoneService
-     * @param {PaymentService} _paymentService
      * @param {FeatureService} _featureService
      * @param {MatSnackBar} _snackBar
      * @param {ResourceService} _resourceService
      */
     constructor(
-        private _projectService: ProjectService,
+        private _projectWizardService: ProjectWizardService,
         private _formBuilder: FormBuilder,
         private _matDialog: MatDialog,
         private _milestoneService: MilestoneService,
-        private _paymentService: PaymentService,
         private _featureService: FeatureService,
         public _snackBar: MatSnackBar,
         private _resourceService: ResourceService
@@ -83,7 +82,7 @@ export class ProjectWizardComponent implements OnInit {
         this.project = new Project();
 
         // Set the private defaults
-        // this._unsubscribeAll = new Subject();
+        this._unsubscribeAll = new Subject();
         // Set the private defaults
         // this._unsubscribeAll = new Subject();
     }
@@ -96,33 +95,37 @@ export class ProjectWizardComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
+
         // Subscribe to update project on changes
-        // this._projectService.onProjectChanged
-        //     .pipe(takeUntil(this._unsubscribeAll))
-        //     .subscribe(project => {
+        this._projectWizardService.onItemChanged
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(project => {
+       
+            this.project = new Project(project);
+                console.log("Project :",project)
+                this._resourceService.resources = project.resourceProjects;
+                
+                
 
-        // if ( project )
-        // {
-        //     this.project = new Project(project);
-        //     this.pageType = 'edit';
-        // }
-        // else
-        // {
-        this.pageType = 'new';
-        this.project = new Project();
-        // }
+            this.pageType = 'edit';
+      
+                // this._projectWizardService.getAllResources().subscribe(projectResource => {
+                //     this.projectResourcesList = projectResource.map((resource) => new Resource(resource));
+                
+                // });
+       
 
-        this.projectForm = this.createProjectForm();
-        // });
+       this.projectForm = this.createProjectForm();
+        });
 
 
-        this._projectService.getAllClients().subscribe(projectClient => {
+        this._projectWizardService.getAllClients().subscribe(projectClient => {
             this.clients = projectClient.map((client) => new Client(client));
             // console.log(this.resourceDepartments);
 
         });
 
-        this._projectService.getAllResources().subscribe(projectResource => {
+        this._projectWizardService.getAllResources().subscribe(projectResource => {
             this.projectResourcesList = projectResource.map((resource) => new Resource(resource));
 
             this.resourceFilteredOptions = this.resourceControl.valueChanges
@@ -133,20 +136,30 @@ export class ProjectWizardComponent implements OnInit {
         });
 
 
-        this._projectService.getAllFeatures().subscribe(projectFeature => {
+        this._projectWizardService.getAllFeatures().subscribe(projectFeature => {
             this.projectFeatureList = projectFeature.map((feature) => new Feature(feature));
-            // console.log(this.projectFeatureList);
+            console.log(this.projectFeatureList);
             this.featureFilteredOptions = this.featureControl.valueChanges
             .pipe(startWith<string | Feature>(''),
                 map(value => typeof value === 'string' ? value : value.name),
                 map(name => name ? this._filterFeature(name) : this.projectFeatureList.slice()));
           });
 
+        // this._projectWizardService.getItem().subscribe(projectResource => {
+        //     this.resourceProjects = projectResource.map((feature) => new projectResource(feature));
+        //     console.log(this.resourceProjects);
+        //     this.resourceFilteredOptions = this.resourceControl.valueChanges
+        //         .pipe(startWith<string | Project>(''),
+        //             map(value => typeof value === 'string' ? value : value.name),
+        //             map(name => name ? this._filterFeature(name) : this.resourceProjects.slice()));
+        // });
+
 
         this._milestoneService.milestones = this.project.projectMilestones;
-        this._paymentService.payments = this.project.projectPayments;
-        this._resourceService.resources = this.project.projectResources;
+        // console.log('Mile '+ this._milestoneService.milestones);
+        this._resourceService.resources = this.project.resourceProjects;
         this._featureService.features = this.project.projectFeatures;
+        //  this._resourceService.resources = this.projectResourcesList
 
 
     }
@@ -175,8 +188,8 @@ export class ProjectWizardComponent implements OnInit {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        // this._unsubscribeAll.next();
-        // this._unsubscribeAll.complete();
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 
 
@@ -193,17 +206,20 @@ export class ProjectWizardComponent implements OnInit {
     createProjectForm(): FormGroup {
         return this._formBuilder.group({
             id: [this.project.id],
-            name: [this.project.name],
+            name: [this.project.name, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
             handle: [this.project.handle],
-            description: [''],
+            projectClient: [this.project.projectClient],
+            projectFeatures: [this.project.projectFeatures],
+            resourceProjects: [this.project.resourceProjects],
+            // projectResourcesList: [this.project.projectResourcesList],
+            projectMilestones: [this.project.projectMilestones],
             projectStartDate: [this.project.projectStartDate],
             projectDevelopmentDate: [this.project.projectDevelopmentDate],
-            projectClient: [this.project.projectClient],
             projectCost: [this.project.projectCost, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
             projectTimeline: [this.project.projectTimeline, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            projectPaymentMethod: [this.project.projectPaymentMethod, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            projectResources: [this.project.projectResources]
+            projectPaymentMethod: [this.project.projectPaymentMethod, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
         });
+    
     }
 
     compareFn(c1: Client, c2: Client): boolean {
@@ -213,26 +229,75 @@ export class ProjectWizardComponent implements OnInit {
         // if possible compare by object's name, and not by reference.
         return o1 && o2 ? o1.name === o2.name : o2 === o2;
     }
+
+    getByIdProject() :any{
+        const data = this.projectForm.getRawValue();
+        data.handle =FuseUtils.handleize(data.name);
+
+        this._projectWizardService.getItem()
+            .then(() => {
+
+                // Trigger the subscription with new data
+                this._projectWizardService.onItemChanged.next(data);
+
+                // Show the success message
+                this._snackBar.open('Project saved', 'OK', {
+                    verticalPosition: 'top',
+                    duration: 2000
+                });
+            });
+
+
+    }
+
+
     /**
      * Save project
      */
     saveProject(): void {
         const data = this.projectForm.getRawValue();
         data.handle = FuseUtils.handleize(data.name);
+        console.log("Data" +data);
 
-        // this._projectService.saveProject(data)
-        //     .then(() => {
+        this._projectWizardService.saveItem(data)
+            .then(() => {
 
-        //         // Trigger the subscription with new data
-        //         this._projectService.onProjectChanged.next(data);
+                // Trigger the subscription with new data
+                this._projectWizardService.onItemChanged.next(data);
 
-        //         // Show the success message
-        //         this._matSnackBar.open('Project saved', 'OK', {
-        //             verticalPosition: 'top',
-        //             duration        : 2000
-        //         });
-        //     });
+                // Show the success message
+                this._snackBar.open('Project saved', 'OK', {
+                    verticalPosition: 'top',
+                    duration        : 2000
+                });
+            });
     }
+
+
+    /**
+     * Save project
+     */
+    saveResourceProject(): void {
+        const data = this.projectForm.getRawValue();
+        data.handle = FuseUtils.handleize(data.name);
+        console.log("Data" + data);
+
+        this._projectWizardService.saveResourceProjectItem(data)
+            .then(() => {
+                console.log("Data" + data);
+
+
+                // Trigger the subscription with new data
+                this._projectWizardService.onItemChanged.next(data);
+
+                // Show the success message
+                this._snackBar.open('Project saved here!', 'OK', {
+                    verticalPosition: 'top',
+                    duration: 2000
+                });
+            });
+    }
+
 
     /**
      * Add project
@@ -284,28 +349,7 @@ export class ProjectWizardComponent implements OnInit {
     /**
     * New contact
     */
-    newPayment(): void {
-        this.dialogRef = this._matDialog.open(PaymentDailogFormComponent, {
-            panelClass: 'milestone-form-dialog',
-            data: {
-                action: 'new',
-
-            }
-        });
-
-        this.dialogRef.afterClosed()
-            .subscribe((response: FormGroup) => {
-                if (!response) {
-                    return;
-                }
-                this.projectPaymentList = response.getRawValue();
-                console.log(this.projectPaymentList);
-
-
-                this._paymentService.updatePayment(response.getRawValue());
-            });
-    }
-
+ 
     /**
 * New contact
 */
@@ -315,6 +359,7 @@ export class ProjectWizardComponent implements OnInit {
                 panelClass: 'milestone-form-dialog',
                 data: {
                     resource: this.resourceControl.value,
+                    project: this.project,
                     action: 'new',
 
                 }
@@ -357,6 +402,8 @@ newFeature(): void {
 
     //         }
     //     });
+        console.log('project wizard component', this.featureControl.value);
+
         this._featureService.updateFeature(this.featureControl.value);
         this.featureControl.setValue('');
 
@@ -371,6 +418,7 @@ newFeature(): void {
 
     //             this._resourceService.updateResource(response.getRawValue());
     //         });
+    
     } else {
         this._snackBar.open('Please Select Feature', 'End now', {
             duration: 1500,

@@ -5,17 +5,18 @@ import { KeycloakConfig } from 'keycloak-angular';
 
 // Add here your keycloak setup infos
 let keycloakConfig: KeycloakConfig = {
-    url: 'http://localhost:8081/auth',
+    url: 'http://localhost:8083/auth',
     realm: 'example',
-    clientId: 'my-app'
+    clientId: 'rasweb'
 };
 export const environment = {
-    apiUrl: 'http://localhost:8080/api/raservice/v1',
+    apiUrl: 'http://34.96.103.132/api/raservice/v1',
 
 
     hmr: false,
     secure: false,
     production: false,
+    
     assets: {
         dotaImages:
             'https://cdn-keycloak-angular.herokuapp.com/assets/images/dota-heroes/'

@@ -10,8 +10,8 @@
 
     <!-- Email Column -->
     <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef >DelieveryDate</mat-header-cell>
-        <mat-cell *matCellDef="let milestone"  >
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>DelieveryDate</mat-header-cell>
+        <mat-cell *matCellDef="let milestone" fxHide fxShow.gt-sm>
             <p class="email text-truncate">
                 {{milestone.milestoneDelieveryDate}}
             </p>
@@ -20,8 +20,8 @@
 
     <!-- Phone Column -->
     <ng-container matColumnDef="phone">
-        <mat-header-cell *matHeaderCellDef   > Payment</mat-header-cell>
-        <mat-cell *matCellDef="let milestone"  >
+        <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md> Payment</mat-header-cell>
+        <mat-cell *matCellDef="let milestone" fxHide fxShow.gt-md>
             <p class="phone text-truncate">
                 {{milestone.milestoneExpectedPayment}}
             </p>

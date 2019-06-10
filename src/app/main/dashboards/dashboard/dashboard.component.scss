@@ -1,0 +1,80 @@
+#dashboard-project {
+
+    > .sidebar {
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+    }
+
+    > .center {
+
+        > .header {
+            height: 80px;
+            min-height: 80px;
+            max-height: 80px;
+
+            .selected-project {
+                background: rgba(0, 0, 0, 0.12);
+                color: #FFFFFF;
+                padding: 8px 16px;
+                height: 40px;
+                line-height: 24px;
+                font-size: 16px;
+                border-radius: 8px 0 0 0;
+            }
+
+            .project-selector {
+                margin-left: 1px;
+                background: rgba(0, 0, 0, 0.12);
+                border-radius: 0 8px 0 0;
+
+                mat-icon {
+                    color: #FFFFFF;
+                }
+            }
+        }
+
+        > .content {
+            flex: 1;
+
+            mat-tab-group {
+                height: 100%;
+
+                .mat-tab-body-wrapper {
+                    flex-grow: 1;
+                }
+            }
+
+            .mat-tab-label-container {
+                padding: 0 24px;
+            }
+        }
+    }
+
+    .widget {
+
+        &.widget5 {
+
+            .gridline-path.gridline-path-horizontal {
+                display: none;
+            }
+        }
+    }
+    .example-container{
+        max-height: 300px;
+        min-height: 150px;
+        overflow: auto
+    }
+    
+.input-style{
+    input{
+    width: 70%;
+    display: block;
+    }
+}
+mark {
+  background-color: tomato;
+  color: black;
+}
+    
+}

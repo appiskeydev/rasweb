@@ -2,12 +2,10 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@ang
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { delay, filter, take, takeUntil } from 'rxjs/operators';
-
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-
 @Component({
     selector     : 'navbar-vertical-style-1',
     templateUrl  : './style-1.component.html',
@@ -18,11 +16,10 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
-
+    activeItemOffsetParentTop:number;
     // Private
     private _fusePerfectScrollbar: FusePerfectScrollbarDirective;
     private _unsubscribeAll: Subject<any>;
-
     /**
      * Constructor
      *
@@ -41,11 +38,9 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
     // -----------------------------------------------------------------------------------------------------
-
     // Directive
     @ViewChild(FusePerfectScrollbarDirective)
     set directive(theDirective: FusePerfectScrollbarDirective)
@@ -54,9 +49,7 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         {
             return;
         }
-
         this._fusePerfectScrollbar = theDirective;
-
         // Update the scrollbar on collapsable item toggle
         this._fuseNavigationService.onItemCollapseToggled
             .pipe(
@@ -66,7 +59,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             .subscribe(() => {
                 this._fusePerfectScrollbar.update();
             });
-
         // Scroll to the active item position
         this._router.events
             .pipe(
@@ -76,24 +68,25 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
             .subscribe(() => {
                     setTimeout(() => {
                         const activeNavItem: any = document.querySelector('navbar .nav-link.active');
-
                         if ( activeNavItem )
                         {
-                            const activeItemOffsetTop       = activeNavItem.offsetTop,
-                                  activeItemOffsetParentTop = activeNavItem.offsetParent.offsetTop,
-                                  scrollDistance            = activeItemOffsetTop - activeItemOffsetParentTop - (48 * 3) - 168;
-
+                            const activeItemOffsetTop       = activeNavItem.offsetTop;
+                                   
+                            if(activeNavItem.offsetParent.offsetTop != null){
+                                       this.activeItemOffsetParentTop = activeNavItem.offsetParent.offsetTop;
+                            }else{
+                                this.activeItemOffsetParentTop = 0;
+                            }
+                           const       scrollDistance            = activeItemOffsetTop - this.activeItemOffsetParentTop - (48 * 3) - 168;
                             this._fusePerfectScrollbar.scrollToTop(scrollDistance);
                         }
                     });
                 }
             );
     }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
-
     /**
      * On init
      */
@@ -111,14 +104,12 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
                     }
                 }
             );
-
         // Subscribe to the config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config) => {
                 this.fuseConfig = config;
             });
-
         // Get current navigation
         this._fuseNavigationService.onNavigationChanged
             .pipe(
@@ -129,7 +120,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
                 this.navigation = this._fuseNavigationService.getCurrentNavigation();
             });
     }
-
     /**
      * On destroy
      */
@@ -139,11 +129,9 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
-
     /**
      * Toggle sidebar opened status
      */
@@ -151,7 +139,6 @@ export class NavbarVerticalStyle1Component implements OnInit, OnDestroy
     {
         this._fuseSidebarService.getSidebar('navbar').toggleOpen();
     }
-
     /**
      * Toggle sidebar folded status
      */

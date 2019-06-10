@@ -13,7 +13,8 @@ export const navigation: FuseNavigation[] = [
                 translate: 'NAV.DASHBOARD.TITLE',
                 type     : 'item',
                 icon     : 'dashboard',
-                url      : '/dashboard'               
+                url      : '/'    ,
+                exactMatch : true           
             },
             {
                 'id'       : 'project',
@@ -37,21 +38,37 @@ export const navigation: FuseNavigation[] = [
                         'url'  : '/clients'
                     },
                     {
-                        'id'   : 'create_project',
-                        'title': 'Create Project',
-                        'translate': 'NAV.CREATE_PROJECT.TITLE',
+                        'id'   : 'company',
+                        'title': 'Company',
+                        'translate': 'NAV.COMPANY.TITLE',
                         'type' : 'item',
-                        'url'  : '/projects/new',
-                        'exactMatch':true
+                        'url'  : '/companies'
                     },
+                
                     {
-                        'id'   : 'create_project_wizard',
-                        'title': 'Create Project Wizard',
-                        'translate': 'NAV.CREATE_PROJECT_WIZARD.TITLE',
+                        'id'   : 'designation',
+                        'title': 'Designation',
+                        'translate': 'NAV.DESIGNATION.TITLE',
                         'type' : 'item',
-                        'url'  : '/projects-wizard/new',
-                        'exactMatch':true
+                        'url'  : '/designations'
                     },
+                   
+                    // {
+                    //     'id'   : 'create_project',
+                    //     'title': 'Create Project',
+                    //     'translate': 'NAV.CREATE_PROJECT.TITLE',
+                    //     'type' : 'item',
+                    //     'url'  : '/projects/new',
+                    //     'exactMatch':true
+                    // },
+                    // {
+                    //     'id'   : 'create_project_wizard',
+                    //     'title': 'Create Project Wizard',
+                    //     'translate': 'NAV.CREATE_PROJECT_WIZARD.TITLE',
+                    //     'type' : 'item',
+                    //     'url'  : '/projects-wizard/new',
+                    //     'exactMatch':true
+                    // },
                     {
                         'id'   : 'project_list',
                         'title': 'Project List',
@@ -103,7 +120,6 @@ export const navigation: FuseNavigation[] = [
                         'exactMatch':true
 
                     }
-
                 ]
             },
             {

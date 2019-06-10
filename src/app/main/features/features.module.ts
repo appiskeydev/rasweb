@@ -7,7 +7,6 @@ import { FuseConfirmDialogModule, FuseWidgetModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FeatureService } from './feature.service';
 import { FeatureComponent } from './feature/feature.component';
-import { FeatureListProjectComponent } from './feature-list-project/feature-list-project.component';
 
 const routes: Routes = [
   {

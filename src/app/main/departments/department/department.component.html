@@ -58,27 +58,30 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Department Name</mat-label>
                 <input matInput placeholder="Department Name" name="name" formControlName="name"
-                  >
+                  #deptname = "matInput">
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="HOD" formControlName="departmentHod" name="departmentHod"
-                  [compareWith]="compareFn" >
-                      <mat-option>-- Select HOD --</mat-option>
-                      <mat-option *ngFor="let resource of departmentResources"  [value]="resource" >
-                          {{resource?.name}}
-                      </mat-option>
-                  </mat-select>
+                <input type="text" placeholder="Select Department HOD" matInput formControlName="departmentHod"  [matAutocomplete]="auto1" >
+                <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" >
+                  <mat-option *ngFor="let option of resourceFilteredOptions | async" [value]="option">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="departmentForm.get('departmentHod').hasError('error')">
+                  Select any Department Hod from the list!!
+              </mat-error>
+           
                 </mat-form-field>
               </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Department Bench</mat-label>
-                <input matInput type="text" minlength="3" maxlength="100" placeholder="Department Bench" name="departmentBench" formControlName="departmentBench"
+                <input matInput placeholder="Department Bench (%)" name="departmentBench" formControlName="departmentBench"
                   required>
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
