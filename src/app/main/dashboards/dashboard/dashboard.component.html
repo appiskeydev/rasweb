@@ -177,7 +177,7 @@
                       <!-- <mat-form-field appearance="outline" fxFlex="100"> -->
                       <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" placeholder="Start Date"
                         name="to" formControlName="to">
-                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker-toggle  [for]="picker1"></mat-datepicker-toggle>
                       <mat-datepicker #picker1></mat-datepicker>
                       <!-- </mat-form-field> -->
                     </div>
@@ -186,7 +186,7 @@
                       <!-- <mat-form-field appearance="outline" fxFlex="100"> -->
                       <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" placeholder="End Date"
                         name="from" formControlName="from">
-                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker-toggle  [for]="picker2"></mat-datepicker-toggle>
                       <mat-datepicker #picker2></mat-datepicker>
                       <!-- </mat-form-field> -->
                     </div>

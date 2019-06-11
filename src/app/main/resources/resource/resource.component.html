@@ -110,7 +110,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
               <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="DOB"  name="resourceDOB" formControlName="resourceDOB">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle  [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             </div>
@@ -199,7 +199,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
               <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" placeholder="Date Of Joining"  name="resourceDateOfJoining" formControlName="resourceDateOfJoining">
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker-toggle  [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
             </div>

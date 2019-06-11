@@ -2,7 +2,7 @@
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
             <span class="title dialog-title">{{dialogTitle}}</span>
-            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+            <button  (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-toolbar-row>
@@ -38,7 +38,7 @@
             <div fxLayout="row" fxLayoutAlign="start start" >
                 <mat-form-field appearance="outline"  fxFlex >
                 <input matInput [matDatepicker]="picker1" placeholder="Payment Date"  name="paymentDate" formControlName="paymentDate">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker-toggle  [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
               </div>

@@ -31,7 +31,7 @@
                             "src/styles.scss"
                         ],
                         "scripts": [
-                            "/opt/develop/project/rasweb/node_modules/moment/min/moment.min.js"
+                            "./node_modules/moment/min/moment.min.js"
                         ],
                         "showCircularDependencies": false
                     },
@@ -55,7 +55,7 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
+                                    "maximumWarning": "4mb",
                                     "maximumError": "5mb"
                                 }
                             ]
