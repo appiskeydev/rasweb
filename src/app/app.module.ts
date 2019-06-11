@@ -81,12 +81,12 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
         LayoutModule,
     ],
     providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializer,
-            multi: true,
-            deps: [KeycloakService]
-        }
+        // {
+        //     provide: APP_INITIALIZER,
+        //     useFactory: initializer,
+        //     multi: true,
+        //     deps: [KeycloakService]
+        // }
 
 
     ],

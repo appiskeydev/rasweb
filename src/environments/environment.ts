@@ -10,7 +10,7 @@ let keycloakConfig: KeycloakConfig = {
     clientId: 'rasweb'
 };
 export const environment = {
-    apiUrl: 'http://localhost:8080/api/raservice/v1',
+    apiUrl: 'http://34.96.103.132/api/raservice/v1',
 
 
     hmr: false,

@@ -10,7 +10,7 @@ export const environment = {
     production: true,
     hmr: false,
     dev: false,
-    apiUrl: 'http://rasprod.scaleablecloud.com/api/raservice/v1',
+    apiUrl: 'http://34.96.103.132/api/raservice/v1',
 
     assets: {
         dotaImages:

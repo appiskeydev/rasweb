@@ -8,7 +8,7 @@ let keycloakConfig: KeycloakConfig = {
 };
 export const environment = {
 
-    apiUrl: 'http://rasdev.scaleablecloud.com/api/raservice/v1',
+    apiUrl: 'http://34.96.103.132/api/raservice/v1',
 
     production: false,
     dev: true,

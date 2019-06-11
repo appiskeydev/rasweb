@@ -161,9 +161,9 @@ export class AppComponent implements OnInit, OnDestroy
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
 
-            if(await this._keycloakService.isLoggedIn()){
-                this.userDetails = await this._keycloakService.loadUserProfile();
-            }
+            // if(await this._keycloakService.isLoggedIn()){
+            //     this.userDetails = await this._keycloakService.loadUserProfile();
+            // }
     }
 
     /**
