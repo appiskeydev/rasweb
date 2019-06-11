@@ -1,0 +1,81 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+
+        <!-- <mat-toolbar-row class="toolbar-bottom py-16" fxLayout="column" fxLayoutAlign="center center">
+            <img [src]="milestone.avatar" class="avatar milestone-avatar huge m-0"
+                 [alt]="milestone.name"/>
+            <div class="milestone-name mt-8">{{milestone.name}} {{milestone.lastName}}</div>
+        </mat-toolbar-row> -->
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+
+        <form  name="paymentForm" [formGroup]="paymentForm">
+          
+         
+                  <input  type="hidden"  name="id" formControlName="id"
+                     >
+                 
+         
+
+            <div fxLayout="row" fxLayoutAlign="start start" >
+                <mat-form-field appearance="outline"  fxFlex>
+                  <mat-label>Payment</mat-label>
+                  <input matInput type="text"  placeholder="Amount" name="paymentAmount" formControlName="paymentAmount"
+                     required>
+                 <mat-error>Payment must have a valid input!</mat-error>
+                 
+                </mat-form-field>
+              </div>
+
+
+            <div fxLayout="row" fxLayoutAlign="start start" >
+                <mat-form-field appearance="outline"  fxFlex >
+                <input matInput [matDatepicker]="picker1" placeholder="Payment Date"  name="paymentDate" formControlName="paymentDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              </div>
+  
+           
+        </form>
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+        <button *ngIf="action === 'edit'"
+                mat-button
+                class="mr-8"
+                (click)="matDialogRef.close(['delete',paymentForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            DELETE
+        </button>
+
+        <button *ngIf="action !== 'edit'"
+                mat-button
+                class="save-button"
+                (click)="matDialogRef.close(paymentForm)"
+                [disabled]="paymentForm.invalid"
+                aria-label="SAVE">
+            ADD
+        </button>
+
+        <button *ngIf="action === 'edit'"
+                mat-button
+                class="save-button"
+                (click)="matDialogRef.close(['save',paymentForm])"
+                [disabled]="paymentForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+    </div>
+</div>

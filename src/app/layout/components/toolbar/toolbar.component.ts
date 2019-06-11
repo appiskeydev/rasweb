@@ -167,6 +167,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
     async doLogout() {
         // await this._keycloakService.logout();
+
     }
 
 }
