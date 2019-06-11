@@ -1,0 +1,106 @@
+<div id="company" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- HEADER -->
+    <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <!-- APP TITLE -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+
+        <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/companies'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <!-- <div class="skill-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                  <img *ngIf="skill.images[0]" [src]="skill.images[0].url">
+                  <img *ngIf="!skill.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+              </div> -->
+
+        <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2" *ngIf="pageType ==='edit'">
+            {{company.title}}
+          </div>
+          <div class="h2" *ngIf="pageType ==='new'">
+            New Company
+          </div>
+          <div class="subtitle secondary-text">
+            <span>Company Detail</span>
+          </div>
+        </div>
+      </div>
+      <!-- / APP TITLE -->
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card">
+
+      <!-- CONTENT -->
+      <div class="content">
+
+        <form name="companyForm" [formGroup]="companyForm" class="company w-100-p" fxLayout="column" fxFlex novalidate>
+
+          <div class=" mat-tab-header header  p-24">
+            <h2 class="m-0">Company Information</h2>
+          </div>
+
+          <div class="tab-content p-24" fusePerfectScrollbar>
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field appearance="outline"  fxFlex="100">
+                <mat-label>Company Name</mat-label>
+                <input matInput placeholder="First Name" name="name" formControlName="name"
+                  >
+                <mat-error>Company Name must be valid!</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+           
+              <mat-select placeholder="Toppings"  [formControl]="toppings" multiple>
+                <mat-select-trigger>
+                  {{toppings.value ? toppings.value[0].resourceName : ''}}
+                  <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                    (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of skillResources" [value]="item">{{item.resourceName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            </div> -->
+
+            <button mat-raised-button class="save-company-button" [disabled]="companyForm.invalid" *ngIf="pageType ==='new'"
+              (click)="addCompany()">
+              <span>ADD</span>
+            </button>
+
+            <button mat-raised-button class="save-company-button" [disabled]="companyForm.invalid"
+              *ngIf="pageType ==='edit'" (click)="saveCompany()">
+              <span>SAVE</span>
+            </button>
+
+          </div>
+
+
+
+        </form>
+
+      </div>
+      <!-- / CONTENT -->
+
+    </div>
+    <!-- / CONTENT CARD -->
+
+  </div>
+  <!-- / CENTER -->
+
+</div>

@@ -1,10 +1,9 @@
 import { FuseUtils } from "@fuse/utils";
-import { CdkCellOutletMultiRowContext } from "@angular/cdk/table";
 import { Client } from "../clients/client.model";
 import { Feature } from "../features/feature.model";
-import { Resource } from "../resources/resource.model";
 import { Milestone } from "../milestones/milestone.model";
-import { Input } from "@angular/core";
+import { Resource } from "../resources/resource.model";
+import { ResourceProject } from "../resources/resource-project.model";
 
 export class Project {
 
@@ -13,12 +12,13 @@ export class Project {
     name: string ;
     projectClient:Client;
     projectFeatures:Feature[];
-    projectResources:Resource[];
+    resourceProjects:Resource[];
+    // projectResourcesList : ResourceProject[];
     projectMilestones:Milestone[];
     projectStartDate:Date;
     projectDevelopmentDate:Date;
     projectCost:number;
-    projectTimeline:string;
+    projectTimeline:number;
     projectPaymentMethod:string;
     handle: string;
     updatedAt: string;
@@ -43,7 +43,8 @@ export class Project {
         this.updatedAt = project.updatedAt || '';
         this.createdAt = project.createdAt || '';
         this.projectFeatures = project.projectFeatures || [];
-        this.projectResources = project.projectResources || [];
+        this.resourceProjects = project.resourceProjects || [];
+        // this.projectResourcesList = project.projectResourcesList || [];
         this.projectMilestones = project.projectMilestones || [];
         this.projectStartDate = project.projectStartDate || '';
         this.projectDevelopmentDate = project.projectDevelopmentDate || '';

@@ -1,0 +1,105 @@
+<div id="project-detail" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent" ></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+    <!-- HEADER -->
+    <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+      fxLayoutAlign.gt-sm="space-between center">
+
+      <!-- APP TITLE -->
+      <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+
+        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          Project Detail
+        </span>
+      </div>
+      <!-- / APP TITLE -->
+
+
+
+    </div>
+
+    
+    <!-- CONTENT CARD -->
+
+    <div class="content-card">
+      <mat-card class="example-card"  style="margin: 50px;" fxFlex= "grow">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{project.name}}</mat-card-title>
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <!-- <img mat-card-image src="/assets/images/backgrounds/dark-material-bg.jpg" alt="Photo of a Shiba Inu"> -->
+        <mat-card-content style="margin: 20px; font-size: 16px;">
+          <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p" >
+          
+            <mat-label><b>Project Name</b></mat-label>
+            {{project.name}}
+          </div>
+
+
+            <a [routerLink]="'/client-detail/'+project.projectClient?.id+'/'"> {{project.projectClient?.name}}</a>
+            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+            
+              <mat-label><b>Start Date</b></mat-label>
+              {{project.projectStartDate}}
+            </div>
+          
+
+<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+
+  <mat-label><b>Development Date</b></mat-label>
+  {{project.projectDevelopmentDate}}
+</div>
+
+<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+
+  <mat-label><b>Project Cost </b></mat-label>
+  {{project.projectCost}}
+</div>
+
+<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+
+  <mat-label><b>Timeline </b></mat-label>
+  {{project.projectTimeline}}
+</div>
+
+<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+
+  <mat-label><b>Payment Method </b></mat-label>
+  {{project.projectPaymentMethod}}
+</div>
+
+
+
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>VIEW</button>
+     
+        </mat-card-actions>
+      </mat-card>
+
+    
+
+   
+
+      
+
+    </div>
+
+    <!-- 
+          
+          <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator> -->
+
+
+
+
+  </div>
+</div>

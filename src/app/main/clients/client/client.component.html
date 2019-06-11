@@ -59,7 +59,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Client Name</mat-label>
                 <input matInput  placeholder="First Name" name="name" formControlName="name"
-                  required>
+                  #clientname= "matInput">
                 <mat-error>Length must be 3-100!</mat-error>
               </mat-form-field>
             </div>
@@ -97,15 +97,44 @@
             </div>
 
 
+            
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+              <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
+                  <mat-select placeholder="Company" formControlName="clientCompany" name="clientCompany"
+                  [compareWith]="compareFn" >
+                      <mat-option>-- Select Company --</mat-option>
+                      <mat-option *ngFor="let company of companies"  [value]="company" >
+                          {{company.name}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+    -->
+
+
+              <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
+                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+
+                    <input type="text" placeholder="Select Company" matInput formControlName="clientCompany" [matAutocomplete]="auto1"  >
+                    <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" >
+                      <mat-option *ngFor="let option of companyFilteredOptions | async" [value]="option">
+                        {{option.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+            </div>
+
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                 <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                    <mat-select placeholder="Company" formControlName="parent" name="parent.clientName"
-                    [compareWith]="compareFn" >
-                        <mat-option>-- Select Company --</mat-option>
-                        <mat-option *ngFor="let client of clients"  [value]="client" >
-                            {{client?.name}}
-                        </mat-option>
-                    </mat-select>
+                  <input type="text" placeholder="Select Reference" matInput formControlName="parent" [matAutocomplete]="auto2"  >
+                  <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" [displayWith]="displayFnReferences" >
+                    <mat-option *ngFor="let option of referenceFilteredOptions | async" [value]="option">
+                      {{option.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <mat-error *ngIf="clientForm.get('parent').hasError('error')">
+                    Select any Reference from the list!!
+                </mat-error>
                   </mat-form-field>
             
 
@@ -116,7 +145,7 @@
               <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-client-button" [disabled]="clientForm.invalid || clientForm.pristine"
+            <button mat-raised-button class="save-client-button" [disabled]="clientForm.invalid"
               *ngIf="pageType ==='edit'" (click)="saveClient()">
               <span>SAVE</span>
             </button>

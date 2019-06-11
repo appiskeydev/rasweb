@@ -14,6 +14,9 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
+
 
 @Component({
     selector   : 'app',
@@ -24,6 +27,7 @@ export class AppComponent implements OnInit, OnDestroy
 {
     fuseConfig: any;
     navigation: any;
+    userDetails : KeycloakProfile;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -39,6 +43,7 @@ export class AppComponent implements OnInit, OnDestroy
      * @param {FuseTranslationLoaderService} _fuseTranslationLoaderService
      * @param {Platform} _platform
      * @param {TranslateService} _translateService
+     * @param {KeycloakService} _keycloakService
      */
     constructor(
         @Inject(DOCUMENT) private document: any,
@@ -48,7 +53,8 @@ export class AppComponent implements OnInit, OnDestroy
         private _fuseSplashScreenService: FuseSplashScreenService,
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
-        private _platform: Platform
+        private _platform: Platform,
+        private _keycloakService : KeycloakService
     )
     {
         // Get default navigation
@@ -122,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
+    async ngOnInit()
     {
         // Subscribe to config changes
         this._fuseConfigService.config
@@ -154,6 +160,10 @@ export class AppComponent implements OnInit, OnDestroy
 
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
+
+            // if(await this._keycloakService.isLoggedIn()){
+            //     this.userDetails = await this._keycloakService.loadUserProfile();
+            // }
     }
 
     /**

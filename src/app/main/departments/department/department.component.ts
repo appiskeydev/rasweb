@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Department } from '../department.model';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl, CheckboxControlValueAccessor } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { DepartmentService } from '../department.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
@@ -17,11 +17,17 @@ import { Resource } from 'app/main/resources/resource.model';
   animations: fuseAnimations
 })
 export class DepartmentComponent implements OnInit {
+  @ViewChild('deptname')
+  nameInput : MatInput;
   departmentResources: Resource[];
   department: Department;
   pageType: string;
   departmentForm: FormGroup;
   
+  resourceControl = new FormControl();
+
+  resourceFilteredOptions: Observable<Resource[]>;
+
   // myControl = new FormControl();
   package_id: string;
 
@@ -56,6 +62,7 @@ export class DepartmentComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._departmentService.onItemChanged
@@ -75,11 +82,17 @@ export class DepartmentComponent implements OnInit {
 
       });
 
-
+      this.departmentForm.controls['departmentHod'].valueChanges.subscribe(val => this.validateData(val));
 
       this._departmentService.getAll().subscribe(departmentResources => {
         this.departmentResources =  departmentResources.map((resource) => new Resource(resource));
     console.log(this.departmentResources);
+
+    this.resourceFilteredOptions = this.departmentForm.controls['departmentHod'].valueChanges
+    .pipe(startWith<string | Resource>(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.departmentResources.slice()));
+
 
     });
   }
@@ -106,7 +119,7 @@ export class DepartmentComponent implements OnInit {
     
       return this._formBuilder.group({
         id: [this.department.id],
-        name: [this.department.name ,[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+        name: [this.department.name ,[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         handle: [this.department.handle],
         departmentBench: [this.department.departmentBench],
         departmentHod: [this.department.departmentHod]
@@ -136,13 +149,22 @@ export class DepartmentComponent implements OnInit {
       });
   }
 
+  private _filter(name: string): Resource[] {
+    const filterValue = name.toLowerCase();
+    return this.departmentResources.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+}
+displayFn(item?: Resource): string | undefined {
+
+  return item ? item.name : undefined;
+}
+
   /**
    * Add department
    */
   addDepartment(): void {
     const data = this.departmentForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
-  
+ 
     this._departmentService.addItem(data)
       .then(() => {
 
@@ -164,4 +186,23 @@ export class DepartmentComponent implements OnInit {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
    }
 
+   private validateData(val: any) {
+     if(typeof val === "string"){
+      this.departmentForm.controls['departmentHod'].setErrors({ error: 'Must select Hod' });
+     }
+     else{
+      this.departmentForm.controls['departmentHod'].setErrors(null);
+     }
+  
+    console.log(val);
+  }
+
 }
+
+
+
+
+
+
+
+

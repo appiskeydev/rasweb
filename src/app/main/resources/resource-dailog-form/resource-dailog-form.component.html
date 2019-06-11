@@ -1,0 +1,111 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="title dialog-title">{{dialogTitle}}</span>
+          <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+          </button>
+      </mat-toolbar-row>
+
+      <!-- <mat-toolbar-row class="toolbar-bottom py-16" fxLayout="column" fxLayoutAlign="center center">
+          <img [src]="milestone.avatar" class="avatar milestone-avatar huge m-0"
+               [alt]="milestone.name"/>
+          <div class="milestone-name mt-8">{{milestone.name}} {{milestone.lastName}}</div>
+      </mat-toolbar-row> -->
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+
+      <form  name="resourceForm" [formGroup]="resourceForm">
+        
+<!--        
+                <input type="hidden" name="id" formControlName="id"
+                   > -->
+
+
+          <div fxLayout="row" fxLayoutAlign="start start" >
+              <mat-form-field appearance="outline"  fxFlex>
+                <mat-label>Name</mat-label>
+                <input matInput type="text"  placeholder="Name" name="name" formControlName="name"
+                   required>
+               <mat-error>Name must have a valid input!</mat-error>
+               
+              </mat-form-field>
+            </div>
+
+
+                    <!-- <input type="hidden" name="project" formControlName="project"> -->
+
+           <div fxLayout="row" fxLayoutAlign="start start" >
+                <mat-form-field appearance="outline"  fxFlex>
+                  <mat-label>Hours</mat-label>
+                  <input matInput type="text"  placeholder="Working Hours" name="resourceProjectHour" formControlName="resourceProjectHour"
+                     >
+                     <mat-icon matSuffix class="disabled-text">user</mat-icon>
+                 <mat-error>Hours must have a valid input!</mat-error>
+                 
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start start" >
+                  <mat-form-field appearance="outline"  fxFlex>
+                    <mat-label> Allocation</mat-label>
+                    <input matInput type="text"  placeholder="Allocation Percentage" name="resourceProjectAllocation" formControlName="resourceProjectAllocation"
+                       >
+
+                  </mat-form-field>
+                </div>
+
+
+          <div fxLayout="row" fxLayoutAlign="start start" >
+              <mat-form-field appearance="outline"  fxFlex >
+              <input matInput [matDatepicker]="picker1" placeholder="Start Date"  name="resourceProjectWorkStartDate" formControlName="resourceProjectWorkStartDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start" >
+                <mat-form-field appearance="outline"  fxFlex >
+                <input matInput [matDatepicker]="picker2"  placeholder="End Date"  name="resourceProjectWorkEndDate" formControlName="resourceProjectWorkEndDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+              </div>
+
+         
+      </form>
+
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+      <button *ngIf="action === 'edit'"
+              mat-button
+              class="mr-8"
+              (click)="matDialogRef.close(['delete',resourceForm])"
+              aria-label="Delete"
+              matTooltip="Delete">
+          DELETE
+      </button>
+
+      <button *ngIf="action !== 'edit'"
+              mat-button
+              class="save-button"
+              (click)="matDialogRef.close(resourceForm)"
+              [disabled]="resourceForm.invalid"
+              aria-label="SAVE">
+          ADD
+      </button>
+
+      <button *ngIf="action === 'edit'"
+              mat-button
+              class="save-button"
+              (click)="matDialogRef.close(['save',resourceForm])"
+              [disabled]="resourceForm.invalid"
+              aria-label="SAVE">
+          SAVE
+      </button>
+
+  </div>
+</div>

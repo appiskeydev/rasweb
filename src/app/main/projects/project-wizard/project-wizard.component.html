@@ -1,0 +1,260 @@
+<div id="project" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- HEADER -->
+    <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <!-- APP TITLE -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+
+        <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/apps/e-commerce/projects'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <!-- <div class="project-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                  <img *ngIf="project.images[0]" [src]="project.images[0].url">
+                  <img *ngIf="!project.images[0]" [src]="'assets/images/ecommerce/project-image-placeholder.png'">
+              </div> -->
+
+        <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2" *ngIf="pageType ==='edit'">
+            {{project.name}}
+          </div>
+          <div class="h2" *ngIf="pageType ==='new'">
+            New Project
+          </div>
+          <div class="subtitle secondary-text">
+            <span>Project Detail</span>
+          </div>
+        </div>
+      </div>
+      <!-- / APP TITLE -->
+
+      <button mat-raised-button class="save this._milestoneService.milestones-project-button" [disabled]="projectForm.invalid" *ngIf="pageType ==='new'"
+        (click)="addProject()">
+        <span>ADD</span>
+      </button>
+
+      <button mat-raised-button class="save-project-button" [disabled]="projectForm.invalid "
+        *ngIf="pageType ==='edit'" (click)="saveResourceProject()">
+        <span>SAVE</span>
+      </button>
+      
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card">
+
+      <!-- CONTENT -->
+      <div class="content">
+
+        <form name="projectForm" [formGroup]="projectForm" class="project w-100-p" fxLayout="column" fxFlex>
+
+          <mat-tab-group>
+
+            <mat-tab label="Basic Info">
+
+              <div class="tab-content p-24" fusePerfectScrollbar>
+
+
+
+                <div fxLayout="row" fxLayoutAlign="space-between">
+
+                  <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
+                    <mat-label>Project Name</mat-label>
+                    <input matInput placeholder="Project Name" name="name" formControlName="name" required>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
+                    <mat-select placeholder="Client" formControlName="projectClient" name="projectClient"
+                      [compareWith]="compareFn">
+                      <mat-option>-- Select Client --</mat-option>
+                      <mat-option *ngFor="let client of clients" [value]="client">
+                        {{client.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                </div>
+
+
+                <div fxLayout="row" fxLayoutAlign="space-between">
+
+
+                  <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1"
+                      placeholder="Choose Start Date" name="projectStartDate" formControlName="projectStartDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+
+
+
+
+
+
+                  <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2"
+                      placeholder="Choose Developmennt Date" name="projectDevelopmentDate"
+                      formControlName="projectDevelopmentDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+
+                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                  <mat-label>Project Time Line</mat-label>
+                  <input matInput placeholder="Project Time Line" name="projectTimeline" formControlName="projectTimeline"
+                    type="number">
+                </mat-form-field>
+<!-- 
+                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                  <mat-label>Project Description</mat-label>
+                  <textarea matInput placeholder="Project Description" name="description" formControlName="description"
+                    rows="5">
+                                  </textarea>
+                </mat-form-field> -->
+              </div>
+
+            </mat-tab>
+
+
+            <mat-tab label="Features ($16000) ">
+
+              <div class="tab-content p-24" fusePerfectScrollbar>
+
+                  <div fxLayout="row" fxLayoutAlign="space-between">
+
+
+                      <div floatLabel="always" fxFlex="90">
+                          <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+      
+                              <input type="text" placeholder="Select Features" aria-label="Number" matInput [formControl]="featureControl" [matAutocomplete]="auto1"  >
+                              <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFnFeature" >
+                                <mat-option *ngFor="let option of featureFilteredOptions | async" [value]="option">
+                                  {{option.name}}
+                                </mat-option>
+                              </mat-autocomplete>
+                            </mat-form-field>
+                      </div>
+    
+    
+                      <div floatLabel="always" fxFlex="6">
+                            <!-- ADD CONTACT BUTTON -->
+                    <button mat-fab class="accent" id="add-resource-button" (click)="newFeature()" aria-label="add feature"
+                    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}"  >
+                    <mat-icon>add</mat-icon>
+                    </button>
+                    <!-- / ADD CONTACT BUTTON -->
+                      </div>
+    
+                    </div>
+
+                  <app-feature-list-project></app-feature-list-project>
+
+              </div>
+            </mat-tab>
+
+
+            <mat-tab label="Resources ($20000) ">
+
+              <div class="tab-content p-24" fusePerfectScrollbar>
+
+                
+
+                <div fxLayout="row" fxLayoutAlign="space-between">
+
+
+                    <div floatLabel="always" fxFlex="90">
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+    
+                            <input type="text" placeholder="Select Resources" aria-label="Number" matInput [formControl]="resourceControl" [matAutocomplete]="auto"  >
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" >
+                              <mat-option *ngFor="let option of resourceFilteredOptions | async" [value]="option">
+                                {{option.name}}
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                   </div>
+  
+  
+                    <div floatLabel="always" fxFlex="6">
+                          <!-- ADD CONTACT BUTTON -->
+                  <button mat-fab class="accent" id="add-resource-button" (click)="newResource()" aria-label="add resource"
+                  [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}"  >
+                  <mat-icon>add</mat-icon>
+                  </button>
+                  <!-- / ADD CONTACT BUTTON -->
+                    </div>
+  
+                  </div>
+                  <app-resource-list-project></app-resource-list-project>
+
+             
+
+              </div>
+            </mat-tab>
+
+
+       
+
+
+            <mat-tab label="Milestone">
+              <div class="tab-content p-24" fusePerfectScrollbar>
+              
+
+
+                <div fxLayout="row" fxLayoutAlign="space-between">
+
+
+                  <div floatLabel="always" fxFlex="90">
+                      <app-milestone-list-project></app-milestone-list-project>
+                  </div>
+
+
+                  <div floatLabel="always" fxFlex="6">
+                        <!-- ADD CONTACT BUTTON -->
+                <button mat-fab class="accent" id="add-contact-button" (click)="newMilestone()" aria-label="add contact"
+                [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}"  >
+                <mat-icon>add</mat-icon>
+                </button>
+                <!-- / ADD CONTACT BUTTON -->
+                  </div>
+
+                </div>
+
+                
+<!--          
+            <button mat-raised-button class="save-project-button" 
+              (click)="saveResourceProject()">  
+              <span>SAVE</span>
+            </button> -->
+
+
+              </div>
+
+            </mat-tab>
+
+
+          </mat-tab-group>
+
+        </form>
+
+      </div>
+      <!-- / CONTENT -->
+
+    </div>
+    <!-- / CONTENT CARD -->
+
+  </div>
+  <!-- / CENTER -->
+
+</div>

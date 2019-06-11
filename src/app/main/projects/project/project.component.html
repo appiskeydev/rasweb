@@ -58,7 +58,7 @@
               <mat-form-field appearance="outline"  fxFlex="100">
                 <mat-label>Project Name</mat-label>
                 <input matInput placeholder="First Name" name="name" formControlName="name"
-                   >
+                   #projectname = "matInput">
                <mat-error>Name must have a valid input!</mat-error>
                
               </mat-form-field>
@@ -82,8 +82,8 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field appearance="outline"  fxFlex="100">
-                <mat-label>Project Cost</mat-label>
-                <input matInput type="number"  placeholder="Cost" name="projectCost" formControlName="projectCost"
+                <mat-label>Project Cost ($)</mat-label>
+                <input matInput type="number"  placeholder="Cost ($)" name="projectCost" formControlName="projectCost"
                   >
                 <mat-error>Cost must be in numbers!</mat-error>
               </mat-form-field>
@@ -110,13 +110,12 @@
 
             <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
               <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                  <mat-select placeholder="Client" formControlName="projectClient" name="projectClient"
-                  [compareWith]="compareFn" >
-                      <mat-option>-- Select Client --</mat-option>
-                      <mat-option *ngFor="let client of clients"  [value]="client" >
-                          {{client.name}}
-                      </mat-option>
-                  </mat-select>
+                <input type="text" placeholder="Select Client" matInput formControlName="projectClient" [matAutocomplete]="auto2"  >
+                <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" [displayWith]="displayFn" >
+                  <mat-option *ngFor="let option of clientFilteredOptions | async" [value]="option">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
                 </mat-form-field>
               </div>
 
@@ -132,7 +131,7 @@
 
               <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
                   <mat-form-field  appearance="outline" floatLabel="always" fxFlex="100">
-                    <mat-select placeholder="Resources"  name="projectResources" formControlName="projectResources" multiple  [compareWith]="comparerResource">
+                    <mat-select placeholder="Resources"  name="resourceProjects" formControlName="resourceProjects" multiple  [compareWith]="comparerResource">
                             <mat-option *ngFor="let resource of projectResourcesList" [value]="resource">{{resource.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>

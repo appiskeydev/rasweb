@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Skill } from '../skill.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { SkillService } from '../skill.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatInput } from '@angular/material';
 import { Router } from '@angular/router';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-skill',
@@ -16,6 +17,9 @@ import { fuseAnimations } from '@fuse/animations';
   animations: fuseAnimations
 })
 export class SkillComponent implements OnInit {
+  @ViewChild('skillname') 
+  nameInput: MatInput;
+
   skill: Skill;
   pageType: string;
   skillForm: FormGroup;
@@ -54,6 +58,7 @@ export class SkillComponent implements OnInit {
    * On init
    */
   ngOnInit(): void {
+    this.nameInput.focus();
 
     // Subscribe to update product on changes
     this._skillService.onItemChanged
@@ -125,14 +130,31 @@ export class SkillComponent implements OnInit {
       });
   }
 
-  /**
+/**
    * Add skill
    */
   addSkill(): void {
     const data = this.skillForm.getRawValue();
     data.handle = FuseUtils.handleize(data.name);
 
-    this._skillService.addItem(data)
+    let itemList: Skill[] = []; 
+    let splitted = data.name.split(","); 
+    // console.log(splitted);
+
+    for (let key in splitted) {
+      let value = splitted[key];
+      // Use `key` and `value`
+      if(value != ''){
+        itemList.push(new Skill({id: '',
+          name: value,
+          handle: '',
+          skillResources:[],
+          updatedAt: '',
+          createdAt: ''}));
+      }
+  }
+
+    this._skillService.addListItem(itemList)
       .then(() => {
 
         // Trigger the subscription with new data
@@ -148,5 +170,6 @@ export class SkillComponent implements OnInit {
         this._router.navigate(['/skills']);
       });
   }
+
 
 }

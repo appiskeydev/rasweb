@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from 'environments/environment';
+
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
@@ -8,6 +9,8 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Department } from '../departments/department.model';
 import { Resource } from './resource.model';
 import { Skill } from '../skills/skill.model';
+import { Designation } from '../designations/designation.model';
+import { ResourceProject } from './resource-project.model';
 
 const API_URL = environment.apiUrl;
 
@@ -20,11 +23,19 @@ export class ResourceService {
   entityNode: string = 'resource';
   entityNodeDepartment: string = 'department';
   entityNodeSkill: string = 'skill';
+  entityNodeDesignation: string = 'designation';
   routeParams: any;
   item: any;
   items: any[];
   onItemChanged: BehaviorSubject<any>;
   onItemsChanged: BehaviorSubject<any>;
+
+
+
+  onResourcesChanged: BehaviorSubject<any>;
+  onSelectedResourcesChanged: BehaviorSubject<any>;
+  resources: Resource[];
+  resourceIndex:any;
 
   /**
    * Constructor
@@ -38,6 +49,9 @@ export class ResourceService {
     // Set the defaults
     this.onItemChanged = new BehaviorSubject({});
     this.onItemsChanged = new BehaviorSubject({});
+
+    this.onResourcesChanged = new BehaviorSubject({});
+    this.onSelectedResourcesChanged = new BehaviorSubject({});
   }
 
   /**
@@ -204,6 +218,17 @@ export class ResourceService {
       })
       .catch(this.handleError);
   }
+  public getResourceDesignations(): Observable<any[]> {
+    return this.http
+      .get(API_URL + '/' + this.entityNodeDesignation)
+
+      .map(response => {
+        const designations = response.json();
+        return designations.map((designation) => new Designation(designation));
+        // return licenses.map((license) => new licenses(license));
+      })
+      .catch(this.handleError);
+  }
 
 
 
@@ -211,5 +236,69 @@ export class ResourceService {
     return  this._httpClient.delete(API_URL + '/' + this.entityNode +'/' + itemId);
 
   }
+
+    /**
+     * Update resource
+     *
+     * @param resource
+     * @returns {Promise<any>}
+     */
+    updateResource(resource): Promise<any>
+    {
+     
+        return new Promise((resolve, reject) => {
+        //   if( != ''){
+        // this.resourceIndex = this.resources.indexOf(resource);
+        // let getItem =new Resource(this.resourceIndex);
+        // console.log(resource.id+' - ' +getItem.id );
+          
+    
+        for (let key in this.resources) {
+          let value = this.resources[key];
+          // Use `key` and `value`
+          if(value.id == resource.id){
+            console.log('Value id' +value.id)
+            // this.resourceIndex = key;
+            // this.resources.splice(this.resourceIndex, 1);
+            // console.log(this.resourceIndex)
+
+            // this.resources.push(resource);
+            // this.onResourcesChanged.next(this.resources);
+
+          }
+      }
+    //     this.resources.forEach(function (value) {
+    //       if(value.id == resource.id){
+    //         let getItem =new Resource(this.resourceIndex value);
+          
+    //  }
+          
+    //     });
+        //   }
+          this.resources.push(resource);
+          this.onResourcesChanged.next(this.resources);
+
+            // this._httpClient.post('api/resources-resources/' + resource.id, {...resource})
+            //     .subscribe(response => {
+            //         this.getResources();
+                    resolve(resource);
+            //     });
+        });
+    }
+
+    
+
+    /**
+     * Delete resource
+     *
+     * @param resource
+     */
+    deleteResource(resource): void
+    {
+        const resourceIndex = this.resources.indexOf(resource);
+        this.resources.splice(resourceIndex, 1);
+        this.onResourcesChanged.next(this.resources);
+    }
+
 
 }

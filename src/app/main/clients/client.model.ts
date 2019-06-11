@@ -1,4 +1,5 @@
 import { FuseUtils } from "@fuse/utils";
+import { Company } from "../companies/company.model";
 
 export class Client {
     id: string;
@@ -15,6 +16,7 @@ export class Client {
     clientImageUrl:string;
     clientTimeZone:string;
     clientAvailability:string;
+    clientCompany:Company;
     isActive:boolean;
     updatedAt: string;
     createdAt: string;
@@ -46,9 +48,24 @@ export class Client {
         this.parent = client.parent || null;
 
         this.clientAvailability = client.clientAvailability || '';
+        this.clientCompany = client.clientCompany || null;
         this.isActive = client.isActive || '';
 
         this.updatedAt = client.updatedAt || '';
         this.createdAt = client.createdAt || '';
     }
+
+    /**
+     * Constructor
+     *
+     * @param Company
+     */
+    mapCompany(company? )
+    {
+      
+       
+        this.clientCompany = company || null;
+    
+    }
+
 }

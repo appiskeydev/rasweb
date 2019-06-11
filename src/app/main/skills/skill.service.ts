@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from 'environments/environment';
+
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
@@ -139,6 +140,21 @@ export class SkillService {
   addItem(item): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient.post(API_URL + '/' + this.entityNode , item)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
+
+   /**
+   * Add product
+   *
+   * @param ListItem
+   * @returns {Promise<any>}
+   */
+  addListItem(Listitem): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient.post(API_URL + '/' + this.entityNode + '/saveall' , Listitem)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);

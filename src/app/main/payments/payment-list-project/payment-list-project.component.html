@@ -1,0 +1,55 @@
+<mat-table #table [dataSource]="dataSource"
+           [@animateStagger]="{value:'50'}">
+    <!-- paymentDate Column -->
+    <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef>Payment Amount</mat-header-cell>
+        <mat-cell *matCellDef="let payment">
+            <p class="text-truncate font-weight-600">{{payment.paymentAmount}} </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef >Payment Date </mat-header-cell>
+        <mat-cell *matCellDef="let payment"  >
+            <p class="email text-truncate">
+                {{payment.paymentDate}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+   
+
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let payment">
+            <div fxFlex="row" fxLayoutAlign="end center">
+              
+                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                        (click)="$event.stopPropagation();">
+                    <mat-icon class="secondary-text">more_vert</mat-icon>
+                </button>
+
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item aria-label="remove" (click)="deletePayment(payment)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Remove</span>
+                    </button>
+                </mat-menu>
+            </div>
+
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let payment; columns: displayedColumns;"
+             class="payment"
+             (click)="editPayment(payment)"
+             [ngClass]="{'accent-50':checkboxes[payment.id]}"
+             matRipple
+             [@animate]="{value:'*',params:{y:'100%'}}">
+    </mat-row>
+</mat-table>
+
+
