@@ -11,6 +11,10 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get update && apt-get install -y nodejs
+
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN npm install
