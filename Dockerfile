@@ -3,7 +3,7 @@
 #############
 
 # base image
-FROM node:12.2.0 as build
+FROM node:10.15.3 as build
 
 # set working directory
 WORKDIR /app
@@ -11,14 +11,14 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN apt-get update && apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get update && apt-get install -y nodejs
+# RUN apt-get update && apt-get install -y curl
+# RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+# RUN apt-get update && apt-get install -y nodejs
 
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN npm install
-RUN npm install -g @angular/cli@7.3.9
+RUN npm install -g @angular/cli@7.1.3
 
 # add app
 COPY . /app
