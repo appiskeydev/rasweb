@@ -272,7 +272,7 @@ private _projectDashboardService : DashboardService,
 
     this._projectDashboardService.getWidget13().subscribe(projectWidget13 => {
       this.widgets.widget13 = projectWidget13;
-      // console.log(this.widgets.widget8)
+      console.log(this.widgets.widget13)
     });
 
     this._projectDashboardService.getWidget14().subscribe(projectWidget14 => {
