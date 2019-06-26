@@ -146,15 +146,16 @@ export const navigation: FuseNavigation[] = [
                    
 
                 ]
-            },
-            {
-                'id'   : 'reports',
-                'title': 'Reports',
-                'translate': 'NAV.REPORTS.TITLE',
-                'type' : 'item',
-                'icon' : 'assessment',
-                'url'  : '/report'
             }
+            // ,
+            // {
+            //     'id'   : 'reports',
+            //     'title': 'Reports',
+            //     'translate': 'NAV.REPORTS.TITLE',
+            //     'type' : 'item',
+            //     'icon' : 'assessment',
+            //     'url'  : '/report'
+            // }
         ]
     }
 ];

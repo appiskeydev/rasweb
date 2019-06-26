@@ -47,10 +47,12 @@ export const locale = {
             },
             'FRINGE_BENEFITS'        : {
                 'TITLE': 'Fringe Benefits'
-            },
-            'REPORTS'        : {
-                'TITLE': 'Reports'
-            },
+            }
+            // ,
+            // 'REPORTS'        : {
+            //     'TITLE': 'Reports'
+            // }
+            ,
             'FEATURES'        : {
                 'TITLE': 'Features'
             },
