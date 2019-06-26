@@ -8,7 +8,7 @@ import { DataSource } from '@angular/cdk/table';
 import { FuseUtils } from '@fuse/utils';
 import { DesignationService } from '../designation.service';
 @Component({
-  selector: 'app-designation-list',
+  selector: 'designation-list',
   templateUrl: './designation-list.component.html',
   styleUrls: ['./designation-list.component.scss'],
   animations: fuseAnimations,

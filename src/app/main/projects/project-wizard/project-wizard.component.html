@@ -73,6 +73,7 @@
                   </mat-form-field>
 
                   <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
+                    <mat-label>Client</mat-label>
                     <mat-select placeholder="Client" formControlName="projectClient" name="projectClient"
                       [compareWith]="compareFn">
                       <mat-option>-- Select Client --</mat-option>
@@ -89,6 +90,7 @@
 
 
                   <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
+                  <mat-label>Start Date</mat-label>
                     <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1"
                       placeholder="Choose Start Date" name="projectStartDate" formControlName="projectStartDate">
                     <mat-datepicker-toggle  [for]="picker1"></mat-datepicker-toggle>
@@ -101,6 +103,7 @@
 
 
                   <mat-form-field appearance="outline" floatLabel="always" fxFlex="49">
+                    <mat-label>Development Date</mat-label>
                     <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2"
                       placeholder="Choose Developmennt Date" name="projectDevelopmentDate"
                       formControlName="projectDevelopmentDate">
@@ -111,7 +114,7 @@
                 </div>
 
                 <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
-                  <mat-label>Project Time Line</mat-label>
+                  <mat-label>Project Timeline</mat-label>
                   <input matInput placeholder="Project Time Line" name="projectTimeline" formControlName="projectTimeline"
                     type="number">
                 </mat-form-field>
@@ -127,7 +130,7 @@
             </mat-tab>
 
 
-            <mat-tab label="Features ($16000) ">
+            <mat-tab label="Features ">
 
               <div class="tab-content p-24" fusePerfectScrollbar>
 
@@ -164,7 +167,7 @@
             </mat-tab>
 
 
-            <mat-tab label="Resources ($20000) ">
+            <mat-tab label="Resources  ">
 
               <div class="tab-content p-24" fusePerfectScrollbar>
 

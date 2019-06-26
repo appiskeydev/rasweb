@@ -34,8 +34,8 @@ export class Resource {
     resourceDepartment: Department;
     resourceSkills:Skill[];
     handle: string;
-    updatedAt: string;
-    createdAt: string;
+    // updatedAt: string;
+    // createdAt: string;
     project: Project;
 
     // resourceProjectHour: string;
@@ -83,8 +83,8 @@ export class Resource {
         this.resourcePartTime = resource.resourcePartTime || '';
         this.resourceDepartment = resource.resourceDepartment || null;
         this.resourceSkills= resource.resourceSkills || null;
-        this.updatedAt = resource.updatedAt || '';
-        this.createdAt = resource.createdAt || '';
+        // this.updatedAt = resource.updatedAt || '';
+        // this.createdAt = resource.createdAt || '';
         this.project =resource.project || null;
 
         // this.resourceProjectHour = resource.resourceProjectHour || '';

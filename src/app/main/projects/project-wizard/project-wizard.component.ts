@@ -16,8 +16,7 @@ import { ProjectWizardService } from '../project-wizard.service';
 import { MilestoneFormComponent } from 'app/main/milestones/milestone-form/milestone-form.component';
 import { ResourceDailogFormComponent } from 'app/main/resources/resource-dailog-form/resource-dailog-form.component';
 import { Project } from '../project.model';
-import { ResourceProject } from 'app/main/resources/resource-project.model';
-import { tick } from '@angular/core/src/render3';
+
 @Component({
   selector: 'app-project-wizard',
   templateUrl: './project-wizard.component.html',
@@ -104,8 +103,9 @@ export class ProjectWizardComponent implements OnInit {
             this.project = new Project(project);
                 console.log("Project :",project)
                 this._resourceService.resources = project.resourceProjects;
-                
-                
+                this._resourceService.defaultResources(project.resourceProjects);
+                this._featureService.defaultFeatures(project.projectFeatures);
+                this._milestoneService.defaultMilestones(project.projectMilestones);
 
             this.pageType = 'edit';
       
@@ -373,7 +373,7 @@ export class ProjectWizardComponent implements OnInit {
                     }
                     this.projectResourceList = response.getRawValue();
                     console.log(this.projectResourceList);
-
+                    
 
                     this._resourceService.updateResource(response.getRawValue());
                 });

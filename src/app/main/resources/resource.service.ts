@@ -299,6 +299,16 @@ export class ResourceService {
         this.resources.splice(resourceIndex, 1);
         this.onResourcesChanged.next(this.resources);
     }
+  /**
+   * Default resource
+   *
+   * @param resources
+   */
+  defaultResources(resources): void {
+    
+    this.resources= resources;
+    this.onResourcesChanged.next(this.resources);
+  }
 
 
 }

@@ -369,7 +369,16 @@ export class MilestoneService {
         this.onMilestonesChanged.next(this.milestones);
         this.deselectMilestones();
     }
+  /**
+   * Default milestone
+   *
+   * @param milestones
+   */
+  defaultMilestones(milestones): void {
 
+    this.milestones = milestones;
+    this.onMilestonesChanged.next(this.milestones);
+  }
 
 
 }

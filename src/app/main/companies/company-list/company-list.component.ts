@@ -9,7 +9,7 @@ import { FuseUtils } from '@fuse/utils';
 import { fuseAnimations } from '@fuse/animations';
 
 @Component({
-  selector: 'app-company-list',
+  selector: 'company-list',
   templateUrl: './company-list.component.html',
   styleUrls: ['./company-list.component.scss'],
   animations: fuseAnimations,

@@ -141,6 +141,7 @@ export class ProjectWizardService {
       this._httpClient.put(API_URL + '/' + this.entityNode ,item)
         .subscribe((response: any) => {
           resolve(response);
+          console.log('Item '  + response)
         }, reject);
     });
   }
