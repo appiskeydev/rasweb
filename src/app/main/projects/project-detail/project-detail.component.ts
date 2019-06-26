@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { Project } from '../project.model';
 import { id } from '@swimlane/ngx-charts/release/utils';
+import { Resource } from 'app/main/resources/resource.model';
 
 @Component({
   selector: 'project-detail',
@@ -19,6 +20,7 @@ import { id } from '@swimlane/ngx-charts/release/utils';
 })
 export class ProjectDetailComponent implements OnInit {
   project:Project;
+  projectResourcesList: Resource[];
   dataSource: FilesDataSource | null;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
@@ -57,8 +59,9 @@ export class ProjectDetailComponent implements OnInit {
   ) {
     // Set the private defaults
     this.project = this._projectService.item;
-
+    this.projectResourcesList =this.project.resourceProjects;  
     console.log(this.project);
+    console.log(this.projectResourcesList);
 
     this._unsubscribeAll = new Subject();
   }
@@ -76,6 +79,11 @@ export class ProjectDetailComponent implements OnInit {
 
     // this._projectService.getItemById(this._projectService.item.id).subscribe((response: any) => {
     
+    // });
+    // this._projectService.getAllResources().subscribe(projectResource => {
+    //   this.projectResourcesList = projectResource.map((resource) => new Resource(resource));
+    //   console.log(this.projectResourcesList);
+
     // });
 
 

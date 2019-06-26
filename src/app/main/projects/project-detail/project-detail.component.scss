@@ -1,137 +1,124 @@
 @import "src/@fuse/scss/fuse";
+#project-detail {
 
-project-detail {
+    .content {
 
-    #project-detail {
+        .cards {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
 
-        .top-bg {
+            .card {
+                display: flex;
+                align-items: flex-start;
+                padding: 14px 14px 18px 14px;
+                margin-bottom: 96px;
+                width: 50%;
+                
+                .projectcard{
+                   
+                     .courses {
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
 
-            @include media-breakpoint('lt-md') {
-                height: 256px;
+            .no-courses {
+                font-size: 24px;
+                margin: 24px 0;
+                text-align: center;
             }
-        }
 
-        > .center {
+            .course {
+                padding: 16px;
+                min-width: 240px;
 
-            > .header {
+                &:hover {
 
-                .search-wrapper {
-                    width: 100%;
-                    max-width: 480px;
-                    border-radius: 28px;
-                    background-color: white;
+                    .course-content {
+                        border: none;
+                        @include mat-elevation(12);
+                    }
+                }
+
+                .course-content {
+                    min-height: 240px;
+                    border-radius: 4px;
                     overflow: hidden;
+                    transition: box-shadow 200ms ease-in-out;
                     @include mat-elevation(1);
 
-                    @include media-breakpoint('xs') {
-                        width: 100%;
-                    }
+                    .header {
+                        padding: 16px 24px;
+                        height: 64px !important;
+                        min-height: 64px !important;
+                        max-height: 64px !important;
 
-                    .search {
-                        width: 100%;
-                        height: 48px;
-                        line-height: 48px;
-                        padding: 0 18px;
+                        &.web-bg {
+                            background: mat-color($mat-blue, 500);
+                        }
 
-                        input {
-                            width: 100%;
-                            height: 48px;
-                            min-height: 48px;
-                            max-height: 48px;
-                            padding: 0 16px;
-                            border: none;
-                            outline: none;
+                        &.android-bg {
+                            background: mat-color($mat-green, 500);
+                        }
+
+                        &.firebase-bg {
+                            background: mat-color($mat-amber, 800);
+                        }
+
+                        &.cloud-bg {
+                            background: mat-color($mat-blue-grey, 500);
+                        }
+
+                        .category {
+                            text-transform: capitalize;
+                            text-align: left;
+                            font-weight: 600;
+                        }
+
+                        .length {
+
+                            .length-icon {
+                                margin-right: 8px;
+                            }
+
+                            .min {
+                                font-size: 16px;
+                            }
                         }
                     }
+
+                    .content {
+                        padding: 24px;
+
+                        .h1 {
+                            font-size: 16px;
+                            text-align: center;
+                        }
+
+                        .updated {
+                            font-size: 13px;
+                            font-weight: 600;
+                            margin-top: 4px;
+                        }
+                    }
+
+                    .footer {
+                        padding: 16px;
+                        height: 48px !important;
+                        min-height: 48px !important;
+                        max-height: 48px !important;
+                        box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.12);
+                    }
                 }
-
-                @include media-breakpoint('lt-md') {
-                    padding: 8px 0;
-                    height: 192px !important;
-                    min-height: 192px !important;
-                    max-height: 192px !important;
+            }
+        }
                 }
+            
             }
         }
+
+       
     }
-
-    .projects-table {
-        flex: 1 1 auto;
-        border-bottom: 1px solid rgba(0, 0, 0, .12);
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-
-        .mat-header-row {
-            min-height: 64px;
-        }
-
-        .project {
-            position: relative;
-            cursor: pointer;
-            height: 84px;
-        }
-
-        .mat-cell {
-            min-width: 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .mat-column-id {
-            flex: 0 1 84px;
-        }
-
-        .mat-column-image {
-            flex: 0 1 84px;
-
-            .project-image {
-                width: 52px;
-                height: 52px;
-                border: 1px solid rgba(0, 0, 0, .12);
-            }
-        }
-
-        .mat-column-category {
-            flex: 0 1 240px;
-        }
-
-        .mat-column-price {
-            flex: 0 1 160px;
-        }
-
-        .mat-column-quantity {
-            flex: 0 1 160px;
-        }
-
-        .mat-column-active {
-            flex: 0 1 80px;
-        }
-
-        .quantity-indicator {
-            display: inline-block;
-            vertical-align: middle;
-            width: 8px;
-            height: 8px;
-            border-radius: 4px;
-            margin-right: 8px;
-
-            & + span {
-                display: inline-block;
-                vertical-align: middle;
-            }
-        }
-
-        .active-icon {
-            border-radius: 50%;
-        }
-    }
-}
-
-.example-card {
-  max-width: 400px;
-}
-
-.example-header-image {
-  background-image: url('/assets/images/backgrounds/dark-material-bg.jpg');
-  background-size: cover;
 }

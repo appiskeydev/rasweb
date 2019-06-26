@@ -220,5 +220,16 @@ export class FeatureService {
         this.onFeaturesChanged.next(this.features);
     }
 
+  /**
+* Default feature
+*
+* @param features
+*/
+  defaultFeatures(features): void {
+
+    this.features = features;
+    this.onFeaturesChanged.next(this.features);
+  }
+
 
 }

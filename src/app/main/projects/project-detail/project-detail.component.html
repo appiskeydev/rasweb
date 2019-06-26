@@ -1,105 +1,139 @@
-<div id="project-detail" class="page-layout carded fullwidth inner-scroll">
+<div id="project-detail" class="page-layout simple fullwidth">
 
-  <!-- TOP BACKGROUND -->
-  <div class="top-bg accent" ></div>
-  <!-- / TOP BACKGROUND -->
+  <!-- HEADER -->
+  <div class="header accent p-24 h-160" fxLayout="row" fxLayoutAlign="space-between center">
 
-  <!-- CENTER -->
-  <div class="center">
-    <!-- HEADER -->
-    <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
-      fxLayoutAlign.gt-sm="space-between center">
-
-      <!-- APP TITLE -->
-      <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
-
-        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-          Project Detail
-        </span>
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="secondary-text s-18">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Project Details</span>
       </div>
-      <!-- / APP TITLE -->
-
-
-
+      <div class="h2 mt-16">{{project.name}}</div>
     </div>
-
-    
-    <!-- CONTENT CARD -->
-
-    <div class="content-card">
-      <mat-card class="example-card"  style="margin: 50px;" fxFlex= "grow">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{project.name}}</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <!-- <img mat-card-image src="/assets/images/backgrounds/dark-material-bg.jpg" alt="Photo of a Shiba Inu"> -->
-        <mat-card-content style="margin: 20px; font-size: 16px;">
-          <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p" >
-          
-            <mat-label><b>Project Name</b></mat-label>
-            {{project.name}}
-          </div>
-
-
-            <a [routerLink]="'/client-detail/'+project.projectClient?.id+'/'"> {{project.projectClient?.name}}</a>
-            <div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-            
-              <mat-label><b>Start Date</b></mat-label>
-              {{project.projectStartDate}}
-            </div>
-          
-
-<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-  <mat-label><b>Development Date</b></mat-label>
-  {{project.projectDevelopmentDate}}
-</div>
-
-<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-  <mat-label><b>Project Cost </b></mat-label>
-  {{project.projectCost}}
-</div>
-
-<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-  <mat-label><b>Timeline </b></mat-label>
-  {{project.projectTimeline}}
-</div>
-
-<div fxLayout="row" fxLayoutAlign="start center" class="w-100-p">
-
-  <mat-label><b>Payment Method </b></mat-label>
-  {{project.projectPaymentMethod}}
-</div>
-
-
-
-
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>VIEW</button>
-     
-        </mat-card-actions>
-      </mat-card>
-
-    
-
-   
-
-      
-
-    </div>
-
-    <!-- 
-          
-          <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-          </mat-paginator> -->
-
 
 
 
   </div>
+  <!-- / HEADER -->
+
+  <!-- CONTENT -->
+  <div class="content" [ngClass]="this.view">
+
+    <div class="cards" fxLayout="row" fxLayoutAlign="space-evenly start">
+
+      <!-- CARD 1 -->
+      <div class="card" fxFlex="40" >
+
+        <!-- PREVIEW -->
+        <div class="">
+
+          <div class="projectcard">
+
+
+            <div class="p-16">
+              <div class="h1">{{project.name}}</div>
+              <div class="h4 secondary-text">Starting from : {{project.projectStartDate}}</div>
+            </div>
+
+            <div class="p-16 pt-0 line-height-1.75">
+         
+            <mat-label><b>Development Date</b></mat-label>
+            {{project.projectDevelopmentDate}}
+              <mat-label><b>Client</b></mat-label>
+              {{project.projectClient?.name}}<br/>
+              <mat-label><b>Project Cost </b></mat-label>
+              {{project.projectCost}} <br/>
+             <mat-label><b>Timeline </b></mat-label>
+              {{project.projectTimeline}}
+            </div>
+
+          </div>
+
+        </div>
+        <!-- / PREVIEW -->
+
+        <!-- SOURCE -->
+        <div class="card-source" fxHide fxShow.gt-sm>
+
+
+
+        </div>
+        <!-- / SOURCE -->
+
+      </div>
+      <!-- / CARD 1 -->
+
+      <!-- CARD 2 -->
+      <div class="card" fxFlex="60"   >
+
+        <!-- PREVIEW -->
+        <div class="">
+
+          <div class="projectcard">
+
+            
+                  <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
+                  
+                    <div class="course" *ngFor="let course of projectResourcesList" 
+                      [ngClass]="course.resource?.name" [@animate]="{value:'*',params:{y:'100%'}}">
+                  
+                      <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
+                  
+                        <div class="header" fxLayout="row" fxLayoutAlign="center center"  >
+                  
+                          <div class="category" fxFlex>
+                            {{course.resource?.name}}
+                          </div>
+                  
+                          <!-- <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                            <mat-icon class="length-icon s-20">access_time</mat-icon>
+                            <div class="min"> min</div>
+                          </div> -->
+                  
+                        </div>
+                  
+                        <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                          <div class="h1">{{course.resource?.name}}</div>
+                          <!-- <div class="updated">Updated </div> -->
+                        </div>
+                  
+                        <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+                          
+                        </div>
+                  
+                      </div>
+                  
+                    </div>
+                  
+                    <div class="no-courses" *ngIf="projectResourcesList.length === 0">
+                      No Resource found!
+                    </div>
+                  
+                  </div>
+
+
+          </div>
+
+        </div>
+        <!-- / PREVIEW -->
+
+        <!-- SOURCE -->
+        <div class="card-source" fxHide fxShow.gt-sm>
+
+
+
+        </div>
+        <!-- / SOURCE -->
+
+      </div>
+      <!-- / CARD 2 -->
+
+
+
+    </div>
+
+  </div>
+  <!-- / CONTENT -->
+
 </div>
